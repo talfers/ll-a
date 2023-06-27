@@ -73,6 +73,13 @@ export const PageHeader2Styled = styled.h2`
 
 `;
 
+export const PageHeader3Styled = styled.h3`
+    font-size: 1.25em;
+    color: ${({ theme }) => theme.colors.cardText};
+    align-self: flex-start;
+
+`;
+
 export const PageHeaderSubTextStyled = styled.p`
     margin: 12px 0px;
     font-size: 14px;

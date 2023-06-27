@@ -60,18 +60,17 @@ export const SelectStyled = styled.select`
 
 export const TextAreaStyled = styled.textarea`
     border-radius: 8px;
-    border: ${({ theme }) => theme.colors.borderColor} 1px solid;
+    border: ${({ theme }) => theme.colors.contrastText} 1px solid;
     padding: 6px;
     vertical-align:top;
     font-family: ${({ theme }) => theme.colors.ff};
-
-    &:focus {
-        outline: none !important;
-        border: 1.5px solid ${({ theme }) => theme.colors.contrastText};
-        /* box-shadow: 0 0 10px lightgray; */
-    }
     height: 100px;
     vertical-align: top;
+    :focus {
+        border: 1.5px solid ${({ theme }) => theme.colors.contrastText};
+        // outline: none;
+    }
+    
 `
 
 export const LabelStyled = styled.label`

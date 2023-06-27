@@ -3,6 +3,7 @@ import iconMap from '../data/iconMap';
 import { BoxIconContainerStyled, BoxTitleStyled } from '../styles/Home';
 import { ClusterContainerStyled, ClusterItemContainerStyled } from '../styles/Cluster';
 import { IconContext } from 'react-icons';
+import { PageHeader3Styled } from '../styles/Main';
 
 function Cluster({name, input, tab, section, onUpdate}) {
     // const [selected, setSelected] = useState(input.value)
@@ -22,16 +23,17 @@ function Cluster({name, input, tab, section, onUpdate}) {
                     <BoxTitleStyled>{key.charAt(0).toUpperCase()+key.slice(1).replaceAll('_', ' ')}</BoxTitleStyled>
                 </ClusterItemContainerStyled>
             </IconContext.Provider>
-            
-           
         ))
     }
     
     return (
+        <>
+            <PageHeader3Styled>Select all that apply:</PageHeader3Styled>
+            <ClusterContainerStyled>
+                {createBoxes()}
+            </ClusterContainerStyled>
+        </>
         
-        <ClusterContainerStyled>
-            {createBoxes()}
-        </ClusterContainerStyled>
         
     );
 }

@@ -18,7 +18,11 @@ function Input(props) {
         $type={props.input.type}
         $size={props.input.size}
         >
-            {props.input.type==='number'||props.input.type==='cluster'||props.input.type==='textarea'?null:
+            {
+                props.input.type==='number'||
+                props.input.type==='cluster'||
+                props.input.type==='textarea'||
+                props.input.type==='checkbox'?null:
                 <LabelStyled htmlFor={props.input.name} className="label">{props.input.title}</LabelStyled>
             }
             {

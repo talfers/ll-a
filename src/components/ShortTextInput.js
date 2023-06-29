@@ -1,22 +1,17 @@
 import React from 'react';
-import { InputContainerStyled, TextAreaStyled, LabelStyled } from '../styles/Form';
-import { PageHeader3Styled, PageSubTitleStyled } from '../styles/Main';
+import { InputStyled } from '../styles/Form';
+import { PageHeader3Styled } from '../styles/Main';
 
 
 
 function ShortTextInput({input, name, tab, section, onUpdate}) {
 
-
+    console.log(input);
     return (
-            <InputContainerStyled
-            key={input.name} 
-            $type={input.type}
-            $size={input.size}
-            >
+            <>
                 <PageHeader3Styled>{input.title}</PageHeader3Styled>
-                <PageSubTitleStyled>{input.placeholder}</PageSubTitleStyled>
-                <TextAreaStyled 
-                    type={input.type} 
+                <InputStyled 
+                    type={'text'} 
                     id={name} 
                     name={name}
                     value={input.value} 
@@ -25,7 +20,7 @@ function ShortTextInput({input, name, tab, section, onUpdate}) {
                     }} 
                     placeholder={input.placeholder} 
                 />
-            </InputContainerStyled>
+            </>
                  
     );
 }

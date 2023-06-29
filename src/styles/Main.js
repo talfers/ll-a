@@ -104,8 +104,8 @@ export const DividerStyled = styled.hr`
 `;
 
 export const PageSubTitleStyled = styled.p`
-    margin: 12px 0px;
-    font-size: 14px;
+    margin: 4px 0px 12px 0px;
+    font-size: 1em;
     color: ${({ theme }) => theme.colors.subTextColor};
     text-align: left;
     align-self: flex-start;

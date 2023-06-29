@@ -1,5 +1,5 @@
 import React from 'react';
-import { InputContainerStyled, TextAreaStyled } from '../styles/Form';
+import { TextAreaStyled } from '../styles/Form';
 import { PageHeader3Styled, PageSubTitleStyled } from '../styles/Main';
 
 
@@ -8,11 +8,7 @@ function TextArea({input, name, tab, section, onUpdate}) {
 
 
     return (
-            <InputContainerStyled
-            key={input.name} 
-            $type={input.type}
-            $size={input.size}
-            >
+            <>
                 <PageHeader3Styled>{input.title}</PageHeader3Styled>
                 <PageSubTitleStyled>{input.subtext}</PageSubTitleStyled>
                 <TextAreaStyled 
@@ -25,7 +21,7 @@ function TextArea({input, name, tab, section, onUpdate}) {
                     }} 
                     placeholder={input.placeholder} 
                 />
-            </InputContainerStyled>
+            </>
                  
     );
 }

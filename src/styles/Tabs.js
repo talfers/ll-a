@@ -8,10 +8,6 @@ export const TabsContainerStyled = styled.div`
     border-radius: 8px;
     background: ${({ theme }) => theme.colors.cardBG};
     min-height: 400px;
-    @media only screen and ${devices.xxl} {
-        max-width: 2000px;
-        width: 95%;
-    }
 `;
 
 export const TabContentContainerStyled = styled.div`

@@ -71,7 +71,7 @@ const tabs = [
                     placeholder: "Be sure to include any notable features that help your property stand out..",
                     name: "additional_features",
                     type: "textarea",
-                    subtext: "",
+                    subtext: "Include any features that other will love about your property",
                     size: 100,
                     value: ''
                 }
@@ -82,7 +82,7 @@ const tabs = [
                     placeholder: "Include details about lease terms like rental price or utilities as well as any tenant requirements such as no pets or a minimum credit score.",
                     name: "terms",
                     type: "textarea",
-                    subtext: "",
+                    subtext: "Create your desired tenant requirements and terms for your lease",
                     size: 100,
                     value: ''
                 }
@@ -106,7 +106,7 @@ const tabs = [
                 "recipient": {
                     title: "Recipient",
                     placeholder: "Recipient title or relation to you",
-                    type: "text",
+                    type: "shorttext",
                     size: 50,
                     value: ''
                 },
@@ -114,6 +114,7 @@ const tabs = [
                     title: "Message explaination",
                     placeholder: "Please include any details about important issues or concerns, specific requests or instructions, and/or any deadlines or time-sensitive information.",
                     type: "textarea",
+                    subtext: "Explain what you would like to say in your message",
                     size: 100,
                     value: ''
                 }

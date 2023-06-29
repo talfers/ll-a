@@ -1,9 +1,8 @@
 import React from 'react';
 import Form from './Form'
-import Response from './Response';
 import Loading from './Loading';
 import { TabContentContainerStyled } from '../styles/Tabs'
-import { PageHeader2Styled, PageHeaderSubTextStyled, PageHeaderSubTextMobileStyled, DividerStyled } from '../styles/Main';
+import { PageHeader2Styled, PageHeaderSubTextStyled, PageHeaderSubTextMobileStyled } from '../styles/Main';
 
 function Tab(props) {
     return (
@@ -21,12 +20,8 @@ function Tab(props) {
                         </>
                         :null
                     }
-                    <div className='tabs__interaction__content'>
+                    <div>
                         <Form tab={props.tab}  customer={props.customer} subscription={props.subscription} />
-                        <br></br>
-                        <DividerStyled></DividerStyled>
-                        <br></br>
-                        <Response tab={props.tab} />
                     </div>
                 </div>
         </TabContentContainerStyled>

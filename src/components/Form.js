@@ -10,9 +10,11 @@ import Input from './Input';
 import { ModalBackgroundStyled } from '../styles/Main';
 import Loading from './Loading';
 import Products from './Products';
+import { useNavigate } from 'react-router-dom';
 
 
 function Form(props) {
+    const navigate = useNavigate();
     const { user } = useAuth()
     const { checkout } = usePayments()
     const {postTaskData, incrementStep, decrementStep, resetResponse, updateLoading} = useContext(TaskContext);
@@ -25,12 +27,11 @@ function Form(props) {
         e.preventDefault();
         if(props.subscription?.status==='active') {
             resetResponse(props.tab.id)
-            const elem = document.getElementById("response");
             updateLoading(props.tab.id, true)
-            elem.scrollIntoView();
             try {
+                navigate('/response')
+                updateLoading(props.tab.id, false)
                 await postTaskData(props.tab);
-                elem.scrollIntoView();
             } catch (err) {
                 setError(err.message)
                 console.log(err.message);

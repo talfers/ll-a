@@ -12,7 +12,6 @@ function Cluster({name, input, tab, section, onUpdate}) {
         let tempSelected = {...input.value};
         tempSelected[id] = !tempSelected[id];
         onUpdate(tempSelected, tab, section, name)
-        console.log(input.value);
     }
 
     const createBoxes = () => {

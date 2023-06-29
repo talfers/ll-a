@@ -665,7 +665,7 @@ const tabs = [
                     title: "Question",
                     placeholder: "Enter your legal question. Please include any relevant background information, specific questions, and any relevant laws or regulations that may be applicable.",
                     type: "textarea",
-                    subtext: "",
+                    subtext: "Ask any question that comes to mind, I bet I can help",
                     size: 100,
                     value: ''
                 }

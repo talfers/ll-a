@@ -35,7 +35,7 @@ function Input(props) {
                     tab={props.tab}
                     section={props.section}
                     onUpdate={updateValue} 
-                />:props.input.type === 'textarea'?
+                />:props.input.type === 'shorttext'?
                 <ShortTextInput 
                     input={props.input}
                     name={props.name}

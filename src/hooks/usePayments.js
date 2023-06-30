@@ -1,6 +1,7 @@
 import { createContext, useContext, useCallback } from 'react';
 import db from '../config/firebase';
 import { collection, addDoc, onSnapshot, query, getDocs, where, updateDoc, doc, setDoc } from "firebase/firestore";
+import { getFunctions, httpsCallable } from "firebase/functions"
 import { loadStripe } from '@stripe/stripe-js';
 import config from '../config';
 
@@ -68,7 +69,18 @@ export const PaymentsContextProvider = ({children}) => {
 
   
   const manageSubscription = async () => {
-    alert('Feature under construction')
+    // alert('Feature under construction')
+    const functions = getFunctions();
+    const functionRef = httpsCallable(
+      functions,
+      "ext-firebase-stripe-payments-createPortalLink"
+    );
+    const { data } = await functionRef({
+      returnUrl: window.location.origin,
+      locale: 'auto'
+    });
+    console.log(data.url)
+    window.location.assign(data.url)
     // try {
     //   let res = await axios.post('http://localhost:5000/manage', {
     //     customer: customerId,

@@ -32,6 +32,8 @@ function Response(props) {
 
     return (
             <ResponseContainerStyled>
+                {/* <PageHeader2Styled>Question</PageHeader2Styled>
+                <ResponseStyled>{props.tab.currentPrompt}</ResponseStyled> */}
                 <ResponseHeaderStyled>
                     <PageHeader2Styled>Assistant Response</PageHeader2Styled>
                     {props.tab.response!==''?
@@ -64,7 +66,6 @@ function Response(props) {
                     
                     
                 </ResponseHeaderStyled>
-            
                 <ResponseStyled id='response'>{generateResponse()}</ResponseStyled>
             </ResponseContainerStyled>
             

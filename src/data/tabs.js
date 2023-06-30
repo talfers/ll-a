@@ -13,6 +13,7 @@ const tabs = [
         submitMessage: "Create Advertising",
         step: 0,
         loading: false,
+        currentPrompt: "",
         response: "",
         inputs: {
             "property": {
@@ -100,6 +101,7 @@ const tabs = [
         submitMessage: "Create Message",
         step: 0,
         loading: false,
+        currentPrompt: "",
         response: "",
         inputs: {
             "message": {
@@ -132,6 +134,7 @@ const tabs = [
         submitMessage: "Write Lease",
         step: 0,
         loading: false,
+        currentPrompt: "",
         response: "",
         inputs: {
             "location": { 
@@ -501,6 +504,7 @@ const tabs = [
         submitMessage: "Write Contract",
         step: 0,
         loading: false,
+        currentPrompt: "",
         response: "",
         inputs: {
             "location": { 
@@ -658,6 +662,7 @@ const tabs = [
         submitMessage: "Send to Assistant",
         step: 0,
         loading: false,
+        currentPrompt: "",
         response: "",
         inputs: {
             "advice": {

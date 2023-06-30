@@ -21,7 +21,7 @@ import Products from './Products';
 
 const SignUp = () => {
     const { signUp, verificationEmail } = useAuth();
-    const { checkout } = usePayments();
+    const { checkout, findPlan } = usePayments();
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('');
     const [error, setError] = useState('')
@@ -35,7 +35,8 @@ const SignUp = () => {
     }, [setShowPlans])
 
     const loadCheckout = async (priceId, userId) => {
-        await checkout(priceId, userId, '/thankyou', '/signup' )
+        let p = findPlan(plans, priceId)
+        await checkout(p, userId, '/thankyou', '/signup' )
     }
 
     const onContinue = () => {
@@ -55,7 +56,7 @@ const SignUp = () => {
             } catch (error) {
                 setLoading(0)
                 const errorCode = error.code;
-                const errorMessage = error.message;
+                const errorMessage = error.message.replace('Firebase: ', '');
                 setError(errorMessage)
                 console.log(errorCode, errorMessage);
             }

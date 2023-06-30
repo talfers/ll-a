@@ -1,6 +1,6 @@
 import { createContext, useContext, useCallback } from 'react';
 import db from '../config/firebase';
-import { collection, addDoc, onSnapshot, query, getDocs, where } from "firebase/firestore";
+import { collection, addDoc, onSnapshot, query, getDocs, where, updateDoc, doc, setDoc } from "firebase/firestore";
 import { loadStripe } from '@stripe/stripe-js';
 import config from '../config';
 
@@ -9,13 +9,50 @@ const PaymentsContext = createContext()
 
 export const PaymentsContextProvider = ({children}) => {
 
-  const checkout = async (priceId, userId, success_endpoint, cancel_endpoint) => {
+
+  const addQueryLimit = useCallback(async (customerId, plan) => {
+    try {
+      const docRef = doc(db, 'customers', customerId);
+      setDoc(docRef, {
+        queries: plan.up_to, 
+        planId: plan.id, 
+        priceId: plan.prices.priceId
+      }, 
+      {merge: true}
+      )
+      console.log(`Plan limits added!`);
+    } catch (error) {
+      console.error('Error adding limits: ', error);
+    }
+  }, [])
+
+
+  const updateQueryLimit = useCallback(async (customerId, email) => {
+    const docRef = doc(db, 'customers', customerId);
+    const q = query(collection(db, "customers"), where("email", "==", email));
+    const querySnapshot = await getDocs(q);
+    let tempUser = {}
+    querySnapshot.forEach(async (d) => {
+      tempUser = d.data();
+    })
+    try {
+      await updateDoc(docRef, {
+        'queries': tempUser.queries - 1
+      });
+      console.log('Queries successfully updated!');
+    } catch (error) {
+      console.error('Error updating queries: ', error);
+    }
+  }, [])
+
+
+  const checkout = async (plan, userId, success_endpoint, cancel_endpoint) => {
     const docRef = await addDoc(collection(db, "customers", userId, "checkout_sessions"), {
-        price: priceId,
+        price: plan.prices.priceId,
         success_url: `${config.REACT_APP_PROD_URL}${success_endpoint}`,
         cancel_url: `${config.REACT_APP_PROD_URL}${cancel_endpoint}`,
     });
-    
+    await addQueryLimit(userId, plan)
     onSnapshot(docRef, async (snap) => {
         const {error, sessionId} = snap.data()
         if(error) {
@@ -24,6 +61,7 @@ export const PaymentsContextProvider = ({children}) => {
         if(sessionId) {
             const stripe = await loadStripe(config.REACT_APP_STRIPE_PUBLIC_KEY);
             await stripe.redirectToCheckout({ sessionId });
+            
         }
     })
   }
@@ -75,10 +113,15 @@ export const PaymentsContextProvider = ({children}) => {
     })
     return tempSub
   }, [])
+
+
+  const findPlan = (plans, priceId) => {
+    return plans.filter(p => p.prices.priceId===priceId)[0]
+  }
   
 
   return (
-    <PaymentsContext.Provider value={{checkout, getCurrentPlan, getCustomer, manageSubscription}}>
+    <PaymentsContext.Provider value={{checkout, getCurrentPlan, getCustomer, manageSubscription, addQueryLimit, updateQueryLimit, findPlan}}>
       {children}
     </PaymentsContext.Provider>
   )

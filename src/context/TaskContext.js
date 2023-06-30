@@ -13,6 +13,7 @@ const taskReducer = (state, action) => {
     case 'post_response':
       const postState = {...state}
       postState.tabs[action.payload.tabId].response = action.payload.response
+      // postState.tabs[action.payload.tabId].currentPrompt = action.payload.currentPrompt
       return postState;
     case 'increment_step':
       if (state.tabs[action.payload.tabId].step >= Object.keys(state.tabs[action.payload.tabId].inputs).length - 1){
@@ -55,7 +56,6 @@ const postTaskData = (dispatch) => {
   return async (tab) => {
     try {
     let message = prompts.process_request(tab)
-    console.log(message);
     // Fetch the response from the OpenAI API with the signal from AbortController
     const response = await fetch(config.REACT_APP_OPENAI_URL, {
       method: "POST",
@@ -95,8 +95,8 @@ const postTaskData = (dispatch) => {
         
         // Update the UI with the new content
         if (content) {
-          if(content === '' || content === ' ') dispatch({type: 'post_response', payload: {response: tab.response += '\n', tabId: tab.id}})
-          else dispatch({type: 'post_response', payload: {response: tab.response += content, tabId: tab.id}})
+          if(content === '' || content === ' ') dispatch({type: 'post_response', payload: {response: tab.response += '\n', tabId: tab.id}}) //currentPrompt: message,
+          else dispatch({type: 'post_response', payload: {response: tab.response += content, tabId: tab.id}}) //currentPrompt: message,
         }
       }
     }

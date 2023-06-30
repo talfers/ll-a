@@ -13,10 +13,10 @@ import Products from './Products';
 import { useNavigate } from 'react-router-dom';
 
 
-function Form(props) {
+function Form({tab, subscription}) {
     const navigate = useNavigate();
     const { user } = useAuth()
-    const { checkout } = usePayments()
+    const { updateQueryLimit, checkout, findPlan } = usePayments();
     const {postTaskData, incrementStep, decrementStep, resetResponse, updateLoading} = useContext(TaskContext);
     const [showPlans, setShowPlans] = useState(0);
     const [selectedPlan, setSelectedPlan] = useState(plans[0].prices.priceId);
@@ -25,13 +25,14 @@ function Form(props) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if(props.subscription?.status==='active') {
-            resetResponse(props.tab.id)
-            updateLoading(props.tab.id, true)
+        if(subscription?.status==='active') {
+            resetResponse(tab.id)
+            updateLoading(tab.id, true)
+            updateQueryLimit(user.uid, user.email)
             try {
                 navigate('/response')
-                updateLoading(props.tab.id, false)
-                await postTaskData(props.tab);
+                updateLoading(tab.id, false)
+                await postTaskData(tab);
             } catch (err) {
                 setError(err.message)
                 console.log(err.message);
@@ -46,7 +47,8 @@ function Form(props) {
         setError('')
         setLoading(1)
         try {
-            await checkout(selectedPlan, user.uid, '/', '/' )
+            let p = findPlan(plans, selectedPlan)
+            await checkout(p, user.uid, '/', '/' )
         } catch (err) {
             setLoading(0)
             const errorCode = err.code;
@@ -58,23 +60,23 @@ function Form(props) {
     }
 
     const createInputs = () => {
-        return Object.keys(props.tab.inputs)[props.tab.step] in props.tab.inputs?
-        <SectionContainerStyled>
+        return Object.keys(tab.inputs).map((stepKey, i)=>(
+            <SectionContainerStyled key={stepKey} $inactive={Object.keys(tab.inputs)[tab.step] !== stepKey} $active={Object.keys(tab.inputs)[tab.step] === stepKey}>
             {
                 
-                    Object.keys(props.tab.inputs[Object.keys(props.tab.inputs)[props.tab.step]]).map((inputName) => (
+                    Object.keys(tab.inputs[Object.keys(tab.inputs)[i]]).map((inputName) => (
                         <Input 
                             key={inputName} 
-                            input={props.tab.inputs[Object.keys(props.tab.inputs)[props.tab.step]][inputName]} 
-                            tab={props.tab.id} 
-                            section={Object.keys(props.tab.inputs)[props.tab.step]}
+                            input={tab.inputs[Object.keys(tab.inputs)[i]][inputName]} 
+                            tab={tab.id} 
+                            section={Object.keys(tab.inputs)[i]}
                             name={inputName}
                         />
                     ))
                 
             }
-        </SectionContainerStyled>:
-        <></>  
+        </SectionContainerStyled>
+        ))
     }
 
     return (
@@ -101,32 +103,32 @@ function Form(props) {
                 null
             } 
             {
-                Object.keys(props.tab.inputs).length>1?<ProgressBar steps={Object.keys(props.tab.inputs)} step={props.tab.step}/>:<></> 
+                Object.keys(tab.inputs).length>1?<ProgressBar steps={Object.keys(tab.inputs)} step={tab.step}/>:<></> 
             }
             <form>
                 <SectionsContainerStyled>
                     {createInputs()}
                 </SectionsContainerStyled>
                 {
-                    props.tab.step === Object.keys(props.tab.inputs).length-1?
+                    tab.step === Object.keys(tab.inputs).length-1?
                     <FormNavContainerStyled>
                         {
-                            Object.keys(props.tab.inputs).length > 1?
-                            <SecondaryButtonStyled onClick={() => decrementStep(props.tab.id, props.tab.step)}>Back</SecondaryButtonStyled>:
+                            Object.keys(tab.inputs).length > 1?
+                            <SecondaryButtonStyled onClick={() => decrementStep(tab.id, tab.step)}>Back</SecondaryButtonStyled>:
                             <></>
                         }
                         
-                        <PrimaryButtonStyled onClick={handleSubmit} id={props.tab.shortName}>{props.tab.submitMessage}</PrimaryButtonStyled>
+                        <PrimaryButtonStyled onClick={handleSubmit} id={tab.shortName}>{tab.submitMessage}</PrimaryButtonStyled>
                     </FormNavContainerStyled>:
                     <FormNavContainerStyled>
                         {
-                            props.tab.step>0?
-                            <SecondaryButtonStyled onClick={() => decrementStep(props.tab.id, props.tab.step)}>Back</SecondaryButtonStyled>:
+                            tab.step>0?
+                            <SecondaryButtonStyled onClick={() => decrementStep(tab.id, tab.step)}>Back</SecondaryButtonStyled>:
                             <></> 
                         }
-                        {   props.tab.step===0?
-                            <PrimaryButtonStyled onClick={() => incrementStep(props.tab.id, props.tab.step)}>Start</PrimaryButtonStyled>:
-                            <PrimaryButtonStyled onClick={() => incrementStep(props.tab.id, props.tab.step)}>Next</PrimaryButtonStyled>
+                        {   tab.step===0?
+                            <PrimaryButtonStyled onClick={() => incrementStep(tab.id, tab.step)}>Start</PrimaryButtonStyled>:
+                            <PrimaryButtonStyled onClick={() => incrementStep(tab.id, tab.step)}>Next</PrimaryButtonStyled>
                         }
                     </FormNavContainerStyled>
                     

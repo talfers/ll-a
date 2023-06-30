@@ -6,7 +6,6 @@ import { PageHeader3Styled } from '../styles/Main';
 
 function ShortTextInput({input, name, tab, section, onUpdate}) {
 
-    console.log(input);
     return (
             <>
                 <PageHeader3Styled>{input.title}</PageHeader3Styled>

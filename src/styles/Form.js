@@ -84,12 +84,21 @@ export const FormContainerStyled = styled.div`
 
 export const SectionsContainerStyled = styled.div`
     margin-bottom: 16px;
+
 `;
 
 export const SectionContainerStyled = styled.div`
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 16px;
+    transform: translateY(${props => props.$active?`0px`:`4000px`});
+    opacity: ${props => props.$active?`1`:`0`};
+    // bottom: ${props => props.$active?`-4000px`:`inherit`};
+    // left: ${props => props.$active?`0px`:`inherit`};
+    position: ${props => props.$active?`static`:`absolute`};
+    transition-delay: 0.4s;
+    transition: opacity 1.25s;
+
 `;
 
 export const FormNavContainerStyled = styled.div`

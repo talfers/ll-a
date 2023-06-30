@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { createContext, useContext, useCallback } from 'react';
 import db from '../config/firebase';
 import { collection, addDoc, onSnapshot, query, getDocs, where, updateDoc, doc, setDoc } from "firebase/firestore";
@@ -29,20 +30,11 @@ export const PaymentsContextProvider = ({children}) => {
 
 
   const updateQueryLimit = useCallback(async (customerId, email) => {
-    const docRef = doc(db, 'customers', customerId);
-    const q = query(collection(db, "customers"), where("email", "==", email));
-    const querySnapshot = await getDocs(q);
-    let tempUser = {}
-    querySnapshot.forEach(async (d) => {
-      tempUser = d.data();
-    })
     try {
-      await updateDoc(docRef, {
-        'queries': tempUser.queries - 1
-      });
-      console.log('Queries successfully updated!');
+      const res = await axios.post('http://127.0.0.1:5001/landlord-assistant/us-central1/updateQueryLimit', {customerId, email})
+      console.log(res);
     } catch (error) {
-      console.error('Error updating queries: ', error);
+      console.log(`Error updating query limit. Error: ${error.message}`);
     }
   }, [])
 
@@ -53,7 +45,7 @@ export const PaymentsContextProvider = ({children}) => {
         success_url: `${config.REACT_APP_PROD_URL}${success_endpoint}`,
         cancel_url: `${config.REACT_APP_PROD_URL}${cancel_endpoint}`,
     });
-    await addQueryLimit(userId, plan)
+    // await addQueryLimit(userId, plan)
     onSnapshot(docRef, async (snap) => {
         const {error, sessionId} = snap.data()
         if(error) {
@@ -68,33 +60,13 @@ export const PaymentsContextProvider = ({children}) => {
   }
 
   
-  const manageSubscription = async () => {
-    // alert('Feature under construction')
-    const functions = getFunctions();
-    const functionRef = httpsCallable(
-      functions,
-      "ext-firebase-stripe-payments-createPortalLink"
-    );
-    const { data } = await functionRef({
-      returnUrl: window.location.origin,
-      locale: 'auto'
-    });
-    console.log(data.url)
-    window.location.assign(data.url)
-    // try {
-    //   let res = await axios.post('http://localhost:5000/manage', {
-    //     customer: customerId,
-    //   }, {
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     }
-    //   })
-    //   console.log(res);
-    //   window.location.href = res.data.url;
-    // } catch(err) {
-    //   console.log(err.message);
-    //   alert(err.message)
-    // }
+  const manageSubscription = async (customerId) => {
+    try {
+      const { data } = await axios.post('http://127.0.0.1:5001/landlord-assistant/us-central1/createBillingPortalSession', {customerId, returnUrl: window.location.origin})
+      window.location.assign(data.url);
+    } catch (error) {
+      console.log(`Error updating query limit. Error: ${error.message}`);
+    }
   }
 
 
@@ -106,7 +78,6 @@ export const PaymentsContextProvider = ({children}) => {
       tempCustomer = d.data();
     })
     return tempCustomer;
-    
   }, [])
 
 

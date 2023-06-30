@@ -48,6 +48,21 @@ const Profile = () => {
         }
     }
 
+    const loadBillingPortal = async () => {
+        setError('');
+        setLoading(1);
+        try {
+            await manageSubscription(customer.stripeId)
+            setLoading(0)
+        } catch (error) {
+            setLoading(0)
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            setError(errorMessage)
+            console.log(errorCode, errorMessage);
+        }
+    }
+
     return (
         <ContainerStyled>
             {
@@ -84,7 +99,9 @@ const Profile = () => {
                         <ProfileTextStyled>Plan: ${subscription?.plan.price.unit_amount/100} / {subscription?.plan.plan.interval}</ProfileTextStyled>
                         <ProfileTextStyled>Member since: {subscription?.current_period_start_date}</ProfileTextStyled>
                         <ProfileTextStyled>Renewal date: {subscription?.current_period_end_date}</ProfileTextStyled>
-                        <ActionButtonStyled onClick={() => manageSubscription(customer)}>Manage Account</ActionButtonStyled>
+                        <ActionButtonStyled 
+                            onClick={loadBillingPortal}
+                        >Manage Account</ActionButtonStyled>
                     </>:
                     subscription===null && customer===null?
                     <div>Loading...</div>:

@@ -61,7 +61,7 @@ export const MenuContainerStyled = styled.div`
     top: 0;
     right: 0;
     height: ${(props) => props.$open?"100%":"0%"};
-    width: 100vw;
+    width: 100%;
     display: flex;
     flex-direction: column;
     background: ${({ theme }) => theme.colors.bg};

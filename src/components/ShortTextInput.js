@@ -1,18 +1,16 @@
 import React from 'react';
-import { TextAreaStyled } from '../styles/Form';
-import { PageHeader3Styled, PageSubTitleStyled } from '../styles/Main';
+import { InputStyled } from '../styles/Form';
+import { PageHeader3Styled } from '../styles/Main';
 
 
 
-function TextArea({input, name, tab, section, onUpdate}) {
-
+function ShortTextInput({input, name, tab, section, onUpdate}) {
 
     return (
             <>
                 <PageHeader3Styled>{input.title}</PageHeader3Styled>
-                <PageSubTitleStyled>{input.subtext}</PageSubTitleStyled>
-                <TextAreaStyled 
-                    type={input.type} 
+                <InputStyled 
+                    type={'text'} 
                     id={name} 
                     name={name}
                     value={input.value} 
@@ -28,4 +26,4 @@ function TextArea({input, name, tab, section, onUpdate}) {
 
 
 
-export default TextArea;
+export default ShortTextInput;

@@ -4,15 +4,22 @@ import styled from 'styled-components';
 export const CounterContainerStyled = styled.div`
     display: flex;
     align-items: center;
-    min-height: 60px;
+    min-height: 80px;
     justify-content: space-between;
     width: 100%;
     border-bottom: 1px solid ${({theme}) => theme.colors.borderColor};
 `;
 
+export const CheckboxWrapperContainerStyled = styled(CounterContainerStyled)`
+    background: ${({theme}) => theme.colors.borderColor};
+    border: 1px solid ${({theme}) => theme.colors.borderColor};
+`;
+
 export const CounterActionContainerStyled = styled.div`
     display: flex;
     align-items: center;
+    justify-content: center;
+    min-width: 120px;
 `;
 
 export const CounterButtonStyled = styled.div`
@@ -26,7 +33,7 @@ export const CounterButtonStyled = styled.div`
     border-radius: 100%;
     height: 30px;
     width: 30px;
-    margin: 0px 4px;
+    margin: 0px 6px;
     cursor: pointer;
     z-index: 0;
     pointer-events: ${(props) => props.$disabled?'none':""};
@@ -40,6 +47,7 @@ export const CounterValueStyled = styled.input`
     border: none;
     width: ${props => props.$step>1?`40px`:`20px`};
     text-align: center;
+    font-size: 18px;
     &:focus {
         outline: none !important;
         border: none;
@@ -51,4 +59,12 @@ export const CounterHeaderStyled = styled.div`
     font-weight: 600;
     color:  ${({ theme }) => theme.colors.contrastText};
 
+`;
+
+export const CheckboxContainerStyled = styled.div`
+    width: 60px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;    
 `;

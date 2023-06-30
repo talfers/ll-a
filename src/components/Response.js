@@ -31,41 +31,45 @@ function Response(props) {
     }
 
     return (
-        <ResponseContainerStyled>
-
-            {props.tab.response!==''?
+            <ResponseContainerStyled>
+                {/* <PageHeader2Styled>Question</PageHeader2Styled>
+                <ResponseStyled>{props.tab.currentPrompt}</ResponseStyled> */}
                 <ResponseHeaderStyled>
                     <PageHeader2Styled>Assistant Response</PageHeader2Styled>
+                    {props.tab.response!==''?
+                        <ResponseActionButtonsContainerStyled>
+                            <ResponseButtonStyled onClick={() => {
+                                navigator.clipboard.writeText(props.tab.response)
+                                showSnack('Copied!')}}>
+                                <FontAwesomeIconWrapper>
+                                    {iconMap['Copy']}
+                                </FontAwesomeIconWrapper>
+                            </ResponseButtonStyled>
+                            <ResponseButtonStyled onClick={() => {
+                                downloadFile('docx', 'response', props.tab.shortName)
+                                showSnack('Doc Downloaded!')}}>
+                                <FontAwesomeIconWrapper>
+                                    {iconMap['Word']}
+                                </FontAwesomeIconWrapper> 
+                            </ResponseButtonStyled>
+                            <ResponseButtonStyled onClick={() => {
+                                downloadFile('pdf', 'response', props.tab.shortName)
+                                showSnack('PDF Downloaded!')}}>
+                                <FontAwesomeIconWrapper>
+                                    {iconMap['Pdf']}
+                                </FontAwesomeIconWrapper>
+                            </ResponseButtonStyled>
+                        </ResponseActionButtonsContainerStyled>
+                    :<></> 
+                    }
                     {snack!==''?<CopySnack $size={snack.includes('Downloaded')?176:100}>{iconMap['Check']}{snack}</CopySnack>:<></>}
-                    <ResponseActionButtonsContainerStyled>
-                        <ResponseButtonStyled onClick={() => {
-                            navigator.clipboard.writeText(props.tab.response)
-                            showSnack('Copied!')}}>
-                            <FontAwesomeIconWrapper>
-                                {iconMap['Copy']}
-                            </FontAwesomeIconWrapper>
-                        </ResponseButtonStyled>
-                        <ResponseButtonStyled onClick={() => {
-                            downloadFile('docx', 'response', props.tab.shortName)
-                            showSnack('Doc Downloaded!')}}>
-                            <FontAwesomeIconWrapper>
-                                {iconMap['Word']}
-                            </FontAwesomeIconWrapper> 
-                        </ResponseButtonStyled>
-                        <ResponseButtonStyled onClick={() => {
-                            downloadFile('pdf', 'response', props.tab.shortName)
-                            showSnack('PDF Downloaded!')}}>
-                            <FontAwesomeIconWrapper>
-                                {iconMap['Pdf']}
-                            </FontAwesomeIconWrapper>
-                        </ResponseButtonStyled>
-                    </ResponseActionButtonsContainerStyled>
                     
-                </ResponseHeaderStyled>:
-                <></> 
-            }
-            <ResponseStyled id='response'>{generateResponse()}</ResponseStyled>
-        </ResponseContainerStyled>
+                    
+                </ResponseHeaderStyled>
+                <ResponseStyled id='response'>{generateResponse()}</ResponseStyled>
+            </ResponseContainerStyled>
+            
+        
     );
 }
 

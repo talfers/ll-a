@@ -17,11 +17,7 @@ export const ButtonStyled = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    @media only screen and ${devices.xxl} {
-        width: 20%;
-        max-width: 240px;
-        justify-content: center;
-    }
+    
 `;
 
 export const PrimaryButtonStyled = styled(ButtonStyled)`

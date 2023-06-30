@@ -53,7 +53,7 @@ const SignIn = () => {
             navigate("/");
         } catch (error) {
             const errorCode = error.code;
-            const errorMessage = error.message;
+            const errorMessage = error.message.replace('Firebase: ', '');
             setError(errorMessage)
             console.log(errorCode, errorMessage);
         }

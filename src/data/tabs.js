@@ -13,6 +13,7 @@ const tabs = [
         submitMessage: "Create Advertising",
         step: 0,
         loading: false,
+        currentPrompt: "",
         response: "",
         inputs: {
             "property": {
@@ -47,9 +48,7 @@ const tabs = [
                     placeholder: "Be sure to include any notable features such as a balcony, yard, parking or pool that help your property stand out..",
                     name: "features",
                     type: "cluster",
-                    // type: "textarea",
                     size: 100,
-                    // value: ''
                     value: {
                         'central_ac': false,
                         'central_heat': false,
@@ -73,6 +72,7 @@ const tabs = [
                     placeholder: "Be sure to include any notable features that help your property stand out..",
                     name: "additional_features",
                     type: "textarea",
+                    subtext: "Include any features that other will love about your property",
                     size: 100,
                     value: ''
                 }
@@ -83,6 +83,7 @@ const tabs = [
                     placeholder: "Include details about lease terms like rental price or utilities as well as any tenant requirements such as no pets or a minimum credit score.",
                     name: "terms",
                     type: "textarea",
+                    subtext: "Create your desired tenant requirements and terms for your lease",
                     size: 100,
                     value: ''
                 }
@@ -100,13 +101,14 @@ const tabs = [
         submitMessage: "Create Message",
         step: 0,
         loading: false,
+        currentPrompt: "",
         response: "",
         inputs: {
             "message": {
                 "recipient": {
                     title: "Recipient",
                     placeholder: "Recipient title or relation to you",
-                    type: "text",
+                    type: "shorttext",
                     size: 50,
                     value: ''
                 },
@@ -114,6 +116,7 @@ const tabs = [
                     title: "Message explaination",
                     placeholder: "Please include any details about important issues or concerns, specific requests or instructions, and/or any deadlines or time-sensitive information.",
                     type: "textarea",
+                    subtext: "Explain what you would like to say in your message",
                     size: 100,
                     value: ''
                 }
@@ -131,6 +134,7 @@ const tabs = [
         submitMessage: "Write Lease",
         step: 0,
         loading: false,
+        currentPrompt: "",
         response: "",
         inputs: {
             "location": { 
@@ -235,8 +239,8 @@ const tabs = [
                     title: "Pets allowed?",
                     placeholder: "",
                     type: "checkbox",
-                    size: 10,
-                    value: ''
+                    size: 100,
+                    value: false
                 },
                 "pet_deposit": {
                     title: "Pet deposit",
@@ -275,8 +279,8 @@ const tabs = [
                     title: "Late fee recurring?",
                     placeholder: "",
                     type: "checkbox",
-                    size: 10,
-                    value: ''
+                    size: 100,
+                    value: false
                 },
                 "late_fee_recurring_amount": {
                     title: "Recurring amount",
@@ -393,22 +397,22 @@ const tabs = [
                     title: "Tenant sublet allowed?",
                     placeholder: "",
                     type: "checkbox",
-                    size: 30,
-                    value: ''
+                    size: 100,
+                    value: false
                 },
                 "smoking_allowed": {
                     title: "Smoking allowed on-prem?",
                     placeholder: "",
                     type: "checkbox",
-                    size: 30,
-                    value: ''
+                    size: 100,
+                    value: false
                 },
                 "lead_paint": {
                     title: "Built prior to 1978?",
                     placeholder: "",
                     type: "checkbox",
-                    size: 30,
-                    value: ''
+                    size: 100,
+                    value: false
                 },
             },
             "termination": {
@@ -474,6 +478,7 @@ const tabs = [
                     title: "Special Provisions",
                     placeholder: "Please enter any other provisions you would like to include in the lease agreement, i.e. dispute resolution",
                     type: "textarea",
+                    subtext: "",
                     size: 100,
                     value: ''
                 },
@@ -481,6 +486,7 @@ const tabs = [
                     title: "Other Provisions",
                     placeholder: "Please enter any other provisions you would like to include in the lease agreement",
                     type: "textarea",
+                    subtext: "",
                     size: 100,
                     value: ''
                 },
@@ -498,6 +504,7 @@ const tabs = [
         submitMessage: "Write Contract",
         step: 0,
         loading: false,
+        currentPrompt: "",
         response: "",
         inputs: {
             "location": { 
@@ -542,6 +549,7 @@ const tabs = [
                     title: "Service to be provided",
                     placeholder: "Please explain in detail the service to be provided",
                     type: "textarea",
+                    subtext: "",
                     size: 100,
                     value: ''
                 },
@@ -597,22 +605,22 @@ const tabs = [
                     title: "Contractor must obtain insurance?",
                     placeholder: "",
                     type: "checkbox",
-                    size: 20,
-                    value: ''
+                    size: 100,
+                    value: false
                 },
                 "contractor_liable": {
                     title: "Contractor is liable for claims against recipient?",
                     placeholder: "",
                     type: "checkbox",
-                    size: 20,
-                    value: ''
+                    size: 100,
+                    value: false
                 },
                 "contractor_return_property": {
                     title: "Contractor is required to return property of recipient at termination?",
                     placeholder: "",
                     type: "checkbox",
-                    size: 20,
-                    value: ''
+                    size: 100,
+                    value: false
                 },
             },
             "provisions": {
@@ -620,6 +628,7 @@ const tabs = [
                     title: "Important deadlines",
                     placeholder: "Please enter any important deadlines you would like to include in the agreement",
                     type: "textarea",
+                    subtext: "",
                     size: 100,
                     value: ''
                 },
@@ -627,6 +636,7 @@ const tabs = [
                     title: "Special Provisions",
                     placeholder: "Please enter any special provisions you would like to include in the agreement",
                     type: "textarea",
+                    subtext: "",
                     size: 100,
                     value: ''
                 },
@@ -634,6 +644,7 @@ const tabs = [
                     title: "Other Provisions",
                     placeholder: "Please enter any other provisions you would like to include in the agreement",
                     type: "textarea",
+                    subtext: "",
                     size: 100,
                     value: ''
                 },
@@ -651,6 +662,7 @@ const tabs = [
         submitMessage: "Send to Assistant",
         step: 0,
         loading: false,
+        currentPrompt: "",
         response: "",
         inputs: {
             "advice": {
@@ -658,6 +670,7 @@ const tabs = [
                     title: "Question",
                     placeholder: "Enter your legal question. Please include any relevant background information, specific questions, and any relevant laws or regulations that may be applicable.",
                     type: "textarea",
+                    subtext: "Ask any question that comes to mind, I bet I can help",
                     size: 100,
                     value: ''
                 }

@@ -13,7 +13,7 @@ import { PlanViewContainerStyled, PlansButton } from '../styles/Form';
 
 const Profile = () => { 
     const { user, logOut } = useAuth();
-    const { getCurrentPlan, getCustomer, manageSubscription, checkout } = usePayments();
+    const { getCurrentPlan, getCustomer, findPlan, manageSubscription, checkout } = usePayments();
     const [subscription, setSubscription] = useState(null);
     const [customer, setCustomer] = useState(null);
     const [showPlans, setShowPlans] = useState(0);
@@ -24,8 +24,8 @@ const Profile = () => {
     useEffect(() => {
         const getDetails = async () => {
             let sub = await getCurrentPlan(user.uid);
-            setSubscription(sub)
             let cust = await getCustomer(user.email);
+            setSubscription(sub)
             setCustomer(cust)
         }
         getDetails()
@@ -37,7 +37,8 @@ const Profile = () => {
         setError('');
         setLoading(1);
         try {
-            await checkout(selectedPlan, user.uid, '/profile', '/profile' )
+            let p = findPlan(plans, selectedPlan)
+            await checkout(p, user.uid, '/profile', '/profile' )
         } catch (error) {
             setLoading(0)
             const errorCode = error.code;
@@ -70,27 +71,22 @@ const Profile = () => {
                 :
                 null
             } 
-            {/* <GoBackButtonStyled onClick={() => {navigate(-1)}}>
-                <FontAwesomeIconWrapper>
-                    <FontAwesomeIcon icon={faArrowCircleLeft} size={"xl"} color={'inherit'} />
-                </FontAwesomeIconWrapper>
-                <span style={{marginLeft:'4px'}}><strong>Go Back</strong></span>
-            </GoBackButtonStyled> */}
             <ProfileContentContainerStyled>
                 <ProfileHeaderContainerStyled>
                     <PageHeaderStyled>Profile</PageHeaderStyled>
                     <h4>Email: {user.email.length>35?`${user.email.slice(0,35)}..`:user.email}</h4>
                 </ProfileHeaderContainerStyled>
                 
-                {   subscription?.status?
+                {   customer && subscription?.status?
                     <>
                         <ProfileTextStyled>Status: <FontAwesomeIcon icon={faCircle} size={"xs"} color={subscription?.status==='active'?'green':'red'} /> <span style={{color: subscription?.status==='active'?'green':'red'}}>{subscription?.status.charAt(0).toUpperCase() + subscription?.status.slice(1)}</span></ProfileTextStyled>
+                        <ProfileTextStyled>Queries Remaining: {customer.queries}</ProfileTextStyled>
                         <ProfileTextStyled>Plan: ${subscription?.plan.price.unit_amount/100} / {subscription?.plan.plan.interval}</ProfileTextStyled>
                         <ProfileTextStyled>Member since: {subscription?.current_period_start_date}</ProfileTextStyled>
                         <ProfileTextStyled>Renewal date: {subscription?.current_period_end_date}</ProfileTextStyled>
                         <ActionButtonStyled onClick={() => manageSubscription(customer)}>Manage Account</ActionButtonStyled>
                     </>:
-                    subscription===null?
+                    subscription===null && customer===null?
                     <div>Loading...</div>:
                     <div>
                         <p>Please pay for an account before talking to the assistant</p>

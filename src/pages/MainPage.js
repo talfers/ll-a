@@ -17,6 +17,7 @@ import { Context as TaskContext } from '../context/TaskContext';
 import { useAuth } from '../hooks/useAuth';
 import { usePayments } from '../hooks/usePayments';
 import { useTabs } from '../hooks/useTabs';
+import Response from '../components/Response';
 
 
 function MainPage({handleThemeChange}) {
@@ -30,9 +31,9 @@ function MainPage({handleThemeChange}) {
     useEffect(() => {
         if(user?.uid){
             const getDetails = async () => {
+                let cust = await getCustomer(user?.email);
                 let sub = await getCurrentPlan(user?.uid);
                 setSubscription(sub)
-                let cust = await getCustomer(user?.email);
                 setCustomer(cust)
             }
             getDetails()
@@ -61,7 +62,8 @@ function MainPage({handleThemeChange}) {
                 <Route path="/verifyemail" element={<RedirectRoute><VerifyEmail/></RedirectRoute>}/>
                 <Route path="/" element={<ProtectedRoute> <Home user={user} tabs={state.tabs} setActiveTab={setActiveTab}/></ProtectedRoute>} />
                 <Route path="/assistant" element={<ProtectedRoute><Tabs activeTab={activeTab} customer={customer} subscription={subscription}/></ProtectedRoute>} />
-                <Route path="/profile" element={<ProtectedRoute><Profile/></ProtectedRoute>} />
+                <Route path="/response" element={<ProtectedRoute><Response tab={activeTab} customer={customer} subscription={subscription}/></ProtectedRoute>} />
+                <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
             </Routes>
             <Footer/>
         </div>

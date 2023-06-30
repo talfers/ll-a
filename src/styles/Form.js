@@ -60,18 +60,17 @@ export const SelectStyled = styled.select`
 
 export const TextAreaStyled = styled.textarea`
     border-radius: 8px;
-    border: ${({ theme }) => theme.colors.borderColor} 1px solid;
+    border: ${({ theme }) => theme.colors.contrastText} 1px solid;
     padding: 6px;
     vertical-align:top;
     font-family: ${({ theme }) => theme.colors.ff};
-
-    &:focus {
-        outline: none !important;
-        border: 1.5px solid ${({ theme }) => theme.colors.contrastText};
-        /* box-shadow: 0 0 10px lightgray; */
-    }
     height: 100px;
     vertical-align: top;
+    :focus {
+        border: 1.5px solid ${({ theme }) => theme.colors.contrastText};
+        // outline: none;
+    }
+    
 `
 
 export const LabelStyled = styled.label`
@@ -85,12 +84,21 @@ export const FormContainerStyled = styled.div`
 
 export const SectionsContainerStyled = styled.div`
     margin-bottom: 16px;
+
 `;
 
 export const SectionContainerStyled = styled.div`
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 16px;
+    transform: translateY(${props => props.$active?`0px`:`4000px`});
+    opacity: ${props => props.$active?`1`:`0`};
+    // bottom: ${props => props.$active?`-4000px`:`inherit`};
+    // left: ${props => props.$active?`0px`:`inherit`};
+    position: ${props => props.$active?`static`:`absolute`};
+    transition-delay: 0.4s;
+    transition: opacity 1.25s;
+
 `;
 
 export const FormNavContainerStyled = styled.div`

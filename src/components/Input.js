@@ -7,6 +7,7 @@ import Checkbox from './Checkbox';
 import Counter from './Counter';
 import Cluster from './Cluster';
 import TextArea from './TextArea';
+import ShortTextInput from './ShortTextInput';
 
 
 function Input(props) {
@@ -18,12 +19,24 @@ function Input(props) {
         $type={props.input.type}
         $size={props.input.size}
         >
-            {props.input.type==='number'||props.input.type==='cluster'||props.input.type==='textarea'?null:
+            {
+                props.input.type==='number'||
+                props.input.type==='cluster'||
+                props.input.type==='textarea'||
+                props.input.type==='shorttext'||
+                props.input.type==='checkbox'?null:
                 <LabelStyled htmlFor={props.input.name} className="label">{props.input.title}</LabelStyled>
             }
             {
                 props.input.type === 'textarea'?
                 <TextArea 
+                    input={props.input}
+                    name={props.name}
+                    tab={props.tab}
+                    section={props.section}
+                    onUpdate={updateValue} 
+                />:props.input.type === 'shorttext'?
+                <ShortTextInput 
                     input={props.input}
                     name={props.name}
                     tab={props.tab}
@@ -39,8 +52,7 @@ function Input(props) {
                         updateValue(e.target.value, props.tab, props.section, props.name)
                     }} 
                     placeholder={props.input.placeholder} 
-                />:
-                props.input.type === 'select'?
+                />:props.input.type === 'select'?
                 <Selector
                     input={props.input}
                     name={props.name}
@@ -72,7 +84,6 @@ function Input(props) {
                     section={props.section}
                     onUpdate={updateValue}
                 />
-                
                 :<InputStyled 
                     type={props.input.type}
                     id={props.name}

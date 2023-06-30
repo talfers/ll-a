@@ -4,10 +4,13 @@ import { devices } from "../data/constants";
 
 export const ResponseContainerStyled = styled.div`
     font-family: ${({ theme }) => theme.colors.ff};
-    margin-top: 12px;
+    margin-top: 40px;
     flex: 1;
     display: flex;
     flex-direction: column;
+    width: 80%;
+    max-width: 2000px;
+    margin: 0 auto;
 `;
 
 export const ResponseHeaderStyled = styled.div`

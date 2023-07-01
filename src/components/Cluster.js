@@ -1,7 +1,7 @@
 import React from 'react';
 import iconMap from '../data/iconMap';
-import { BoxIconContainerStyled, BoxTitleStyled } from '../styles/Home';
-import { ClusterContainerStyled, ClusterItemContainerStyled } from '../styles/Cluster';
+import { BoxIconContainerStyled } from '../styles/Home';
+import { ClusterContainerStyled, ClusterItemContainerStyled, ClusterItemTitleStyled } from '../styles/Cluster';
 import { IconContext } from 'react-icons';
 import { PageHeader3Styled } from '../styles/Main';
 
@@ -19,7 +19,7 @@ function Cluster({name, input, tab, section, onUpdate}) {
             <IconContext.Provider key={key} value={{ style: { fontSize: '20px' } }}>
                 <ClusterItemContainerStyled key={key} $selected={input.value[key]} onClick={(e) => onSelection(e, key)}>
                     <BoxIconContainerStyled>{iconMap[key]}</BoxIconContainerStyled>
-                    <BoxTitleStyled>{key.charAt(0).toUpperCase()+key.slice(1).replaceAll('_', ' ')}</BoxTitleStyled>
+                    <ClusterItemTitleStyled>{key.charAt(0).toUpperCase()+key.slice(1).replaceAll('_', ' ')}</ClusterItemTitleStyled>
                 </ClusterItemContainerStyled>
             </IconContext.Provider>
         ))

@@ -26,9 +26,10 @@ export const ClusterItemContainerStyled = styled.div`
     cursor: pointer;
     border: ${props => props.$selected?`1.5px black solid`:`1px solid ${props.theme.colors.borderColor}`};
     background: ${props => props.$selected?props.theme.colors.opacityColor:'inherit'};
-    transition: background 0s, transform 0.2s ease-out;
+    transition: background 0s, transform 0.2s ease-out, border 0.1s ease-in;
+    color: ${({ theme }) => theme.colors.contrastText};
     &:hover {
-        border: 1.5px black solid;
+        border: 1.5px ${({ theme }) => theme.colors.contrastText} solid;
         background: ${props => props.$selected?props.theme.colors.opacityColor:'transparent'};
 
     }
@@ -45,6 +46,10 @@ export const ClusterItemContainerStyled = styled.div`
             background: ${props => props.$selected?props.theme.colors.opacityColor:'inherit'};
         }
     }
-   
-    
+`;
+
+
+export const ClusterItemTitleStyled = styled.h3`
+    font-size: 16px;
+    font-weight: 400;
 `;

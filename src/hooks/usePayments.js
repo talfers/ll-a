@@ -2,7 +2,6 @@ import axios from 'axios';
 import { createContext, useContext, useCallback } from 'react';
 import db from '../config/firebase';
 import { collection, addDoc, onSnapshot, query, getDocs, where, updateDoc, doc, setDoc } from "firebase/firestore";
-import { getFunctions, httpsCallable } from "firebase/functions"
 import { loadStripe } from '@stripe/stripe-js';
 import config from '../config';
 
@@ -29,16 +28,6 @@ export const PaymentsContextProvider = ({children}) => {
   }, [])
 
 
-  const updateQueryLimit = useCallback(async (customerId, email) => {
-    try {
-      const res = await axios.post('http://127.0.0.1:5001/landlord-assistant/us-central1/updateQueryLimit', {customerId, email})
-      console.log(res);
-    } catch (error) {
-      console.log(`Error updating query limit. Error: ${error.message}`);
-    }
-  }, [])
-
-
   const checkout = async (plan, userId, success_endpoint, cancel_endpoint) => {
     const docRef = await addDoc(collection(db, "customers", userId, "checkout_sessions"), {
         price: plan.prices.priceId,
@@ -58,6 +47,15 @@ export const PaymentsContextProvider = ({children}) => {
         }
     })
   }
+
+  const updateQueryLimit = useCallback(async (customerId, email) => {
+    try {
+      const res = await axios.post('http://127.0.0.1:5001/landlord-assistant/us-central1/updateQueryLimit', {customerId, email})
+      console.log(res);
+    } catch (error) {
+      console.log(`Error updating query limit. Error: ${error.message}`);
+    }
+  }, [])
 
   
   const manageSubscription = async (customerId) => {

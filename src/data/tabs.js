@@ -52,8 +52,8 @@ const tabs = [
                     value: {
                         'central_ac': false,
                         'central_heat': false,
-                        'off_street_parking': false,
-                        'washer_and_dryer': false,
+                        'private_parking': false,
+                        'laundry_in-unit': false,
                         'pool': false,
                         'patio': false,
                         'hardwood_floors': false,

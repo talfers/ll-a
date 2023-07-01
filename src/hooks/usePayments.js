@@ -1,6 +1,7 @@
+import axios from 'axios';
 import { createContext, useContext, useCallback } from 'react';
 import db from '../config/firebase';
-import { collection, addDoc, onSnapshot, query, getDocs, where, updateDoc, doc, setDoc } from "firebase/firestore";
+import { collection, addDoc, onSnapshot, query, getDocs, where, doc, setDoc } from "firebase/firestore";
 import { loadStripe } from '@stripe/stripe-js';
 import config from '../config';
 
@@ -27,25 +28,6 @@ export const PaymentsContextProvider = ({children}) => {
   }, [])
 
 
-  const updateQueryLimit = useCallback(async (customerId, email) => {
-    const docRef = doc(db, 'customers', customerId);
-    const q = query(collection(db, "customers"), where("email", "==", email));
-    const querySnapshot = await getDocs(q);
-    let tempUser = {}
-    querySnapshot.forEach(async (d) => {
-      tempUser = d.data();
-    })
-    try {
-      await updateDoc(docRef, {
-        'queries': tempUser.queries - 1
-      });
-      console.log('Queries successfully updated!');
-    } catch (error) {
-      console.error('Error updating queries: ', error);
-    }
-  }, [])
-
-
   const checkout = async (plan, userId, success_endpoint, cancel_endpoint) => {
     const docRef = await addDoc(collection(db, "customers", userId, "checkout_sessions"), {
         price: plan.prices.priceId,
@@ -66,9 +48,24 @@ export const PaymentsContextProvider = ({children}) => {
     })
   }
 
-  
-  const manageSubscription = async () => {
-    alert('Feature under construction')
+
+  const updateQueryLimit = useCallback(async (customerId, email) => {
+    try {
+      const res = await axios.post('http://127.0.0.1:5001/landlord-assistant/us-central1/updateQueryLimit', {customerId, email})
+      console.log(res);
+    } catch (error) {
+      console.log(`Error updating query limit. Error: ${error.message}`);
+    }
+  }, [])
+
+
+  const manageSubscription = async (customerId) => {
+    try {
+      const { data } = await axios.post('http://127.0.0.1:5001/landlord-assistant/us-central1/createBillingPortalSession', {customerId, returnUrl: window.location.origin})
+      window.location.assign(data.url);
+    } catch (error) {
+      console.log(`Error updating query limit. Error: ${error.message}`);
+    }
   }
 
 

@@ -66,6 +66,16 @@ function Form({tab, subscription, customer}) {
         }
     }
 
+    const increment = () => {
+        incrementStep(tab.id, tab.step)
+        window.scrollTo(0, 0);
+    }
+
+    const decrement = () => {
+        decrementStep(tab.id, tab.step)
+        window.scrollTo(0, 0);
+    }
+
     const createInputs = () => {
         return Object.keys(tab.inputs).map((stepKey, i)=>(
             <SectionContainerStyled key={stepKey} $inactive={Object.keys(tab.inputs)[tab.step] !== stepKey} $active={Object.keys(tab.inputs)[tab.step] === stepKey}>
@@ -132,7 +142,7 @@ function Form({tab, subscription, customer}) {
                     <FormNavContainerStyled>
                         {
                             Object.keys(tab.inputs).length > 1?
-                            <SecondaryButtonStyled onClick={() => decrementStep(tab.id, tab.step)}>Back</SecondaryButtonStyled>  
+                            <SecondaryButtonStyled onClick={decrement}>Back</SecondaryButtonStyled>  
                             :null
                         }
                         
@@ -143,14 +153,14 @@ function Form({tab, subscription, customer}) {
                         {
                             tab.step>0?
                             <>
-                                <SecondaryButtonStyled onClick={() => decrementStep(tab.id, tab.step)}>Back</SecondaryButtonStyled>
+                                <SecondaryButtonStyled onClick={decrement}>Back</SecondaryButtonStyled>
                                 <RestartButtonStyled onClick={() => resetResponse(tab.id)}>Restart</RestartButtonStyled>
                             </>
                             :null
                         }
                         {   tab.step===0?
-                            <PrimaryButtonStyled onClick={() => incrementStep(tab.id, tab.step)}>Start</PrimaryButtonStyled>:
-                            <PrimaryButtonStyled onClick={() => incrementStep(tab.id, tab.step)}>Next</PrimaryButtonStyled>
+                            <PrimaryButtonStyled onClick={increment}>Start</PrimaryButtonStyled>:
+                            <PrimaryButtonStyled onClick={increment}>Next</PrimaryButtonStyled>
                         }
                     </FormNavContainerStyled>
                     

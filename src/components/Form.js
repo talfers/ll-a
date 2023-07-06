@@ -132,18 +132,21 @@ function Form({tab, subscription, customer}) {
                     <FormNavContainerStyled>
                         {
                             Object.keys(tab.inputs).length > 1?
-                            <SecondaryButtonStyled onClick={() => decrementStep(tab.id, tab.step)}>Back</SecondaryButtonStyled>:
-                            <></>
+                            <SecondaryButtonStyled onClick={() => decrementStep(tab.id, tab.step)}>Back</SecondaryButtonStyled>  
+                            :null
                         }
                         
-                        <RestartButtonStyled onClick={() => resetResponse(props.tab.id, props.tab.step)}>Restart</RestartButtonStyled>:
+                        
                         <PrimaryButtonStyled onClick={handleSubmit} id={tab.shortName}>{tab.submitMessage}</PrimaryButtonStyled>
                     </FormNavContainerStyled>:
                     <FormNavContainerStyled>
                         {
                             tab.step>0?
-                            <SecondaryButtonStyled onClick={() => decrementStep(tab.id, tab.step)}>Back</SecondaryButtonStyled>:
-                            <></> 
+                            <>
+                                <SecondaryButtonStyled onClick={() => decrementStep(tab.id, tab.step)}>Back</SecondaryButtonStyled>
+                                <RestartButtonStyled onClick={() => resetResponse(tab.id)}>Restart</RestartButtonStyled>
+                            </>
+                            :null
                         }
                         {   tab.step===0?
                             <PrimaryButtonStyled onClick={() => incrementStep(tab.id, tab.step)}>Start</PrimaryButtonStyled>:

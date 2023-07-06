@@ -143,8 +143,8 @@ function Form({tab, subscription, customer}) {
                         {
                             tab.step>0?
                             <>
-                                <RestartButtonStyled onClick={() => resetResponse(tab.id)}>Restart</RestartButtonStyled>
                                 <SecondaryButtonStyled onClick={() => decrementStep(tab.id, tab.step)}>Back</SecondaryButtonStyled>
+                                <RestartButtonStyled onClick={() => resetResponse(tab.id)}>Restart</RestartButtonStyled>
                             </>
                             :null
                         }

@@ -12,6 +12,7 @@ export const ContainerStyled = styled.div`
     text-align: center;
     margin: 0 auto;
     padding: 20px;
+    position: relative;
     background: ${({ theme }) => theme.colors.cardBG};
     border-radius: 8px;
     color: ${({ theme }) => theme.colors.cardText};
@@ -36,6 +37,14 @@ export const ContentHeaderStyled = styled.h1`
     @media only screen and ${devices.md} {
         font-size: 30px;
     }
+`;
+
+export const CloseButton = styled.div`
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 99;
 `;
 
 export const NavLinkWrapper = styled(NavLink)`

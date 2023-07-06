@@ -51,7 +51,7 @@ export const PaymentsContextProvider = ({children}) => {
 
   const updateQueryLimit = useCallback(async (customerId, email) => {
     try {
-      const res = await axios.post('http://127.0.0.1:5001/landlord-assistant/us-central1/updateQueryLimit', {customerId, email})
+      const res = await axios.post('https://updatequerylimit-hur5h44zvq-uc.a.run.app/', {customerId, email})
       console.log(res);
     } catch (error) {
       console.log(`Error updating query limit. Error: ${error.message}`);
@@ -61,7 +61,7 @@ export const PaymentsContextProvider = ({children}) => {
 
   const manageSubscription = async (customerId) => {
     try {
-      const { data } = await axios.post('http://127.0.0.1:5001/landlord-assistant/us-central1/createBillingPortalSession', {customerId, returnUrl: window.location.origin})
+      const { data } = await axios.post('https://createbillingportalsession-hur5h44zvq-uc.a.run.app/', {customerId, returnUrl: window.location.origin})
       window.location.assign(data.url);
     } catch (error) {
       console.log(`Error updating query limit. Error: ${error.message}`);

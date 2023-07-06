@@ -3,13 +3,13 @@ import {
     ProductsContainerStyled, 
     ProductContainerStyled, 
     IconContainerStyled, 
-    CloseButton, 
     ProductModalStyled,
     ButtonContainerStyled,
     ProductHeader,
     ProductText
 } from '../styles/Products';
-import { ContentHeaderStyled } from '../styles/Main';
+import iconMap from '../data/iconMap';
+import { ContentHeaderStyled, CloseButton } from '../styles/Main';
 import { PrimaryButtonStyled } from '../styles/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FontAwesomeIconWrapper } from '../styles/Main';
@@ -36,7 +36,7 @@ function Products(props) {
     return (
         
         <ProductModalStyled>
-            <CloseButton onClick={() => {props.setShowPlans(0)}}>X</CloseButton>
+            <CloseButton onClick={() => {props.setShowPlans(0)}}>{iconMap['X']}</CloseButton>
             <ContentHeaderStyled>Select a Plan</ContentHeaderStyled>
             <ProductsContainerStyled>
                 {props.plans.length===0?<div>loading...</div>:

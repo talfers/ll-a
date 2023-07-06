@@ -62,3 +62,4 @@ export const RestartButtonStyled = styled(ButtonStyled)`
             background-color: transparent;
         }
     }
+}`;

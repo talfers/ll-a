@@ -1,0 +1,16 @@
+Move from usePayments to Cloud Functions
+--------------
+1. addQueryLimit - Firebase
+2. checkout - Stripe
+3. getCustomer - Firebase
+4. getCurrentPlan - Firebase
+
+
+Move from useAuth to Cloud Functions
+--------------
+1. signUp - Firebase
+2. signIn - Firebase
+3. signInWithGoogle - Firebase
+4. logOut - Firebase
+5. verificationEmail - Firebase
+6. sendResetPasswordEmail - Firebase

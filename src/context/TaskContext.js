@@ -117,19 +117,14 @@ const postTaskData = (dispatch) => {
   }
 }
 
-const setScreenViewTop = () => {
-  window.scrollTo(0, 0);
-}
-
 const updateValue = (dispatch) => {
-  setScreenViewTop()
   return (value, tab, section, name) => {
     dispatch({ type: 'update_value', payload: {tab, section, name, value }})
   }
 }
 
 const incrementStep = (dispatch) => {
-  setScreenViewTop()
+  window.scrollTo(0, 0);
   return (tabId, step) => {
     let newStep = step + 1
     dispatch({ type: 'increment_step', payload: { tabId, step: newStep } })
@@ -137,6 +132,7 @@ const incrementStep = (dispatch) => {
 }
 
 const decrementStep = (dispatch) => {
+  window.scrollTo(0, 0);
   return (tabId, step) => {
     let newStep = step - 1
     dispatch({ type: 'decrement_step', payload: { tabId, step: newStep } })

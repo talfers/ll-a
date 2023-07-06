@@ -40,9 +40,10 @@ const taskReducer = (state, action) => {
         return resetStepState;
       }
     case 'reset_response':
-      const resetState = {...state}
-      resetState.tabs[action.payload.tabId].response = ""
-      return resetState;
+        const resetState = {...state}
+        resetState.tabs[action.payload.tabId].response = ""
+        resetState.tabs[action.payload.tabId].step = action.payload.step
+        return resetState;
     case 'update_loading':
       const updateLoadingState = {...state}
       updateLoadingState.tabs[action.payload.tabId].loading = action.payload.value
@@ -150,7 +151,7 @@ const resetStep = (dispatch) => {
 
 const resetResponse = (dispatch) => {
   return (tabId) => {
-    dispatch({ type: 'reset_response', payload: { tabId } })
+    dispatch({ type: 'reset_response', payload: { tabId, step: 0} })
   }
 }
 

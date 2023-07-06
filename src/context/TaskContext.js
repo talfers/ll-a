@@ -31,6 +31,14 @@ const taskReducer = (state, action) => {
         decrementState.tabs[action.payload.tabId].step = action.payload.step
         return decrementState;
       }
+    case 'reset_step':
+      if (state.tabs[action.payload.tabId].step <= 0){
+        return state
+      } else {
+        const resetStepState = { ...state }
+        resetStepState.tabs[action.payload.tabId].step = action.payload.step
+        return resetStepState;
+      }
     case 'reset_response':
       const resetState = {...state}
       resetState.tabs[action.payload.tabId].response = ""
@@ -134,6 +142,12 @@ const decrementStep = (dispatch) => {
   }
 }
 
+const resetStep = (dispatch) => {
+  return (tabId) => {
+    dispatch({ type: 'reset_step', payload: { tabId, step: 0 } })
+  }
+}
+
 const resetResponse = (dispatch) => {
   return (tabId) => {
     dispatch({ type: 'reset_response', payload: { tabId } })
@@ -149,6 +163,6 @@ const resetState = (dispatch) => {
 
 export const { Provider, Context } = createDataContext(
   taskReducer,
-  { postTaskData, updateValue, updateLoading, incrementStep, decrementStep, resetResponse, resetState },
+  { postTaskData, updateValue, updateLoading, incrementStep, decrementStep, resetResponse, resetState, resetStep },
   {tabs: [...tabs]}
 )

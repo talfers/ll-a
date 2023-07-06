@@ -63,7 +63,7 @@ const tabs = [
                         'freshly_renovated': false,
                         'garden': false,
                         'energy_efficient': false,
-                        'pets': false,
+                        'pets_allowed': false,
                         'fireplace': false,
                         'new_appliances': false,
                         'storage': false,

@@ -15,6 +15,7 @@ body {
   font-family: ${({ theme }) => theme.colors.ff};
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
 }
 
 code {

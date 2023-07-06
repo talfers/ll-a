@@ -50,6 +50,10 @@ export const ClusterItemContainerStyled = styled.div`
 
 
 export const ClusterItemTitleStyled = styled.h3`
-    font-size: 16px;
+    font-size: 1em;
     font-weight: 400;
+}
+@media only screen and ${devices.md} {
+    font-size: 0.8em;
+}
 `;

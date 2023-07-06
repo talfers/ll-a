@@ -5,7 +5,7 @@ import { useAuth } from '../hooks/useAuth';
 import { usePayments } from '../hooks/usePayments';
 import ProgressBar from './ProgressBar';
 import { SectionContainerStyled, SectionsContainerStyled, FormContainerStyled, FormNavContainerStyled } from '../styles/Form';
-import { PrimaryButtonStyled, SecondaryButtonStyled, RestartButtonStyled} from '../styles/Button';
+import { PrimaryButtonStyled, SecondaryButtonStyled} from '../styles/Button';
 import Input from './Input';
 import { ModalBackgroundStyled } from '../styles/Main';
 import Loading from './Loading';
@@ -146,7 +146,7 @@ function Form({tab, subscription, customer}) {
                             :null
                         }
                         
-                        
+                        <SecondaryButtonStyled onClick={() => resetResponse(tab.id)}>Restart</SecondaryButtonStyled>
                         <PrimaryButtonStyled onClick={handleSubmit} id={tab.shortName}>{tab.submitMessage}</PrimaryButtonStyled>
                     </FormNavContainerStyled>:
                     <FormNavContainerStyled>
@@ -154,7 +154,7 @@ function Form({tab, subscription, customer}) {
                             tab.step>0?
                             <>
                                 <SecondaryButtonStyled onClick={decrement}>Back</SecondaryButtonStyled>
-                                <RestartButtonStyled onClick={() => resetResponse(tab.id)}>Restart</RestartButtonStyled>
+                                <SecondaryButtonStyled onClick={() => resetResponse(tab.id)}>Restart</SecondaryButtonStyled>
                             </>
                             :null
                         }

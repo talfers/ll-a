@@ -26,3 +26,5 @@ yarn-error.log*
 src/keys/firebase.js
 src/keys/index.js
 public/__ENV.js
+
+.firebase

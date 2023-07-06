@@ -4,11 +4,12 @@ import { useAuth } from '../hooks/useAuth';
 import { usePayments } from '../hooks/usePayments';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle } from '@fortawesome/free-solid-svg-icons'
-import { ProfileContentContainerStyled, ProfileHeaderContainerStyled, ProfileTextStyled, ActionButtonStyled } from '../styles/Profile';
+import { ProfileContentContainerStyled, ProfileHeaderContainerStyled, ProfileTextStyled } from '../styles/Profile';
 import { ContainerStyled, ModalBackgroundStyled, PageHeaderStyled } from '../styles/Main';
 import Loading from './Loading';
 import Products from './Products';
 import { PlanViewContainerStyled, PlansButton } from '../styles/Form';
+import { PrimaryButtonStyled, SecondaryButtonStyled } from '../styles/Button';
 
 
 const Profile = () => { 
@@ -99,7 +100,7 @@ const Profile = () => {
                         <ProfileTextStyled>Plan: ${subscription?.plan.price.unit_amount/100} / {subscription?.plan.plan.interval}</ProfileTextStyled>
                         <ProfileTextStyled>Member since: {subscription?.current_period_start_date}</ProfileTextStyled>
                         <ProfileTextStyled>Renewal date: {subscription?.current_period_end_date}</ProfileTextStyled>
-                        <ActionButtonStyled onClick={loadBillingPortal}>Manage Account</ActionButtonStyled>
+                        <PrimaryButtonStyled onClick={loadBillingPortal}>Manage Account</PrimaryButtonStyled>
                     </>:
                     subscription===null && customer===null?
                     <div>Loading...</div>:
@@ -115,7 +116,7 @@ const Profile = () => {
                     
                 }
             </ProfileContentContainerStyled>
-            <ActionButtonStyled onClick={() => logOut()}>Signout</ActionButtonStyled>
+            <SecondaryButtonStyled onClick={() => logOut()}>Signout</SecondaryButtonStyled>
         </ContainerStyled>
     )
 }

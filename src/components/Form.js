@@ -136,7 +136,7 @@ function Form({tab, subscription, customer}) {
                             <></>
                         }
                         
-                        <RestartButtonStyled onClick={() => resetResponse(props.tab.id, props.tab.step)}>Restart</RestartButtonStyled>:
+                        <RestartButtonStyled onClick={() => resetResponse(tab.id)}>Restart</RestartButtonStyled>:
                         <PrimaryButtonStyled onClick={handleSubmit} id={tab.shortName}>{tab.submitMessage}</PrimaryButtonStyled>
                     </FormNavContainerStyled>:
                     <FormNavContainerStyled>

@@ -103,6 +103,7 @@ export const SectionContainerStyled = styled.div`
 
 export const FormNavContainerStyled = styled.div`
     display: flex;
+    flex-wrap: wrap;
 `;
 
 export const GoogleButtonContainerStyled = styled.div`

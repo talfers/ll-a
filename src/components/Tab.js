@@ -13,7 +13,7 @@ function Tab({tab, customer, subscription}) {
                 <Loading message={"Awaiting response from assistant.."}/>:<></>
             }
                 <div>
-                    <PageHeader2Styled>{tab.title}</PageHeader2Styled>
+                    <PageHeader2Styled id={'tab-header'}>{tab.title}</PageHeader2Styled>
                     {   tab.step===0?
                         <>
                             <PageHeaderSubTextStyled>{tab.text}</PageHeaderSubTextStyled>
@@ -22,7 +22,7 @@ function Tab({tab, customer, subscription}) {
                         :null
                     }
                     <div>
-                        <Form tab={tab}  customer={customer} subscription={subscription} />
+                        <Form tab={tab} customer={customer} subscription={subscription} />
                     </div>
                 </div>
         </TabContentContainerStyled>

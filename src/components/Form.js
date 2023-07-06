@@ -11,9 +11,10 @@ import { ModalBackgroundStyled } from '../styles/Main';
 import Loading from './Loading';
 import Products from './Products';
 import { useNavigate } from 'react-router-dom';
+import QueryLimitMessage from './QueryLimitMessage';
 
 
-function Form({tab, subscription}) {
+function Form({tab, subscription, customer}) {
     const navigate = useNavigate();
     const { user } = useAuth()
     const { updateQueryLimit, checkout, findPlan } = usePayments();
@@ -22,21 +23,27 @@ function Form({tab, subscription}) {
     const [selectedPlan, setSelectedPlan] = useState(plans[0].prices.priceId);
     const [loading, setLoading] = useState(0);
     const [error, setError] = useState('');
+    const [showQueryLimitMessage, setShowQueryLimitMessage] = useState(0);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         if(subscription?.status==='active') {
-            resetResponse(tab.id)
-            updateLoading(tab.id, true)
-            updateQueryLimit(user.uid, user.email)
-            try {
-                navigate('/response')
-                updateLoading(tab.id, false)
-                await postTaskData(tab);
-            } catch (err) {
-                setError(err.message)
-                console.log(err.message);
+            if(customer.queries > 0) {
+                resetResponse(tab.id)
+                updateLoading(tab.id, true)
+                updateQueryLimit(user.uid, user.email)
+                try {
+                    navigate('/response')
+                    updateLoading(tab.id, false)
+                    await postTaskData(tab);
+                } catch (err) {
+                    setError(err.message)
+                    console.log(err.message);
+                }
+            } else {
+                setShowQueryLimitMessage(1)
             }
+            
         } else {
             setShowPlans(1);
         }
@@ -97,6 +104,17 @@ function Form({tab, subscription}) {
                     setSelectedPlan={setSelectedPlan}
                     onContinue={loadCheckout}
                     continueText={'Continue to Pay'}
+                    />
+                </ModalBackgroundStyled>
+                :null
+            } 
+            {
+                showQueryLimitMessage===1?
+                <ModalBackgroundStyled>
+                    <QueryLimitMessage
+                        subscription={subscription}
+                        customer={customer}
+                        setShowQueryLimitMessage={setShowQueryLimitMessage}
                     />
                 </ModalBackgroundStyled>
                 :

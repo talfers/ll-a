@@ -2,8 +2,6 @@ Move from usePayments to Cloud Functions
 --------------
 1. addQueryLimit - Firebase
 2. checkout - Stripe
-3. getCustomer - Firebase
-4. getCurrentPlan - Firebase
 
 
 Move from useAuth to Cloud Functions

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import plans from '../data/plans';
 import { useAuth } from '../hooks/useAuth';
 import { usePayments } from '../hooks/usePayments';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,13 +11,12 @@ import { PlanViewContainerStyled, PlansButton } from '../styles/Form';
 import { PrimaryButtonStyled, SecondaryButtonStyled } from '../styles/Button';
 
 
-const Profile = () => { 
+const Profile = ({plans, selectedPlan, setSelectedPlan}) => { 
     const { user, logOut } = useAuth();
     const { getCurrentPlan, getCustomer, findPlan, manageSubscription, checkout } = usePayments();
     const [subscription, setSubscription] = useState(null);
     const [customer, setCustomer] = useState(null);
     const [showPlans, setShowPlans] = useState(0);
-    const [selectedPlan, setSelectedPlan] = useState(plans[0].prices.priceId);
     const [loading, setLoading] = useState(0);
     const [error, setError] = useState('');
 
@@ -82,6 +80,7 @@ const Profile = () => {
                     setSelectedPlan={setSelectedPlan}
                     onContinue={loadCheckout}
                     continueText={'Continue to Pay'}
+                    loading={plans.length>0}
                     />
                 </ModalBackgroundStyled>
                 :
@@ -102,12 +101,13 @@ const Profile = () => {
                         <ProfileTextStyled>Renewal date: {subscription?.current_period_end_date}</ProfileTextStyled>
                         {
                             subscription?.status!=='active'?
-                            <PlanViewContainerStyled>
-                                Selected Plan: {plans.filter(p => p.prices.priceId === selectedPlan)[0].name}
-                                {'  '}${plans.filter(p => p.prices.priceId === selectedPlan)[0].prices.priceData.unit_amount/100}
-                                <PlansButton onClick={() => setShowPlans(1)}>Show plans</PlansButton>
-                            </PlanViewContainerStyled>
-                                
+                                plans.length>0?
+                                <PlanViewContainerStyled>
+                                    Selected Plan: {plans.filter(p => p.prices.priceId === selectedPlan)[0].name}
+                                    {'  '}${plans.filter(p => p.prices.priceId === selectedPlan)[0].prices.priceData.unit_amount/100}
+                                    <PlansButton onClick={() => setShowPlans(1)}>Show plans</PlansButton>
+                                </PlanViewContainerStyled>
+                                :<div>Loading plans...</div>
                             :null
                         }
                         <PrimaryButtonStyled onClick={loadBillingPortal}>Manage Account</PrimaryButtonStyled>
@@ -117,11 +117,15 @@ const Profile = () => {
                     <div>
                         <p>Please pay for an account before talking to the assistant</p>
                         {error!==''?<p>{error}</p>:null}
-                        <PlanViewContainerStyled>
-                            Selected Plan: {plans.filter(p => p.prices.priceId === selectedPlan)[0].name}
-                            {'  '}${plans.filter(p => p.prices.priceId === selectedPlan)[0].prices.priceData.unit_amount/100}
-                            <PlansButton onClick={() => setShowPlans(1)}>Show plans</PlansButton>
-                        </PlanViewContainerStyled>
+                        {
+                            plans.length>0?
+                            <PlanViewContainerStyled>
+                                Selected Plan: {plans.filter(p => p.prices.priceId === selectedPlan)[0].name}
+                                {'  '}${plans.filter(p => p.prices.priceId === selectedPlan)[0].prices.priceData.unit_amount/100}
+                                <PlansButton onClick={() => setShowPlans(1)}>Show plans</PlansButton>
+                            </PlanViewContainerStyled>
+                            :<div>Loading plans...</div>
+                        }
                     </div>
                     
                 }

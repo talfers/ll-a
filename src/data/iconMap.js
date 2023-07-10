@@ -1,8 +1,11 @@
-import { FaRegHandshake, FaMinus, FaPlus } from "react-icons/fa";
+import { FaRegHandshake, FaMinus, FaPlus, FaChessQueen, FaChessKnight, FaChessPawn } from "react-icons/fa";
 import { IoHomeOutline, IoHelpCircleOutline, IoPersonOutline, IoMailOutline, IoExitOutline, IoNewspaperOutline, IoDocumentOutline, IoCopyOutline, IoClose } from "react-icons/io5";
 import { BsFileEarmarkWord, BsFiletypePdf, BsCheckCircle } from "react-icons/bs";
 
 const iconMap = {
+    'Basic': <FaChessPawn size={36}/>,
+    'Standard': <FaChessKnight size={36} />,
+    'Premium': <FaChessQueen size={36} />,
     'Home': <IoHomeOutline/>,
     'User': <IoPersonOutline/>,
     'Signout': <IoExitOutline/>,

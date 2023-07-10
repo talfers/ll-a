@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react';
-import plans from '../data/plans';
 import { Context as TaskContext } from '../context/TaskContext';
 import { useAuth } from '../hooks/useAuth';
 import { usePayments } from '../hooks/usePayments';
@@ -14,24 +13,18 @@ import { useNavigate } from 'react-router-dom';
 import QueryLimitMessage from './QueryLimitMessage';
 
 
-function Form({tab, subscription, customer}) {
+function Form({tab, subscription, customer, selectedPlan, setSelectedPlan, plans}) {
     const navigate = useNavigate();
     const { user } = useAuth()
     const { updateQueryLimit, checkout, findPlan } = usePayments();
     const {postTaskData, incrementStep, decrementStep, resetResponse, updateLoading} = useContext(TaskContext);
     const [showPlans, setShowPlans] = useState(0);
-    const [selectedPlan, setSelectedPlan] = useState(plans[0].prices.priceId);
     const [loading, setLoading] = useState(0);
     const [error, setError] = useState('');
     const [showQueryLimitMessage, setShowQueryLimitMessage] = useState(0);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // updateLoading(1)
-        // let r = await postTaskData(tab, user.uid);
-        // let res = await streamAssistantResponse(user.uid)
-        // console.log("ASSISTANT RESPONSE!!", res);
-        // updateLoading(0)
         if(subscription?.status==='active') {
             if(customer.queries > 0) {
                 resetResponse(tab.id)
@@ -119,6 +112,7 @@ function Form({tab, subscription, customer}) {
                     setSelectedPlan={setSelectedPlan}
                     onContinue={loadCheckout}
                     continueText={'Continue to Pay'}
+                    loading={plans.length>0}
                     />
                 </ModalBackgroundStyled>
                 :null

@@ -24,9 +24,11 @@ function MainPage({handleThemeChange}) {
     const { user, logOut } = useAuth();
     const {state} = useContext(TaskContext)
     const [ activeTabId, activeTab, setActiveTab] = useTabs(state.tabs)
-    const { getCurrentPlan, getCustomer } = usePayments();
+    const { getCurrentPlan, getCustomer, getProducts } = usePayments();
     const [subscription, setSubscription] = useState(null);
     const [customer, setCustomer] = useState(null);
+    const [plans, setPlans] = useState([])
+    const [selectedPlan, setSelectedPlan] = useState('');
 
     useEffect(() => {
         if(user?.uid){
@@ -42,6 +44,15 @@ function MainPage({handleThemeChange}) {
         }
         
     }, [user?.uid, getCurrentPlan, user?.email, getCustomer])
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            let products = await getProducts();
+            setPlans(products)
+            setSelectedPlan(products[0].prices.priceId)
+        }
+        fetchProducts()
+    }, [getProducts])
   
     return (
         <div>
@@ -55,19 +66,19 @@ function MainPage({handleThemeChange}) {
             />
             <Routes>
                 <Route path="/signin" element={<RedirectRoute><SignIn/></RedirectRoute>} />
-                <Route path="/signup" element={<RedirectRoute><SignUp/></RedirectRoute>} />
+                <Route path="/signup" element={<RedirectRoute><SignUp plans={plans} selectedPlan={selectedPlan} setSelectedPlan={setSelectedPlan}/></RedirectRoute>} />
                 <Route path="/reset" element={<ResetPassword/>} />
                 <Route path="/resetsent" element={<ResetPasswordMessage/>} />
                 <Route path="/thankyou" element={<RedirectRoute><ThankYou/></RedirectRoute>}/>
                 <Route path="/verifyemail" element={<RedirectRoute><VerifyEmail/></RedirectRoute>}/>
                 <Route path="/" element={<ProtectedRoute> <Home user={user} tabs={state.tabs} setActiveTab={setActiveTab}/></ProtectedRoute>} />
-                <Route path="/assistant" element={<ProtectedRoute><Tabs activeTab={activeTab} customer={customer} subscription={subscription}/></ProtectedRoute>} />
+                <Route path="/assistant" element={<ProtectedRoute><Tabs plans={plans} selectedPlan={selectedPlan} setSelectedPlan={setSelectedPlan} activeTab={activeTab} customer={customer} subscription={subscription}/></ProtectedRoute>} />
                 <Route path="/response" element={<ProtectedRoute><Response tab={activeTab} customer={customer} subscription={subscription}/></ProtectedRoute>} />
-                <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+                <Route path="/profile" element={<ProtectedRoute><Profile plans={plans} selectedPlan={selectedPlan} setSelectedPlan={setSelectedPlan}/></ProtectedRoute>} />
             </Routes>
             <Footer/>
         </div>
     )   
 }
 
-export default MainPage;
+export default MainPage; 

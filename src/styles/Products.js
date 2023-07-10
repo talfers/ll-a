@@ -5,6 +5,7 @@ import * as theme from "./Theme";
 export const ProductModalStyled = styled.div`
     width: 90%;
     max-width: 900px;
+    min-height: 55vh;
     margin: 0 auto;
     display: flex;
     flex-direction: column;

@@ -11,7 +11,6 @@ import {
 import iconMap from '../data/iconMap';
 import { ContentHeaderStyled, CloseButton } from '../styles/Main';
 import { PrimaryButtonStyled } from '../styles/Button';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FontAwesomeIconWrapper } from '../styles/Main';
 
 
@@ -22,7 +21,7 @@ function Products(props) {
             <ProductContainerStyled key={i} selected={props.selectedPlan===p.prices.priceId} onClick={() => {props.setSelectedPlan(p.prices.priceId)}}>
                 <IconContainerStyled>
                     <FontAwesomeIconWrapper>
-                       <FontAwesomeIcon icon={p.icon} size={"2xl"} color={'inherit'}/>
+                       {iconMap[p.name]}
                     </FontAwesomeIconWrapper>
                 </IconContainerStyled>
                 <ProductHeader>{p.name}</ProductHeader>
@@ -34,22 +33,33 @@ function Products(props) {
     }
 
     return (
-        
-        <ProductModalStyled>
-            <CloseButton onClick={() => {props.setShowPlans(0)}}>{iconMap['X']}</CloseButton>
-            <ContentHeaderStyled>Select a Plan</ContentHeaderStyled>
-            <ProductsContainerStyled>
-                {props.plans.length===0?<div>loading...</div>:
-                createPlans()
-                }
-            </ProductsContainerStyled>
-            <ButtonContainerStyled>
-                <PrimaryButtonStyled onClick={props.onContinue}>
-                    {props.continueText}
-                </PrimaryButtonStyled>
-            </ButtonContainerStyled>
+        <>
+            {
+                props.loading?
+                <ProductModalStyled>
+                    <CloseButton onClick={() => {props.setShowPlans(0)}}>{iconMap['X']}</CloseButton>
+                    <ContentHeaderStyled>Select a Plan</ContentHeaderStyled>
+                    <ProductsContainerStyled>
+                        {props.plans.length===0?<div>loading...</div>:
+                        createPlans()
+                        }
+                    </ProductsContainerStyled>
+                    <ButtonContainerStyled>
+                        <PrimaryButtonStyled onClick={props.onContinue}>
+                            {props.continueText}
+                        </PrimaryButtonStyled>
+                    </ButtonContainerStyled>
+                    
+                </ProductModalStyled>
+                :
+                <ProductModalStyled>
+                    <CloseButton onClick={() => {props.setShowPlans(0)}}>{iconMap['X']}</CloseButton>
+                    <div>Loading plans...</div>
+                </ProductModalStyled>
             
-        </ProductModalStyled>
+            }
+        </>
+        
             
         
     );

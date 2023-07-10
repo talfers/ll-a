@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import plans from '../data/plans';
 import { useAuth } from '../hooks/useAuth';
 import { usePayments } from '../hooks/usePayments';
 import Loading from './Loading';
@@ -19,7 +18,7 @@ import { ModalBackgroundStyled, NavLinkWrapper, PageHeaderStyled } from '../styl
 import Products from './Products';
 
 
-const SignUp = () => {
+const SignUp = ({ plans, setSelectedPlan, selectedPlan }) => {
     const { signUp, verificationEmail } = useAuth();
     const { checkout, findPlan } = usePayments();
     const [email, setEmail] = useState('')
@@ -27,7 +26,6 @@ const SignUp = () => {
     const [error, setError] = useState('')
     const [isCaptchaSuccessful, setIsCaptchaSuccess] = useState(false);
     const [showPlans, setShowPlans] = useState(0);
-    const [selectedPlan, setSelectedPlan] = useState(plans[0].prices.priceId);
     const [loading, setLoading] = useState(0);
     
     useEffect(() => {
@@ -89,6 +87,7 @@ const SignUp = () => {
                 setSelectedPlan={setSelectedPlan}
                 onContinue={onContinue}
                 continueText={'Continue'}
+                loading={plans.length>0}
                 />
             </ModalBackgroundStyled>
             :
@@ -125,11 +124,17 @@ const SignUp = () => {
                             placeholder="Password"   
                         />
                     </InputContainerStyled>
-                    <PlanViewContainerStyled>
-                        Selected Plan: {plans.filter(p => p.prices.priceId === selectedPlan)[0].name}
-                        {'  '}${plans.filter(p => p.prices.priceId === selectedPlan)[0].prices.priceData.unit_amount/100}
-                        <PlansButton onClick={() => setShowPlans(1)}>Show plans</PlansButton>
-                    </PlanViewContainerStyled>
+                    {
+                        plans.length>0?
+                        <PlanViewContainerStyled>
+                            Selected Plan: {plans.filter(p => p.prices.priceId === selectedPlan)[0].name}
+                            {'  '}${plans.filter(p => p.prices.priceId === selectedPlan)[0].prices.priceData.unit_amount/100}
+                            <PlansButton onClick={() => setShowPlans(1)}>Show plans</PlansButton>
+                        </PlanViewContainerStyled>
+                        :<div>Loading plans...</div>
+
+                    }
+                    
                     
                     <Recaptcha onChange={onRecaptchaChange}/>
                     {error!==''?<p>{error}</p>:null}

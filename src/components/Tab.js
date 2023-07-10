@@ -4,7 +4,7 @@ import Loading from './Loading';
 import { TabContentContainerStyled } from '../styles/Tabs'
 import { PageHeader2Styled, PageHeaderSubTextStyled, PageHeaderSubTextMobileStyled } from '../styles/Main';
 
-function Tab({tab, customer, subscription}) {
+function Tab({tab, customer, subscription, selectedPlan, setSelectedPlan, plans}) {
 
     return (
         <TabContentContainerStyled>
@@ -22,7 +22,7 @@ function Tab({tab, customer, subscription}) {
                         :null
                     }
                     <div>
-                        <Form tab={tab} customer={customer} subscription={subscription} />
+                        <Form tab={tab} customer={customer} subscription={subscription} plans={plans} selectedPlan={selectedPlan} setSelectedPlan={setSelectedPlan}/>
                     </div>
                 </div>
         </TabContentContainerStyled>

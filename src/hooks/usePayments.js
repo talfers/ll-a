@@ -103,7 +103,7 @@ export const PaymentsContextProvider = ({children}) => {
     try {
       const { data, status } = await axios.post(config.REACT_APP_GET_PRODUCTS_URL)
       if (status === 200) {
-        console.log(data.products);
+        console.log(data);
         return data.products;
       }
       else {
@@ -114,6 +114,7 @@ export const PaymentsContextProvider = ({children}) => {
     } catch (error) {
       console.log(`Error getting products. Error: ${error.message}`);
       setError(error.message)
+      return null
     }
   }, [])
 

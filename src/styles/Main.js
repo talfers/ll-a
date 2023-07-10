@@ -35,7 +35,7 @@ export const ContentHeaderStyled = styled.h1`
     font-size: 36px;
     margin-bottom: 10px;
     @media only screen and ${devices.md} {
-        font-size: 30px;
+        font-size: 24px;
     }
 `;
 
@@ -44,7 +44,7 @@ export const CloseButton = styled.div`
     position: absolute;
     top: 10px;
     right: 10px;
-    z-index: 99;
+    z-index: 92;
 `;
 
 export const NavLinkWrapper = styled(NavLink)`

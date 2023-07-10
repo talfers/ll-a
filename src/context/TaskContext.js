@@ -1,8 +1,8 @@
 import createDataContext from './createDataContext';
 import tabs from '../data/tabs';
 import * as prompts from '../prompts'
-import config from '../config'
-
+import config from '../config';
+// import axios from 'axios';
 
 const taskReducer = (state, action) => {
   switch(action.type) {
@@ -13,7 +13,6 @@ const taskReducer = (state, action) => {
     case 'post_response':
       const postState = {...state}
       postState.tabs[action.payload.tabId].response = action.payload.response
-      // postState.tabs[action.payload.tabId].currentPrompt = action.payload.currentPrompt
       return postState;
     case 'increment_step':
       if (state.tabs[action.payload.tabId].step >= Object.keys(state.tabs[action.payload.tabId].inputs).length - 1){
@@ -60,6 +59,45 @@ const updateLoading = (dispatch) => {
     dispatch({ type: 'update_loading', payload: { tabId, value } })
   }
 }
+
+
+// const postTaskData = (dispatch) => {
+//   return async (tab, userId) => {
+//     try {
+//       const { data, status } = await axios.post(config.REACT_APP_POST_TASK_DATA_URL, {tab, userId})
+//       if (status === 200) {
+//         return data.tab;
+//       }
+//       else {
+//         console.log(data.message);
+//         return null
+//       }
+//     } catch (error) {
+//       console.log(`Error posting tab. Error: ${error.message}`);
+//     }
+    
+//   }
+// }
+
+
+// const streamAssistantResponse = (dispatch) => {
+//   return async (customerId) => {
+//     try {
+//       const response = await fetch(
+//         config.REACT_APP_STREAM_ASSISTANT_RESPONSE_URL,
+//         {
+//           method: 'POST',
+//           headers: {
+//             'Content-Type': 'text/event-stream',
+//           },
+//         }
+//       )
+//     } catch (error) {
+//       console.log(`Error getting assistant response. Error: ${error.message}`);
+//     }
+    
+//   }
+// }
 
 const postTaskData = (dispatch) => {
   return async (tab) => {
@@ -116,6 +154,7 @@ const postTaskData = (dispatch) => {
     }
   }
 }
+
 
 const updateValue = (dispatch) => {
   return (value, tab, section, name) => {

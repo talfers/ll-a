@@ -31,7 +31,7 @@ function MainPage({handleThemeChange}) {
     useEffect(() => {
         if(user?.uid){
             const getDetails = async () => {
-                let cust = await getCustomer(user?.email);
+                let cust = await getCustomer(user?.uid);
                 let sub = await getCurrentPlan(user?.uid);
                 setSubscription(sub)
                 setCustomer(cust)

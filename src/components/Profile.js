@@ -25,7 +25,7 @@ const Profile = () => {
     useEffect(() => {
         const getDetails = async () => {
             let sub = await getCurrentPlan(user.uid);
-            let cust = await getCustomer(user.email);
+            let cust = await getCustomer(user.uid);
             setSubscription(sub)
             setCustomer(cust)
         }
@@ -100,6 +100,16 @@ const Profile = () => {
                         <ProfileTextStyled>Plan: ${subscription?.plan.price.unit_amount/100} / {subscription?.plan.plan.interval}</ProfileTextStyled>
                         <ProfileTextStyled>Member since: {subscription?.current_period_start_date}</ProfileTextStyled>
                         <ProfileTextStyled>Renewal date: {subscription?.current_period_end_date}</ProfileTextStyled>
+                        {
+                            subscription?.status!=='active'?
+                            <PlanViewContainerStyled>
+                                Selected Plan: {plans.filter(p => p.prices.priceId === selectedPlan)[0].name}
+                                {'  '}${plans.filter(p => p.prices.priceId === selectedPlan)[0].prices.priceData.unit_amount/100}
+                                <PlansButton onClick={() => setShowPlans(1)}>Show plans</PlansButton>
+                            </PlanViewContainerStyled>
+                                
+                            :null
+                        }
                         <PrimaryButtonStyled onClick={loadBillingPortal}>Manage Account</PrimaryButtonStyled>
                     </>:
                     subscription===null && customer===null?

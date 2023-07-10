@@ -27,11 +27,16 @@ function Form({tab, subscription, customer}) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        // updateLoading(1)
+        // let r = await postTaskData(tab, user.uid);
+        // let res = await streamAssistantResponse(user.uid)
+        // console.log("ASSISTANT RESPONSE!!", res);
+        // updateLoading(0)
         if(subscription?.status==='active') {
             if(customer.queries > 0) {
                 resetResponse(tab.id)
                 updateLoading(tab.id, true)
-                updateQueryLimit(user.uid, user.email)
+                updateQueryLimit(user.uid)
                 try {
                     navigate('/response')
                     updateLoading(tab.id, false)
@@ -142,11 +147,13 @@ function Form({tab, subscription, customer}) {
                     <FormNavContainerStyled>
                         {
                             Object.keys(tab.inputs).length > 1?
-                            <SecondaryButtonStyled onClick={decrement}>Back</SecondaryButtonStyled>  
+                            <>
+                                <SecondaryButtonStyled onClick={decrement}>Back</SecondaryButtonStyled>
+                                <SecondaryButtonStyled onClick={() => resetResponse(tab.id)}>Restart</SecondaryButtonStyled>
+                            </>
                             :null
                         }
                         
-                        <SecondaryButtonStyled onClick={() => resetResponse(tab.id)}>Restart</SecondaryButtonStyled>
                         <PrimaryButtonStyled onClick={handleSubmit} id={tab.shortName}>{tab.submitMessage}</PrimaryButtonStyled>
                     </FormNavContainerStyled>:
                     <FormNavContainerStyled>

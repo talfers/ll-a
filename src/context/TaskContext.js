@@ -94,62 +94,6 @@ const postTaskData = (dispatch) => {
   }
 }
 
-// const postTaskData = (dispatch) => {
-//   return async (tab) => {
-//     try {
-//     let message = prompts.process_request(tab)
-//     // Fetch the response from the OpenAI API with the signal from AbortController
-//     const response = await fetch(config.REACT_APP_OPENAI_URL, {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//         Authorization: `Bearer ${config.REACT_APP_OPENAI_API_KEY}`,
-//       },
-//       body: JSON.stringify({
-//         model: "gpt-3.5-turbo",
-//         messages: [{ role: "user", content: message }],
-//         stream: true, // For streaming responses
-//       }),
-//     });
-    
-//     // Read the response as a stream of data
-//     const reader = response.body.getReader();
-//     const decoder = new TextDecoder("utf-8");
-//     dispatch({ type: 'update_loading', payload: { tabId: tab.id, value: false } })
-//     while (true) {
-//       const { done, value } = await reader.read();
-      
-//       if (done) {
-//         break;
-//       }
-//       // Massage and parse the chunk of data
-//       const chunk = decoder.decode(value);
-//       const lines = chunk.split("\n");
-//       const parsedLines = lines
-//         .map((line) => line.replace(/^data: /, "").trim()) // Remove the "data: " prefix
-//         .filter((line) => line !== "" && line !== "[DONE]") // Remove empty lines and "[DONE]"
-//         .map((line) => JSON.parse(line)); // Parse the JSON string
-      
-//       for (const parsedLine of parsedLines) {
-//         const { choices } = parsedLine;
-//         const { delta } = choices[0];
-//         const { content } = delta;
-        
-//         // Update the UI with the new content
-//         if (content) {
-//           if(content === '' || content === ' ') dispatch({type: 'post_response', payload: {response: tab.response += '\n', tabId: tab.id}}) //currentPrompt: message,
-//           else dispatch({type: 'post_response', payload: {response: tab.response += content, tabId: tab.id}}) //currentPrompt: message,
-//         }
-//       }
-//     }
-//     }
-//     catch(err) {
-//       updateLoading(tab.id, false)
-//       console.log(`Error posting to the assistant API. Error: ${err}`);
-//     }
-//   }
-// }
-
 
 const updateValue = (dispatch) => {
   return (value, tab, section, name) => {

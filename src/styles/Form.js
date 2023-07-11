@@ -112,20 +112,12 @@ export const GoogleButtonContainerStyled = styled.div`
     align-items: center;
     justify-content: center;
     margin: 8px 0px;
-    // display: none;
-    // @media only screen and ${devices.md} {
-    //     display: none;
-    // }
 `;
 
 export const OrContainerStyled = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    // display: none;
-    // @media only screen and ${devices.md} {
-    //     display: none;
-    // }
 `;
 
 export const HrStyled = styled.hr`

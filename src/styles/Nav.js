@@ -83,7 +83,7 @@ export const MenuButtonContainerStyled = styled.div`
     align-items: center;
     cursor: pointer;
     padding: 4px;
-    margin: 20px;
+    margin: 20px 30px;
     z-index: 90;
     border: solid 1px ${({ theme }) => theme.colors.borderColor};
     border-radius: 100%;

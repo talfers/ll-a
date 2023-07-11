@@ -172,6 +172,11 @@ export const MenuItemStyled = styled.div`
     &:hover {
         background: ${({ theme }) => theme.colors.opacityColor};
     }
+    @media only screen and ${devices.md} {
+        &:hover {
+            background: inherit;
+        }
+    }
 `;
 
 export const MenuItemNameStyled = styled.span`
@@ -187,7 +192,7 @@ export const MenuItemIconStyled = styled.span`
 
 export const LogoStyled = styled.img`
     height: 20px;
-    padding-left: 20px;
+    padding-left: 30px;
     z-index: 91;
     cursor: pointer;
     position: fixed;

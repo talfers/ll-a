@@ -32,6 +32,11 @@ export const BoxContainerStyled = styled.div`
         width: 100%;
         margin: 12px 0px 12px 0px;
         height: 100px;
+        @media only screen and ${devices.md} {
+            &:hover {
+                background: inherit;
+            }
+        }
     }
 `;
 

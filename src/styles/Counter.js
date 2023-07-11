@@ -45,7 +45,7 @@ export const CounterButtonStyled = styled.div`
 
 export const CounterValueStyled = styled.input`
     border: none;
-    width: ${props => props.$step>1?`40px`:`20px`};
+    width: 40px;
     text-align: center;
     font-size: 18px;
     &:focus {
@@ -56,7 +56,7 @@ export const CounterValueStyled = styled.input`
 
 export const CounterHeaderStyled = styled.div`
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 500;
     color:  ${({ theme }) => theme.colors.contrastText};
 
 `;

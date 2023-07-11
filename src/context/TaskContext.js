@@ -88,8 +88,9 @@ const postTaskData = (dispatch) => {
               else dispatch({type: 'post_response', payload: {response: tab.response += line, tabId: tab.id}}) //currentPrompt: message,   
             }
         }
-    } catch (error) {
-      console.log(`Error posting tab. Error: ${error.message}`);
+    } catch (err) {
+      console.log(`Error posting tab. Error: ${err.message}`);
+      dispatch({type: 'post_response', payload: {response: `Oh no! An error occured when sending the response. Looks like the error was: ${err.message}`, tabId: tab.id}}) //currentPrompt: message,   
     }
   }
 }

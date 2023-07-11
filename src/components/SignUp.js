@@ -23,6 +23,7 @@ const SignUp = ({ plans, setSelectedPlan, selectedPlan }) => {
     const { checkout, findPlan } = usePayments();
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('')
     const [isCaptchaSuccessful, setIsCaptchaSuccess] = useState(false);
     const [showPlans, setShowPlans] = useState(0);
@@ -45,19 +46,24 @@ const SignUp = ({ plans, setSelectedPlan, selectedPlan }) => {
     const onSubmit = async (e) => {
         e.preventDefault()
         if (isCaptchaSuccessful) {
-            setError('')
-            setLoading(1)
-            try {
-                let user = await signUp(email, password);
-                await verificationEmail();
-                await loadCheckout(selectedPlan, user.uid)
-            } catch (error) {
-                setLoading(0)
-                const errorCode = error.code;
-                const errorMessage = error.message.replace('Firebase: ', '');
-                setError(errorMessage)
-                console.log(errorCode, errorMessage);
+            if(password===confirmPassword) {
+                setError('')
+                setLoading(1)
+                try {
+                    let user = await signUp(email, password);
+                    await verificationEmail();
+                    await loadCheckout(selectedPlan, user.uid)
+                } catch (error) {
+                    setLoading(0)
+                    const errorCode = error.code;
+                    const errorMessage = error.message.replace('Firebase: ', '');
+                    setError(errorMessage)
+                    console.log(errorCode, errorMessage);
             }
+            } else {
+                setError(`Passwords don't match!`)
+            }
+            
         } else {
             setLoading(0)
             setError('Please confirm you are not a robot before continuing')
@@ -122,6 +128,19 @@ const SignUp = ({ plans, setSelectedPlan, selectedPlan }) => {
                             onChange={(e) => setPassword(e.target.value)} 
                             required                                 
                             placeholder="Password"   
+                        />
+                    </InputContainerStyled>
+                    <InputContainerStyled>
+                        <LabelStyled htmlFor="confirmPassword">
+                            Confirm Password
+                        </LabelStyled>
+                        <InputStyled
+                            type="password"
+                            label="Confirm Password"
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)} 
+                            required                                 
+                            placeholder="Confirm Password"   
                         />
                     </InputContainerStyled>
                     {

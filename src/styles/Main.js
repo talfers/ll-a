@@ -7,10 +7,10 @@ export const ContainerStyled = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 80%;
+    width: 85%;
     max-width: 1200px;
     text-align: center;
-    margin: 0 auto;
+    margin: 0px auto;
     padding: 20px;
     position: relative;
     background: ${({ theme }) => theme.colors.cardBG};

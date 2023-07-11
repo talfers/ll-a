@@ -19,15 +19,33 @@ function Counter({name, input, tab, section, onUpdate, step}) {
             onUpdate(Number(input.value) - Number(step), tab, section, name)
         }
     }
+
+    const checkDisabled = () => {
+        if (Number(input.value) === 0) {
+            setDecrementDisabled(1)
+            onUpdate(0, tab, section, name)
+        } 
+        else {
+            if(decrementDisabled===1){setDecrementDisabled(0)}
+            onUpdate(Number(input.value), tab, section, name)
+        }
+    }
+
     return (
         <CounterContainerStyled>
             <CounterHeaderStyled>{name.charAt(0).toUpperCase()+name.slice(1).replaceAll('_', ' ')}</CounterHeaderStyled>
             <CounterActionContainerStyled>
                 <CounterButtonStyled $disabled={decrementDisabled===1} onClick={decrement}>{iconMap['Minus']}</CounterButtonStyled>
-                <CounterValueStyled $step={step} type="text" value={Number(input.value)} onChange={(e) => {
-                    onUpdate(e.target.value, tab, section, name)
-
-                }}/>
+                <CounterValueStyled 
+                    $step={step} 
+                    type="text" 
+                    value={Number(input.value)?Number(input.value):0} 
+                    onChange={(e) => {
+                        onUpdate(e.target.value, tab, section, name)
+                    }}
+                    onFocus={ checkDisabled } 
+                    onBlur={ checkDisabled }
+                />
                 <CounterButtonStyled onClick={increment}>{iconMap['Plus']}</CounterButtonStyled>
             </CounterActionContainerStyled>
             

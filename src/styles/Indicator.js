@@ -22,11 +22,10 @@ export const LoadingContainerStyled = styled.div`
     left: 0;
     bottom: 0;
     background: ${({ theme }) => theme.colors.opacityColor};
-    opacity: 0.90;
     width: 100%;
     height: 100%;
     display: flex;
-    z-index: 95;
+    z-index: 80;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -41,14 +40,16 @@ export const LoadingContentContainerStyled = styled.div`
     justify-content: center;
     border-radius: 8px;
     padding: 40px 30px;
-    margin: 0px 24px;
+    margin: 0px 24px 60px 24px;
     text-align: center;
-    z-index: 95;
+    z-index: 81;
     
     @media only screen and ${devices.md} {
         max-width: 60%;
         padding: 20px 12px;
         margin: 0px 12px; 
+        margin: 0px 12px 24px 12px;
+
     }
 `;
 

@@ -13,6 +13,7 @@ export const ProductModalStyled = styled.div`
     align-items: center;
     justify-content: center;
     border-radius: 8px;
+    z-index: 99;
     background: ${({ theme }) => theme.colors.cardBG};
     color: ${({ theme }) => theme.colors.cardText};
     font-family: ${({ theme }) => theme.colors.ff};
@@ -22,6 +23,8 @@ export const ProductModalStyled = styled.div`
         width: 75%;
         display: flex;
         padding: 12px;
+        min-height: 30vh;
+        margin-bottom: 0px;
     }
 `;
 
@@ -30,6 +33,7 @@ export const ProductsContainerStyled = styled.div`
     align-items: center;
     justify-content: center;
     padding: 24px;
+    z-index: 99;
     @media only screen and ${devices.md} {
         flex-direction: column;
         padding: 6px;

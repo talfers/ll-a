@@ -18,7 +18,7 @@ function Response(props) {
     const [downloadFile] = useDownloadFile()
 
     const generateResponse = () => {
-        if ([2,3].includes(props.tab.id)) {
+        if ([0,1,2,3,4].includes(props.tab.id)) {
             let response = props.tab.response.split('\n');
             return response.map((item, i) => (
                 <ResponseItem key={i}>
@@ -32,8 +32,6 @@ function Response(props) {
 
     return (
             <ResponseContainerStyled>
-                {/* <PageHeader2Styled>Question</PageHeader2Styled>
-                <ResponseStyled>{props.tab.currentPrompt}</ResponseStyled> */}
                 <ResponseHeaderStyled>
                     <PageHeader2Styled>Assistant Response</PageHeader2Styled>
                     {props.tab.response!==''?

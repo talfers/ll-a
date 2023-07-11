@@ -103,7 +103,6 @@ export const PaymentsContextProvider = ({children}) => {
     try {
       const { data, status } = await axios.post(config.REACT_APP_GET_PRODUCTS_URL)
       if (status === 200) {
-        console.log(data);
         return data.products;
       }
       else {

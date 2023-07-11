@@ -1,8 +1,6 @@
 import createDataContext from './createDataContext';
 import tabs from '../data/tabs';
-import * as prompts from '../prompts'
 import config from '../config';
-// import axios from 'axios';
 
 const taskReducer = (state, action) => {
   switch(action.type) {
@@ -61,99 +59,96 @@ const updateLoading = (dispatch) => {
 }
 
 
-// const postTaskData = (dispatch) => {
-//   return async (tab, userId) => {
-//     try {
-//       const { data, status } = await axios.post(config.REACT_APP_POST_TASK_DATA_URL, {tab, userId})
-//       if (status === 200) {
-//         return data.tab;
-//       }
-//       else {
-//         console.log(data.message);
-//         return null
-//       }
-//     } catch (error) {
-//       console.log(`Error posting tab. Error: ${error.message}`);
-//     }
-    
-//   }
-// }
-
-
-// const streamAssistantResponse = (dispatch) => {
-//   return async (customerId) => {
-//     try {
-//       const response = await fetch(
-//         config.REACT_APP_STREAM_ASSISTANT_RESPONSE_URL,
-//         {
-//           method: 'POST',
-//           headers: {
-//             'Content-Type': 'text/event-stream',
-//           },
-//         }
-//       )
-//     } catch (error) {
-//       console.log(`Error getting assistant response. Error: ${error.message}`);
-//     }
-    
-//   }
-// }
-
 const postTaskData = (dispatch) => {
   return async (tab) => {
     try {
-    let message = prompts.process_request(tab)
-    // Fetch the response from the OpenAI API with the signal from AbortController
-    const response = await fetch(config.REACT_APP_OPENAI_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${config.REACT_APP_OPENAI_API_KEY}`,
-      },
-      body: JSON.stringify({
-        model: "gpt-3.5-turbo",
-        messages: [{ role: "user", content: message }],
-        stream: true, // For streaming responses
-      }),
-    });
-    
-    // Read the response as a stream of data
-    const reader = response.body.getReader();
-    const decoder = new TextDecoder("utf-8");
-    dispatch({ type: 'update_loading', payload: { tabId: tab.id, value: false } })
-    while (true) {
-      const { done, value } = await reader.read();
-      
-      if (done) {
-        break;
-      }
-      // Massage and parse the chunk of data
-      const chunk = decoder.decode(value);
-      const lines = chunk.split("\n");
-      const parsedLines = lines
-        .map((line) => line.replace(/^data: /, "").trim()) // Remove the "data: " prefix
-        .filter((line) => line !== "" && line !== "[DONE]") // Remove empty lines and "[DONE]"
-        .map((line) => JSON.parse(line)); // Parse the JSON string
-      
-      for (const parsedLine of parsedLines) {
-        const { choices } = parsedLine;
-        const { delta } = choices[0];
-        const { content } = delta;
-        
-        // Update the UI with the new content
-        if (content) {
-          if(content === '' || content === ' ') dispatch({type: 'post_response', payload: {response: tab.response += '\n', tabId: tab.id}}) //currentPrompt: message,
-          else dispatch({type: 'post_response', payload: {response: tab.response += content, tabId: tab.id}}) //currentPrompt: message,
+      const response = await fetch(config.REACT_APP_POST_TASK_DATA_URL,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'text/event-stream',
+            tab: JSON.stringify(tab),
+          },
         }
-      }
-    }
-    }
-    catch(err) {
-      updateLoading(tab.id, false)
-      console.log(`Error posting to the assistant API. Error: ${err}`);
+      )
+      // Read the response as a stream of data
+      const reader = response.body.getReader();
+        const decoder = new TextDecoder("utf-8");
+        while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+
+            // Massage and parse the chunk of data
+            const chunk = decoder.decode(value);
+            const lines = chunk.split("\n\n");
+            
+            for (const line of lines) {
+              // Update the UI with the new content
+              if(line==='') dispatch({type: 'post_response', payload: {response: tab.response += '\n', tabId: tab.id}}) //currentPrompt: message,
+              else dispatch({type: 'post_response', payload: {response: tab.response += line, tabId: tab.id}}) //currentPrompt: message,   
+            }
+        }
+    } catch (error) {
+      console.log(`Error posting tab. Error: ${error.message}`);
     }
   }
 }
+
+// const postTaskData = (dispatch) => {
+//   return async (tab) => {
+//     try {
+//     let message = prompts.process_request(tab)
+//     // Fetch the response from the OpenAI API with the signal from AbortController
+//     const response = await fetch(config.REACT_APP_OPENAI_URL, {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//         Authorization: `Bearer ${config.REACT_APP_OPENAI_API_KEY}`,
+//       },
+//       body: JSON.stringify({
+//         model: "gpt-3.5-turbo",
+//         messages: [{ role: "user", content: message }],
+//         stream: true, // For streaming responses
+//       }),
+//     });
+    
+//     // Read the response as a stream of data
+//     const reader = response.body.getReader();
+//     const decoder = new TextDecoder("utf-8");
+//     dispatch({ type: 'update_loading', payload: { tabId: tab.id, value: false } })
+//     while (true) {
+//       const { done, value } = await reader.read();
+      
+//       if (done) {
+//         break;
+//       }
+//       // Massage and parse the chunk of data
+//       const chunk = decoder.decode(value);
+//       const lines = chunk.split("\n");
+//       const parsedLines = lines
+//         .map((line) => line.replace(/^data: /, "").trim()) // Remove the "data: " prefix
+//         .filter((line) => line !== "" && line !== "[DONE]") // Remove empty lines and "[DONE]"
+//         .map((line) => JSON.parse(line)); // Parse the JSON string
+      
+//       for (const parsedLine of parsedLines) {
+//         const { choices } = parsedLine;
+//         const { delta } = choices[0];
+//         const { content } = delta;
+        
+//         // Update the UI with the new content
+//         if (content) {
+//           if(content === '' || content === ' ') dispatch({type: 'post_response', payload: {response: tab.response += '\n', tabId: tab.id}}) //currentPrompt: message,
+//           else dispatch({type: 'post_response', payload: {response: tab.response += content, tabId: tab.id}}) //currentPrompt: message,
+//         }
+//       }
+//     }
+//     }
+//     catch(err) {
+//       updateLoading(tab.id, false)
+//       console.log(`Error posting to the assistant API. Error: ${err}`);
+//     }
+//   }
+// }
 
 
 const updateValue = (dispatch) => {

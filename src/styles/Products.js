@@ -25,7 +25,6 @@ export const ProductModalStyled = styled.div`
         padding: 12px;
         min-height: 30vh;
         margin-bottom: 0px;
-
     }
 `;
 

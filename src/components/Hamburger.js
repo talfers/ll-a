@@ -1,5 +1,5 @@
 import React from 'react';
-import ThemeToggle from './ThemeToggle';
+// import ThemeToggle from './ThemeToggle';
 import { 
     MenuBarContainerStyled,
     MenuButtonContainerStyled, 
@@ -11,7 +11,7 @@ import {
     MenuContainerStyled,
     MenuItemIconStyled,
     MenuTitleStyled,
-    NavFooterStyled,
+    // NavFooterStyled,
     MenuItemNameStyled
  } from '../styles/Nav'
  import iconMap from '../data/iconMap';
@@ -91,9 +91,9 @@ function Hamburger({ user, tabs, activeTabId, onNavClick, menuOpen, setMenuOpen,
                             </MenuItemStyled>
                     </div>
                     :null}
-                    <NavFooterStyled>
+                    {/* <NavFooterStyled>
                         <ThemeToggle $mobile={false} onClick={handleThemeChange} />
-                    </NavFooterStyled>
+                    </NavFooterStyled> */}
                     
                     </MenuListStyled>
                     

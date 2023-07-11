@@ -139,7 +139,7 @@ export const MenuItemContainerStyled = styled.div`
 export const MenuListStyled = styled.div`
     margin-top: 80px;
     color: ${({ theme }) => theme.colors.contrastText};
-    padding: 0px 20px;
+    padding: 0px 30px;
     height: 100vh;
     display: flex;
     flex-direction: column;

@@ -84,6 +84,7 @@ const postTaskData = (dispatch) => {
             
             for (const line of lines) {
               // Update the UI with the new content
+              console.log(line);
               if(line==='') dispatch({type: 'post_response', payload: {response: tab.response += '\n', tabId: tab.id}}) //currentPrompt: message,
               else dispatch({type: 'post_response', payload: {response: tab.response += line, tabId: tab.id}}) //currentPrompt: message,   
             }

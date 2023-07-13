@@ -66,11 +66,11 @@ export const ProductContainerStyled = styled.div`
 `;
 
 export const IconContainerStyled = styled.div`
-    // padding: 12px;
-    // border-radius: 50%;
-    // border: 2px solid ${({ theme }) => theme.colors.bg};
     margin-bottom: 10px;
     color: ${({ theme }) => theme.colors.bg};
+    @media only screen and ${devices.md} {
+        margin-bottom: 4px;
+    }
 `;
 
 export const ButtonContainerStyled = styled.div`
@@ -93,7 +93,7 @@ export const ProductText = styled.p`
     color: ${({ theme }) => theme.colors.subTextColor};
     @media only screen and ${devices.md} {
         font-size: 0.7em;
-        margin-bottom: ${props => props.$spaceBelow?'8px':'0px'};
+        margin-bottom: ${props => props.$spaceBelow?'4px':'0px'};
         display: ${props => props.$hideMobile?'none':''};
     }
 `;

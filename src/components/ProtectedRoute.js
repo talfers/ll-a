@@ -9,7 +9,7 @@ const ProtectedRoute = ({children}) => {
     const [visited] = useLocalStorage("visited", false);
 
     // console.log("VISSS", visited);
-    if (visited) {
+    if (visited || !visited) {
         if (!user) {
             return <Navigate to='/signin' />
         } else if (user.emailVerified===false) {

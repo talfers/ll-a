@@ -20,7 +20,7 @@ export const FeaturesContainerStyled = styled.div`
     display: flex;
     flex-wrap: wrap;
     margin: 10px 0px;
-    @media only screen and ${devices.md} {
+    @media only screen and ${devices.lg} {
         justify-content: center;
     }
 `;
@@ -42,7 +42,7 @@ export const FeatureContainerStyled = styled.div`
     -webkit-animation: 1s ${popUp} forwards ${(props) => props.$delay?`${props.$delay}s`: '0s'};
     -ms-animation: 1s ${popUp} forwards ${(props) => props.$delay?`${props.$delay}s`: '0s'};
     -moz-animation: 1s ${popUp} forwards ${(props) => props.$delay?`${props.$delay}s`: '0s'};
-    @media only screen and ${devices.md} {
+    @media only screen and ${devices.lg} {
         margin-top: 12px;
     }
 `;
@@ -50,11 +50,17 @@ export const FeatureContainerStyled = styled.div`
 export const FeatureHeaderStyled = styled.h2`
     margin-bottom: 8px;
     font-size: 22px;
+    @media only screen and ${devices.lg} {
+        font-size: 18px;
+    }
 `;
 
 export const FeatureParagraphStyled = styled.p`
     font-size: 18px;
     color: ${({ theme }) => theme.colors.subTextColor};
+    @media only screen and ${devices.lg} {
+        font-size: 16px;
+    }
 `;
 
 export const WelcomeParagraphStyled = styled.p`
@@ -62,6 +68,9 @@ export const WelcomeParagraphStyled = styled.p`
     color: ${({ theme }) => theme.colors.subTextColor};
     margin-bottom: 10px;
     text-align: center;
+    @media only screen and ${devices.lg} {
+        font-size: 16px;
+    }
 `;
 
 export const WelcomeButtonStyled = styled(PrimaryButtonStyled)`
@@ -77,7 +86,7 @@ export const WelcomePageSubHeaderStyled = styled(PageHeader2Styled)`
     -webkit-animation: 1s ${popUp} forwards ${(props) => props.$delay?`${props.$delay}s`: '0s'};
     -ms-animation: 1s ${popUp} forwards ${(props) => props.$delay?`${props.$delay}s`: '0s'};
     -moz-animation: 1s ${popUp} forwards ${(props) => props.$delay?`${props.$delay}s`: '0s'};
-    @media only screen and ${devices.md} {
+    @media only screen and ${devices.lg} {
         align-self: center;
         margin: 20px 0px 0px 0px;
     }
@@ -87,8 +96,13 @@ export const VideoPlayerContainerStyled = styled.div`
     margin: 10px 0px;
     height: 540px;
     width: 960px;
+    @media only screen and ${devices.lg} {
+        height: 270px;
+        width: 480px;
+    }
     @media only screen and ${devices.md} {
         height: 180px;
         width: 340px;
     }
+    
 `;

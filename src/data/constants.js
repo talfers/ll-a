@@ -11,7 +11,7 @@ export const devices = {
     xs: `(max-width: ${breakpoints.xs})`,
     sm: `(max-width: ${breakpoints.sm})`,
     md: `(max-width: ${breakpoints.md})`,
-    lg: `(min-width: ${breakpoints.lg})`,
+    lg: `(max-width: ${breakpoints.lg})`,
     xl: `(min-width: ${breakpoints.xl})`,
     xxl: `(min-width: ${breakpoints.xxl})`,
 }

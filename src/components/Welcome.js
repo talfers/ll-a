@@ -22,9 +22,8 @@ const Welcome = () => {
             </IconContext.Provider>
         ))
     }
-
+    
   return (
-
     <WelcomeSectionStyled>
         <WelcomeHeaderStyled>Welcome to Landlord Assist! </WelcomeHeaderStyled>
         <WelcomeParagraphStyled>We are using AI to help landlords and property owners think less and get more done.</WelcomeParagraphStyled>
@@ -35,8 +34,6 @@ const Welcome = () => {
             {createFeatures()}
         </FeaturesContainerStyled>
     </WelcomeSectionStyled>
-
-    
   )
 }
  

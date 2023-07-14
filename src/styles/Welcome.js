@@ -34,7 +34,7 @@ export const FeatureContainerStyled = styled.div`
     width: 20%;
     min-width: 240px;
     opacity: 0;
-    margin: 0px 2.5%;
+    margin: 0px 2.5% 2.5% 2.5%;
     border: 1px solid ${({ theme }) => theme.colors.borderColor};
     border-radius: 12px;
     padding: 24px;
@@ -94,8 +94,8 @@ export const WelcomePageSubHeaderStyled = styled(PageHeader2Styled)`
 
 export const VideoPlayerContainerStyled = styled.div`
     margin: 10px 0px;
-    height: 540px;
-    width: 960px;
+    height: 432px;
+    width: 768px;
     @media only screen and ${devices.lg} {
         height: 270px;
         width: 480px;

@@ -49,6 +49,10 @@ export const ClusterItemContainerStyled = styled.div`
             background: ${props => props.$selected?props.theme.colors.opacityColor:'inherit'};
         }
     }
+    @media only screen and ${devices.lg} {
+        margin: 8px 16px 8px 0px;
+    }
+    
 `;
 
 

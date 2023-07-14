@@ -6,7 +6,7 @@ export const MarginContainerStyled = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 80px;
+    // height: 80px;
     color: ${({ theme }) => theme.colors.contrastText};
 `;
 

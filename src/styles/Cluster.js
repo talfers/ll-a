@@ -28,6 +28,9 @@ export const ClusterItemContainerStyled = styled.div`
     background: ${props => props.$selected?props.theme.colors.opacityColor:'inherit'};
     transition: background 0s, transform 0.2s ease-out, border 0.1s ease-in;
     color: ${({ theme }) => theme.colors.contrastText};
+    @media only screen and ${devices.md} {
+        margin-top: 12px;
+    }
     &:hover {
         border: 1.5px ${({ theme }) => theme.colors.contrastText} solid;
         background: ${props => props.$selected?props.theme.colors.opacityColor:'transparent'};

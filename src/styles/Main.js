@@ -1,6 +1,29 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { devices } from "../data/constants";
 import { NavLink } from 'react-router-dom';
+
+export const popUp = keyframes`   
+    0% {
+        transform: translateY(5%);
+        -webkit-transform: translateY(5%);
+        -ms-transform: translateY(5%);
+        -moz-transform: translateY(5%);
+        opacity: 0;
+        -webkit-opacity: 0;
+        -ms-opacity: 0;
+        -moz-opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        -webkit-transform: translateY(0);
+        -ms-transform: translateY(0);
+        -moz-transform: translateY(0);
+        opacity: 1;
+        -webkit-opacity: 1;
+        -ms-opacity: 1;
+        -moz-opacity: 1;
+    }
+`;
 
 export const ContainerStyled = styled.div`
     display: flex;
@@ -109,7 +132,9 @@ export const PageHeaderSubTextMobileStyled = styled.p`
 `;
 
 export const DividerStyled = styled.hr`
-    border: 1px solid ${({ theme }) => theme.colors.contrastText};
+    border: 1px solid ${({ theme }) => theme.colors.borderColor};
+    width: 320px;
+    margin: 10px 0px;
 `;
 
 export const PageSubTitleStyled = styled.p`

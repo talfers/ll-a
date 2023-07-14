@@ -11,6 +11,7 @@ import {
     ResponseButtonStyled, 
     ResponseItem 
 } from '../styles/Response'
+import Loading from './Loading';
 
 
 function Response(props) {
@@ -32,6 +33,11 @@ function Response(props) {
 
     return (
             <ResponseContainerStyled>
+                {
+                    props.tab.response?
+                    null
+                    :<Loading message={"Loading..."}/>
+                }
                 <ResponseHeaderStyled>
                     <PageHeader2Styled>Assistant Response</PageHeader2Styled>
                     {props.tab.response!==''?

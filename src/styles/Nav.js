@@ -45,13 +45,12 @@ export const MenuBarContainerStyled = styled.div`
     align-items: center;
     justify-content: flex-end;
     background: ${({ theme }) => theme.colors.bg};
-    // border: solid 1px ${({ theme }) => theme.colors.borderColor};
     width: 100%;
     color: ${({ theme }) => theme.colors.contrastText};
     font-family: ${({ theme }) => theme.colors.ff};
-    
     @media only screen and ${devices.md} {
         display: flex;
+        
     }
 `;
 

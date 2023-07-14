@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuth } from '../hooks/useAuth';
 import { usePayments } from '../hooks/usePayments';
 import Loading from './Loading';
@@ -16,22 +16,26 @@ import {
 import { PrimaryButtonStyled } from '../styles/Button';
 import { ModalBackgroundStyled, NavLinkWrapper, PageHeaderStyled } from '../styles/Main';
 import Products from './Products';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 
 
 const SignUp = ({ plans, setSelectedPlan, selectedPlan }) => {
     const { signUp, verificationEmail } = useAuth();
     const { checkout, findPlan } = usePayments();
+    const [visited, setVisited] = useLocalStorage("visited", false);
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('')
     const [isCaptchaSuccessful, setIsCaptchaSuccess] = useState(false);
-    const [showPlans, setShowPlans] = useState(0);
+    const [showPlans, setShowPlans] = useState(1);
     const [loading, setLoading] = useState(0);
-    
+
     useEffect(() => {
-        setShowPlans(1)
-    }, [setShowPlans])
+        if(!visited) {
+            setVisited(true);
+        }
+    }, [visited, setVisited])
 
     const loadCheckout = async (priceId, userId) => {
         let p = findPlan(plans, priceId)

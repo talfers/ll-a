@@ -6,7 +6,6 @@ export const MarginContainerStyled = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    // height: 80px;
     color: ${({ theme }) => theme.colors.contrastText};
 `;
 
@@ -14,6 +13,7 @@ export const HeaderContainerStyled = styled.div`
     display: flex;
     align-items: center;
     height: 80px;
+    background: ${({ theme }) => theme.colors.bg};
 `;
 
 export const MarginTextStyled = styled.p`

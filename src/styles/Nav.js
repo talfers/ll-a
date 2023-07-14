@@ -139,7 +139,7 @@ export const MenuListStyled = styled.div`
     margin-top: 80px;
     color: ${({ theme }) => theme.colors.contrastText};
     padding: 0px 30px;
-    height: 100%;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     

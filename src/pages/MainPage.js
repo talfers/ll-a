@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import SignIn from '../components/SignIn';
 import SignUp from '../components/SignUp';
+import Welcome from '../components/Welcome';
 import Home from '../components/Home';
 import Profile from '../components/Profile';
 import ThankYou from '../components/ThankYou';
@@ -29,6 +30,7 @@ function MainPage({handleThemeChange}) {
     const [customer, setCustomer] = useState(null);
     const [plans, setPlans] = useState([])
     const [selectedPlan, setSelectedPlan] = useState('');
+    
 
     useEffect(() => {
         if(user?.uid){
@@ -67,6 +69,7 @@ function MainPage({handleThemeChange}) {
             <Routes>
                 <Route path="/signin" element={<RedirectRoute><SignIn/></RedirectRoute>} />
                 <Route path="/signup" element={<RedirectRoute><SignUp plans={plans} selectedPlan={selectedPlan} setSelectedPlan={setSelectedPlan}/></RedirectRoute>} />
+                <Route path="/welcome" element={<Welcome/>} />
                 <Route path="/reset" element={<ResetPassword/>} />
                 <Route path="/resetsent" element={<ResetPasswordMessage/>} />
                 <Route path="/thankyou" element={<RedirectRoute><ThankYou/></RedirectRoute>}/>

@@ -45,13 +45,12 @@ export const MenuBarContainerStyled = styled.div`
     align-items: center;
     justify-content: flex-end;
     background: ${({ theme }) => theme.colors.bg};
-    // border: solid 1px ${({ theme }) => theme.colors.borderColor};
     width: 100%;
     color: ${({ theme }) => theme.colors.contrastText};
     font-family: ${({ theme }) => theme.colors.ff};
-    
     @media only screen and ${devices.md} {
         display: flex;
+        
     }
 `;
 
@@ -83,7 +82,7 @@ export const MenuButtonContainerStyled = styled.div`
     align-items: center;
     cursor: pointer;
     padding: 4px;
-    margin: 20px;
+    margin: 20px 30px;
     z-index: 90;
     border: solid 1px ${({ theme }) => theme.colors.borderColor};
     border-radius: 100%;

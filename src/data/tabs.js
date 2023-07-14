@@ -1,5 +1,4 @@
 import { FaRegEnvelope, FaRegHandshake, FaRegNewspaper, FaRegQuestionCircle } from "react-icons/fa";
-import { GrDocument } from "react-icons/gr";
 
 const tabs = [
     {

@@ -39,7 +39,6 @@ export const InputStyled = styled.input`
     &:focus {
         outline: none !important;
         border: 1.5px solid ${({ theme }) => theme.colors.contrastText};
-        /* box-shadow: 0 0 10px lightgray; */
     }
 `;
 
@@ -50,25 +49,23 @@ export const SelectStyled = styled.select`
     vertical-align:top;
     min-width: 100px;
     font-family: ${({ theme }) => theme.colors.ff};
-
     &:focus {
         outline: none !important;
         border: 1.5px solid ${({ theme }) => theme.colors.contrastText};
-        /* box-shadow: 0 0 10px lightgray; */
     }
 `;
 
 export const TextAreaStyled = styled.textarea`
     border-radius: 8px;
-    border: ${({ theme }) => theme.colors.contrastText} 1px solid;
+    border: ${({ theme }) => theme.colors.borderColor} 1px solid;
     padding: 6px;
     vertical-align:top;
     font-family: ${({ theme }) => theme.colors.ff};
     height: 100px;
     vertical-align: top;
-    :focus {
+    &:focus {
+        outline: none;
         border: 1.5px solid ${({ theme }) => theme.colors.contrastText};
-        // outline: none;
     }
     
 `
@@ -93,12 +90,9 @@ export const SectionContainerStyled = styled.div`
     margin-bottom: 16px;
     transform: translateY(${props => props.$active?`0px`:`4000px`});
     opacity: ${props => props.$active?`1`:`0`};
-    // bottom: ${props => props.$active?`-4000px`:`inherit`};
-    // left: ${props => props.$active?`0px`:`inherit`};
-    position: ${props => props.$active?`static`:`absolute`};
+    position: ${props => props.$active?`static`:`fixed`};
     transition-delay: 0.4s;
     transition: opacity 1.25s;
-
 `;
 
 export const FormNavContainerStyled = styled.div`
@@ -112,20 +106,12 @@ export const GoogleButtonContainerStyled = styled.div`
     align-items: center;
     justify-content: center;
     margin: 8px 0px;
-    // display: none;
-    // @media only screen and ${devices.md} {
-    //     display: none;
-    // }
 `;
 
 export const OrContainerStyled = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    // display: none;
-    // @media only screen and ${devices.md} {
-    //     display: none;
-    // }
 `;
 
 export const HrStyled = styled.hr`

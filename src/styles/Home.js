@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { devices } from "../data/constants";
+import { popUp } from './Main';
 
 
 export const BoxesContainerStyled = styled.div`
@@ -16,6 +17,7 @@ export const BoxContainerStyled = styled.div`
     margin: 12px 24px 12px 0px;
     border-radius: 16px;
     width: 20%;
+    opacity: 0;
     max-width: 268px;
     min-width: 136px;
     height: 120px;
@@ -25,6 +27,10 @@ export const BoxContainerStyled = styled.div`
     justify-content: space-between;
     cursor: pointer;
     transition: background 0.3s ease-out;
+    animation: 1s ${popUp} forwards ${(props) => props.$delay?`${props.$delay}s`: '0s'};
+    -webkit-animation: 1s ${popUp} forwards ${(props) => props.$delay?`${props.$delay}s`: '0s'};
+    -ms-animation: 1s ${popUp} forwards ${(props) => props.$delay?`${props.$delay}s`: '0s'};
+    -moz-animation: 1s ${popUp} forwards ${(props) => props.$delay?`${props.$delay}s`: '0s'};
     &:hover {
         background: ${({ theme }) => theme.colors.opacityColor};
     }

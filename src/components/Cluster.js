@@ -15,7 +15,7 @@ function Cluster({name, input, tab, section, onUpdate}) {
     }
 
     const createBoxes = () => {
-        return Object.keys(input.value).map((key) => (
+        return Object.keys(input.value).map(key => (
             <IconContext.Provider key={key} value={{ style: { fontSize: '20px' } }}>
                 <ClusterItemContainerStyled key={key} $selected={input.value[key]} onClick={(e) => onSelection(e, key)}>
                     <BoxIconContainerStyled>{iconMap[key]}</BoxIconContainerStyled>

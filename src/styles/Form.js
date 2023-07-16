@@ -19,9 +19,10 @@ export const FormSectionStyled = styled.section`
 export const InputContainerStyled = styled.div`
     display: flex;
     flex-direction: column;
-    margin: 8px 8px 8px 0px;
+    margin: ${props => (props.$type === "text"||props.$type === "date"||props.$type === "shorttext")?"8px 8px 20px 0px;":"8px 8px 8px 0px;"};
+    justify-content: center;
     width: ${props => props.$size ? `${props.$size}%`:""};
-    max-width: ${props => (props.$type === "date") ? "150px" : props.$type === "text"?"600px":""};
+    max-width: ${props => props.$type === "text"?"600px":""};
     align-items: ${props => props.$type === "checkbox" ? "flex-start" : ""};
     @media only screen and ${devices.md} {
         width: 95%;
@@ -30,6 +31,7 @@ export const InputContainerStyled = styled.div`
 `;
 
 export const InputStyled = styled.input`
+    margin-top: 10px;
     border-radius: 8px;
     border: ${({ theme }) => theme.colors.borderColor} 1px solid;
     padding: 6px;
@@ -42,12 +44,23 @@ export const InputStyled = styled.input`
     }
 `;
 
+export  const DateStyled = styled(InputStyled)`
+    margin-right: 80%;
+    
+    @media only screen and ${devices.md} {
+        margin-right: 0%;
+    }
+`;
+
 export const SelectStyled = styled.select`
     border-radius: 8px;
+    margin-top: 10px;
     border: ${({ theme }) => theme.colors.borderColor} 1px solid;
+    background: ${({ theme }) => theme.colors.bg};
     padding: 6px;
     vertical-align:top;
     min-width: 100px;
+    width: 100%;
     font-family: ${({ theme }) => theme.colors.ff};
     &:focus {
         outline: none !important;
@@ -96,8 +109,20 @@ export const SectionContainerStyled = styled.div`
 `;
 
 export const FormNavContainerStyled = styled.div`
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    height: 80px; 
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    background: ${({ theme }) => theme.colors.bg};
+`;
+
+export const BackButtonsContainerStyled = styled.div`
+    display: flex;
 `;
 
 export const GoogleButtonContainerStyled = styled.div`

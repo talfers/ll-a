@@ -106,18 +106,23 @@ export const ProgressContainerStyled = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 16px;
+    
+    width: 100%;
+    position: fixed;
+    bottom: 80px;
+    left: 0px;
+    right: 0px;
+    background: ${({ theme }) => theme.colors.bg};
 `;
 
 export const ProgressBarOuterStyled = styled.div`
     background: ${({ theme }) => theme.colors.borderColor};
-    width: 75%;
+    width: 100%;
     height: 8px;
-    border-radius: 4px;
     margin: 4px 0px;
 
     @media only screen and ${devices.md} {
-        width: 90%;
+        width: 100%;
     }
 `;
 
@@ -125,10 +130,9 @@ export const ProgressBarStyled = styled.div`
     background: ${({ theme }) => theme.colors.activeColor};
     width: ${(props) => props.$progress?`${props.$progress*100}%`:'0%'};
     height: 8px;
-    border-radius: 4px;
 `;
 
-export const ProgressHeaderStyled = styled.h4`
+export const ProgressHeaderStyled = styled.p`
     color: ${({ theme }) => theme.colors.contrastText};
 `;
 

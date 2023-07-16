@@ -2,14 +2,17 @@ import styled from 'styled-components';
 import { devices } from "../data/constants";
 
 export const TabsContainerStyled = styled.div`
-    width: 85%;
+    width: 50%;
     max-width: 1200px;
-    margin: 0px auto;
+    margin: 300px auto;
     border-radius: 8px;
     background: ${({ theme }) => theme.colors.cardBG};
     min-height: 400px;
     @media only screen and ${devices.xxl} {
         max-width: 2000px;
+    }
+    @media only screen and ${devices.md} {
+        width: 85%;
     }
 `;
 

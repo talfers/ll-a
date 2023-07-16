@@ -107,6 +107,7 @@ export const PageHeader2Styled = styled.h2`
 
 export const PageHeader3Styled = styled.h3`
     font-size: 1.25em;
+    font-weight: 500;
     color: ${({ theme }) => theme.colors.cardText};
     align-self: flex-start;
 
@@ -114,7 +115,7 @@ export const PageHeader3Styled = styled.h3`
 
 export const PageHeaderSubTextStyled = styled.p`
     margin: 12px 0px;
-    font-size: 14px;
+    font-size: 16px;
     color: ${({ theme }) => theme.colors.subTextColor};
     text-align: left;
     align-self: flex-start;
@@ -157,4 +158,9 @@ export const CopySnack = styled.span`
     align-items: center;
     justify-content: space-between;
     left:  ${props => props.$size?`calc(50% - ${props.$size/2}px)`:''};
+`;
+
+export const SpacerStyled = styled.div`
+    width: 100%;
+    height: 20px;
 `;

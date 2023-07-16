@@ -114,14 +114,14 @@ const tabs = [
         inputs: {
             "message": {
                 "recipient": {
-                    title: "Recipient",
+                    title: "Who is this message for?",
                     placeholder: "Recipient title or relation to you",
                     type: "shorttext",
                     size: 50,
                     value: ''
                 },
                 "message": {
-                    title: "Message explaination",
+                    title: "What's the message about?",
                     placeholder: "Please include any details about important issues or concerns, specific requests or instructions, and/or any deadlines or time-sensitive information.",
                     type: "textarea",
                     subtext: "Explain what you would like to say in your message",
@@ -515,44 +515,47 @@ const tabs = [
         currentPrompt: "",
         response: "",
         inputs: {
-            "location": { 
+            "start": {},
+            "recipient": {
                 "state": {
                     title: "State",
                     placeholder: "",
                     type: "select",
-                    size: 10,
+                    size: 100,
                     value: ''
-                }
-            },
-            "participants": {
+                },
                 "recipient_name": {
                     title: "Recipient Name",
                     placeholder: "John Smith",
-                    type: "text",
-                    size: 40,
+                    type: "shorttext",
+                    size: 100,
                     value: ''
                 },
                 "recipient_title": {
                     title: "Recipient Title",
                     placeholder: "Property Owner",
-                    type: "text",
-                    size: 50,
+                    type: "shorttext",
+                    size: 100,
                     value: ''
                 },
+            },
+            "service_provider": {
                 "provider_name": {
                     title: "Provider Name",
                     placeholder: "George Doe",
-                    type: "text",
-                    size: 40,
+                    type: "shorttext",
+                    size: 100,
                     value: ''
                 },
                 "provider_title": {
                     title: "Provider Title",
                     placeholder: "Property Manager",
-                    type: "text",
-                    size: 50,
+                    type: "shorttext",
+                    size: 100,
                     value: ''
                 },
+            },
+            "service": {
                 "service": {
                     title: "Service to be provided",
                     placeholder: "Please explain in detail the service to be provided",
@@ -567,21 +570,21 @@ const tabs = [
                     title: "Start date",
                     placeholder: "Start date",
                     type: "date",
-                    size: 30,
+                    size: 100,
                     value: ''
                 },
                 "end": {
                     title: "End date",
                     placeholder: "End date",
                     type: "date",
-                    size: 30,
+                    size: 100,
                     value: ''
                 },
                 "termination": {
                     title: "Termination",
                     placeholder: "What will terminate this contract",
-                    type: "text",
-                    size: 70,
+                    type: "shorttext",
+                    size: 100,
                     value: ''
                 },
             },
@@ -589,22 +592,22 @@ const tabs = [
                 "payment_method": {
                     title: "Payment method",
                     placeholder: "Cash, check, money order, Venmo",
-                    type: "text",
-                    size: 30,
+                    type: "shorttext",
+                    size: 100,
                     value: ''
                 },
                 "payment_amount": {
                     title: "Payment amount",
                     placeholder: "$1,000",
-                    type: "text",
-                    size: 40,
+                    type: "shorttext",
+                    size: 100,
                     value: ''
                 },
                 "payment_freq": {
                     title: "Payment freq",
                     placeholder: "Monthly, Quarterly",
-                    type: "text",
-                    size: 30,
+                    type: "shorttext",
+                    size: 100,
                     value: ''
                 },
             },

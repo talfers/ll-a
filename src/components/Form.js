@@ -6,7 +6,7 @@ import ProgressBar from './ProgressBar';
 import { SectionContainerStyled, SectionsContainerStyled, FormContainerStyled, FormNavContainerStyled, BackButtonsContainerStyled } from '../styles/Form';
 import { PrimaryButtonStyled, SecondaryButtonStyled} from '../styles/Button';
 import Input from './Input';
-import { ModalBackgroundStyled, SpacerStyled } from '../styles/Main';
+import { ModalBackgroundStyled } from '../styles/Main';
 import Loading from './Loading';
 import Products from './Products';
 import { useNavigate } from 'react-router-dom';
@@ -144,7 +144,7 @@ function Form({tab, subscription, customer, selectedPlan, setSelectedPlan, plans
                             Object.keys(tab.inputs).length > 1?
                             <>
                                 <SecondaryButtonStyled onClick={decrement}>Back</SecondaryButtonStyled>
-                                <SecondaryButtonStyled onClick={() => resetResponse(tab.id)}>Restart</SecondaryButtonStyled>
+                                <SecondaryButtonStyled $grouped onClick={() => resetResponse(tab.id)}>Restart</SecondaryButtonStyled>
                             </>
                             :null
                         }
@@ -160,7 +160,7 @@ function Form({tab, subscription, customer, selectedPlan, setSelectedPlan, plans
                             tab.step>0?
                             <>
                                 <SecondaryButtonStyled onClick={decrement}>Back</SecondaryButtonStyled>
-                                <SecondaryButtonStyled onClick={() => resetResponse(tab.id)}>Restart</SecondaryButtonStyled>
+                                <SecondaryButtonStyled $grouped onClick={() => resetResponse(tab.id)}>Restart</SecondaryButtonStyled>
                             </>
                             :null
                         }

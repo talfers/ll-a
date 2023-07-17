@@ -11,6 +11,10 @@ export const ClusterContainerStyled = styled.div`
     }
 `;
 
+export const ClusterSectionContainerStyled = styled.div`
+   
+`;
+
 export const ClusterItemContainerStyled = styled.div`
     padding: 20px;
     margin: 12px 24px 12px 0px;

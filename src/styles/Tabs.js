@@ -4,7 +4,7 @@ import { devices } from "../data/constants";
 export const TabsContainerStyled = styled.div`
     width: 50%;
     max-width: 1200px;
-    margin: 300px auto;
+    margin: 0px auto;
     border-radius: 8px;
     background: ${({ theme }) => theme.colors.cardBG};
     min-height: 400px;
@@ -13,6 +13,7 @@ export const TabsContainerStyled = styled.div`
     }
     @media only screen and ${devices.md} {
         width: 85%;
+        margin: 0px auto;
     }
 `;
 

@@ -106,20 +106,20 @@ export const ProgressContainerStyled = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    
+    background: ${({ theme }) => theme.colors.bg};
     width: 100%;
     position: fixed;
     bottom: 80px;
     left: 0px;
     right: 0px;
-    background: ${({ theme }) => theme.colors.bg};
+    z-index: 90;
 `;
 
 export const ProgressBarOuterStyled = styled.div`
     background: ${({ theme }) => theme.colors.borderColor};
     width: 100%;
     height: 8px;
-    margin: 4px 0px;
+    margin: 0px 0px;
 
     @media only screen and ${devices.md} {
         width: 100%;
@@ -134,6 +134,7 @@ export const ProgressBarStyled = styled.div`
 
 export const ProgressHeaderStyled = styled.p`
     color: ${({ theme }) => theme.colors.contrastText};
+    margin: 4px 0px;
 `;
 
 export const ProgressHeaderSpanStyled = styled.span`

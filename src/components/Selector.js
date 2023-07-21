@@ -1,5 +1,5 @@
 import React from 'react';
-import { InputContainerStyled, SelectStyled } from '../styles/Form';
+import { SelectStyled } from '../styles/Form';
 import { PageHeader3Styled } from '../styles/Main';
 
 

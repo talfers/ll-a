@@ -79,7 +79,7 @@ const tabs = [
             "additional_features": {
                 "additional_features": {
                     title: "Additional features",
-                    placeholder: "Be sure to include any notable features that help your property stand out..",
+                    placeholder: "Include any notable features that help your property stand out.",
                     name: "additional_features",
                     type: "textarea",
                     subtext: "List any features tenants will love about your property",

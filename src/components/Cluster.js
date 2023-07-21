@@ -13,17 +13,6 @@ function Cluster({name, input, tab, section, onUpdate}) {
         onUpdate(tempSelected, tab, section, name)
     }
 
-    // const createBoxes = () => {
-    //     return Object.keys(input.value).map(key => (
-    //         <IconContext.Provider key={key} value={{ style: { fontSize: '20px' } }}>
-    //             <ClusterItemContainerStyled key={key} $selected={input.value[key]} onClick={(e) => onSelection(e, key)}>
-    //                 <BoxIconContainerStyled>{iconMap[key]}</BoxIconContainerStyled>
-    //                 <ClusterItemTitleStyled>{key.charAt(0).toUpperCase()+key.slice(1).replaceAll('_', ' ')}</ClusterItemTitleStyled>
-    //             </ClusterItemContainerStyled>
-    //         </IconContext.Provider>
-    //     ))
-    // }
-
     const createBoxes = () => {
         return Object.keys(input.value).map((h, i) => (
             <ClusterSectionContainerStyled>

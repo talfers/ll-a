@@ -8,7 +8,7 @@ function Checkbox({input, section, name, tab, onChange}) {
 
     return (
         <CounterContainerStyled>
-            <CounterHeaderStyled>{name.charAt(0).toUpperCase()+name.slice(1).replaceAll('_', ' ')}</CounterHeaderStyled>
+            <CounterHeaderStyled>{input.title}</CounterHeaderStyled>
             <CounterActionContainerStyled>
                 <CheckboxContainerStyled>
                     <CheckboxStyled 

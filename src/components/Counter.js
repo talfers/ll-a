@@ -33,7 +33,7 @@ function Counter({name, input, tab, section, onUpdate, step}) {
 
     return (
         <CounterContainerStyled>
-            <CounterHeaderStyled>{name.charAt(0).toUpperCase()+name.slice(1).replaceAll('_', ' ')}</CounterHeaderStyled>
+            <CounterHeaderStyled>{input.title}</CounterHeaderStyled>
             <CounterActionContainerStyled>
                 <CounterButtonStyled $disabled={decrementDisabled===1} onClick={decrement}>{iconMap['Minus']}</CounterButtonStyled>
                 <CounterValueStyled 

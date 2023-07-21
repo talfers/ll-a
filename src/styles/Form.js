@@ -18,6 +18,7 @@ export const FormSectionStyled = styled.section`
 
 export const InputContainerStyled = styled.div`
     display: flex;
+    position: relative;
     flex-direction: column;
     margin: ${props => ["text", "date", "shorttext"].includes(props.$type)?"8px 8px 20px 0px;":"8px 8px 8px 0px;"};
     justify-content: center;

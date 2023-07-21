@@ -2,7 +2,7 @@ const tabs = [
     {
         id: 0,
         shortName: "advertising",
-        shortDescription: "Please provide some information about the property to create a compelling advertisement that highlights the best features.",
+        shortDescription: "Provide some details about the property to create a compelling advertisement that highlights the best features.",
         name: "Advertising",
         title: 'Create Advertising Message',
         submitMessage: "Create",
@@ -40,7 +40,7 @@ const tabs = [
             "features": {
                 "features": {
                     title: "Property features",
-                    placeholder: "Be sure to include any notable features such as a balcony, yard, parking or pool that help your property stand out..",
+                    placeholder: "",
                     name: "features",
                     type: "cluster",
                     size: 100,
@@ -82,7 +82,7 @@ const tabs = [
                     placeholder: "Be sure to include any notable features that help your property stand out..",
                     name: "additional_features",
                     type: "textarea",
-                    subtext: "Include any features that other will love about your property",
+                    subtext: "List any features tenants will love about your property",
                     size: 100,
                     value: ''
                 }
@@ -90,10 +90,10 @@ const tabs = [
             "terms": {
                 "terms": {
                     title: "Lease terms & requirements",
-                    placeholder: "Include details about lease terms like rental price or utilities as well as any tenant requirements such as no pets or a minimum credit score.",
+                    placeholder: "Enter details about lease terms like rental price or utilities as well as any tenant requirements such as no pets or a minimum credit score.",
                     name: "terms",
                     type: "textarea",
-                    subtext: "Create your desired tenant requirements and terms for your lease",
+                    subtext: "Include your desired tenant requirements and terms in your lease",
                     size: 100,
                     value: ''
                 }
@@ -103,7 +103,7 @@ const tabs = [
     {
         id: 1,
         shortName: "messaging",
-        shortDescription: "Please provide some information on the situation to draft a clear and professional message that effectively communicates your needs to the recipient.",
+        shortDescription: "Provide some details about the situation to draft a clear and professional message that effectively communicates your needs.",
         name: "Messages",
         title: 'Write a Email or Text Message',
         submitMessage: "Create",
@@ -114,15 +114,15 @@ const tabs = [
         inputs: {
             "message": {
                 "recipient": {
-                    title: "Who is this message for?",
+                    title: "Who is the message for?",
                     placeholder: "Recipient title or relation to you",
                     type: "shorttext",
                     size: 50,
                     value: ''
                 },
                 "message": {
-                    title: "What's the message about?",
-                    placeholder: "Please include any details about important issues or concerns, specific requests or instructions, and/or any deadlines or time-sensitive information.",
+                    title: "What is the message about?",
+                    placeholder: "Include any details about important issues or concerns, specific requests or instructions, and/or any deadlines or time-sensitive information.",
                     type: "textarea",
                     subtext: "",
                     size: 100,
@@ -502,7 +502,7 @@ const tabs = [
     {
         id: 2,
         shortName: "contracts",
-        shortDescription: "Please provide a detailed breakdown of the information to include in your agreement to create a simple service agreement. Please note it is important to consult with a licensed attorney to ensure the agreement protects your interests.",
+        shortDescription: "Provide some details about the situation to create a binding service agreement. Please note it is important to consult with a licensed attorney to ensure the agreement protects your interests.",
         name: "Contracts",
         title: 'Write a Contract Agreement',
         submitMessage: "Create",
@@ -522,7 +522,7 @@ const tabs = [
                 },
                 "recipient_name": {
                     title: "Recipient Name",
-                    placeholder: "John Smith",
+                    placeholder: "Jim Doe",
                     type: "shorttext",
                     size: 100,
                     value: ''
@@ -538,7 +538,7 @@ const tabs = [
             "service_provider": {
                 "provider_name": {
                     title: "Provider Name",
-                    placeholder: "George Doe",
+                    placeholder: "Jane Smith",
                     type: "shorttext",
                     size: 100,
                     value: ''
@@ -554,7 +554,7 @@ const tabs = [
             "service": {
                 "service": {
                     title: "Service to be provided",
-                    placeholder: "Please explain in detail the service to be provided",
+                    placeholder: "Explain in detail the service to be provided",
                     type: "textarea",
                     subtext: "",
                     size: 100,
@@ -578,7 +578,7 @@ const tabs = [
                 },
                 "termination": {
                     title: "Termination",
-                    placeholder: "What will terminate this contract",
+                    placeholder: "What will end this agreement?",
                     type: "shorttext",
                     size: 100,
                     value: ''
@@ -587,21 +587,21 @@ const tabs = [
             "payment": {
                 "payment_method": {
                     title: "Payment method",
-                    placeholder: "Cash, check, money order, Venmo",
+                    placeholder: "i.e. Cash, check, money order, Venmo",
                     type: "shorttext",
                     size: 100,
                     value: ''
                 },
                 "payment_amount": {
                     title: "Payment amount",
-                    placeholder: "$1,000",
+                    placeholder: "i.e. $1,000",
                     type: "shorttext",
                     size: 100,
                     value: ''
                 },
                 "payment_freq": {
                     title: "Payment freq",
-                    placeholder: "Monthly, Quarterly",
+                    placeholder: "i.e. Monthly, Quarterly",
                     type: "shorttext",
                     size: 100,
                     value: ''
@@ -633,7 +633,7 @@ const tabs = [
             "provisions": {
                 "deadlines": {
                     title: "Important deadlines",
-                    placeholder: "Please enter any important deadlines you would like to include in the agreement",
+                    placeholder: "Enter any important deadlines you would like to include in this agreement",
                     type: "textarea",
                     subtext: "",
                     size: 100,
@@ -641,7 +641,7 @@ const tabs = [
                 },
                 "special_provisions": {
                     title: "Special Provisions",
-                    placeholder: "Please enter any special provisions you would like to include in the agreement",
+                    placeholder: "Enter any special provisions you would like to include in this agreement",
                     type: "textarea",
                     subtext: "",
                     size: 100,
@@ -649,7 +649,7 @@ const tabs = [
                 },
                 "other_provisions": {
                     title: "Other Provisions",
-                    placeholder: "Please enter any other provisions you would like to include in the agreement",
+                    placeholder: "Enter any other provisions you would like to include in this agreement",
                     type: "textarea",
                     subtext: "",
                     size: 100,
@@ -661,7 +661,7 @@ const tabs = [
     {
         id: 3,
         shortName: "advice",
-        shortDescription: "Please provide details about the legal matter you are asking about to receive information related to the matter in question. Please note this information should not be used as a substitute for advice from a licensed attorney.",
+        shortDescription: "Provide some details about the information you need to receive helpful advice. Please note this should not be used as a substitute for advice from a licensed attorney.",
         name: "Advice",
         title: 'Ask a Legal Assistant',
         submitMessage: "Submit",
@@ -673,9 +673,9 @@ const tabs = [
             "advice": {
                 "question": {
                     title: "Question",
-                    placeholder: "Enter your legal question. Please include any relevant background information, specific questions, and any relevant laws or regulations that may be applicable.",
+                    placeholder: "Include any relevant background information, specific questions, and/or any relevant laws or regulations that may be applicable.",
                     type: "textarea",
-                    subtext: "Ask any question that comes to mind, I bet I can help",
+                    subtext: "Ask anything that comes to mind, I bet I can help",
                     size: 100,
                     value: ''
                 }

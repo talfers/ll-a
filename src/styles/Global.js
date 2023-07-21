@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { devices } from "../data/constants";
 
 
 export const GlobalStyles = createGlobalStyle`
@@ -32,6 +33,13 @@ input[type=checkbox]
   -o-transform: scale(1.5); /* Opera */
   transform: scale(1.5);
   padding: 10px;
+  @media only screen and ${devices.md} {
+    -ms-transform: scale(1.25); /* IE */
+    -moz-transform: scale(1.25); /* FF */
+    -webkit-transform: scale(1.25); /* Safari and Chrome */
+    -o-transform: scale(1.25); /* Opera */
+    transform: scale(1.25);
+  }
 }
 
 

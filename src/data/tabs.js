@@ -10,6 +10,7 @@ const tabs = [
         loading: false,
         currentPrompt: "",
         response: "",
+        new: false,
         inputs: {
             "property": {
                 "bedrooms": {
@@ -79,7 +80,7 @@ const tabs = [
             "additional_features": {
                 "additional_features": {
                     title: "Additional features",
-                    placeholder: "Be sure to include any notable features that help your property stand out..",
+                    placeholder: "Include any notable features that help your property stand out.",
                     name: "additional_features",
                     type: "textarea",
                     subtext: "List any features tenants will love about your property",
@@ -111,6 +112,7 @@ const tabs = [
         loading: false,
         currentPrompt: "",
         response: "",
+        new: false,
         inputs: {
             "message": {
                 "recipient": {
@@ -134,51 +136,53 @@ const tabs = [
     // {
     //     id: 2,
     //     shortName: "leases",
-    //     shortDescription: "Please provide a detailed breakdown of the information and provisions to include in your lease agreements so that I can provide a simple lease agreement. Please note it is important to consult with a licensed attorney to ensure agreement is legally sound and protects your interests.",
+    //     shortDescription: "Provide some details of the information and provisions to create a binding lease agreement. Please note it is important to consult with a licensed attorney to ensure the agreement protects your interests.",
     //     name: "Leases",
     //     title: 'Write a Lease Agreement',
-    //     submitMessage: "Write Lease",
+    //     submitMessage: "Create",
     //     step: 0,
     //     loading: false,
     //     currentPrompt: "",
     //     response: "",
+    //     new: true,
     //     inputs: {
+    //         "start": {},
     //         "location": { 
     //             "state": {
     //                 title: "State",
     //                 placeholder: "",
     //                 type: "select",
-    //                 size: 10,
+    //                 size: 100,
     //                 value: ''
-    //             }
-                
-    //         },
-    //         "participants": {
+    //             },
     //             "landlord_name": {
     //                 title: "Landlord Name/Company",
     //                 placeholder: "Landlord Name or Company, LLC",
-    //                 type: "text",
-    //                 size: 40,
-    //                 value: ''
-    //             },
-    //             "tenant_name": {
-    //                 title: "Tenant Name",
-    //                 placeholder: "John Smith",
-    //                 type: "text",
-    //                 size: 40,
+    //                 type: "shorttext",
+    //                 size: 100,
     //                 value: ''
     //             },
     //             "landlord_address": {
     //                 title: "Landlord Address",
-    //                 placeholder: "123 S Main St Town, State 55555",
-    //                 type: "text",
-    //                 size: 40,
+    //                 placeholder: "i.e. 123 S Main St Town, State 55555",
+    //                 type: "shorttext",
+    //                 size: 100,
+    //             },
+                
+    //         },
+    //         "participants": {
+    //             "tenant_name": {
+    //                 title: "Tenant Name",
+    //                 placeholder: "i.e. John Smith",
+    //                 type: "shorttext",
+    //                 size: 100,
+    //                 value: ''
     //             },
     //             "property_address": {
     //                 title: "Property Address",
-    //                 placeholder: "456 N Main St Town, State 55555",
-    //                 type: "text",
-    //                 size: 40,
+    //                 placeholder: "i.e. 456 N Main St Town, State 55555",
+    //                 type: "shorttext",
+    //                 size: 100,
     //                 value: ''
     //             }
     //         },
@@ -187,58 +191,56 @@ const tabs = [
     //                 title: "Start date",
     //                 placeholder: "Start date",
     //                 type: "date",
-    //                 size: 30,
+    //                 size: 100,
     //                 value: ''
     //             },
     //             "end": {
     //                 title: "End date",
     //                 placeholder: "End date",
     //                 type: "date",
-    //                 size: 30,
+    //                 size: 100,
     //                 value: ''
     //             },
     //             "lease_term": {
     //                 title: "Lease Term",
-    //                 placeholder: "1 year, 6 months",
-    //                 type: "text",
-    //                 size: 70,
+    //                 placeholder: "i.e. 1 year, 6 months",
+    //                 type: "shorttext",
+    //                 size: 100,
     //                 value: ''
     //             },
                 
     //         },
     //         "payment": {
+    //             "rent_due_date": {
+    //                 title: "Rent Due Date",
+    //                 placeholder: "i.e. First of the month",
+    //                 type: "shorttext",
+    //                 size: 100,
+    //                 value: ''
+    //             },
+    //             "payment_methods": {
+    //                 title: "Payment methods",
+    //                 placeholder: "i.e. Cash, check, Venmo, etc.",
+    //                 type: "shorttext",
+    //                 size: 100,
+    //                 value: '',
+    //             },
     //             "rent_amount": {
-    //                 title: "Rent amount",
-    //                 placeholder: "$1,000",
+    //                 title: "Rent amount ($)",
+    //                 placeholder: "",
     //                 type: "number",
     //                 size: 100,
     //                 step: 25,
     //                 value: 0
     //             },
     //             "security_deposit": {
-    //                 title: "Security deposit",
-    //                 placeholder: "$1,000",
+    //                 title: "Deposit ($)",
+    //                 placeholder: "",
     //                 type: "number",
     //                 size: 100,
     //                 step: 25,
     //                 value: 0
     //             },
-    //             "rent_due_date": {
-    //                 title: "Rent Due Date",
-    //                 placeholder: "First of the Month",
-    //                 type: "text",
-    //                 size: 20,
-    //                 value: ''
-    //             },
-    //             "payment_methods": {
-    //                 title: "Payment methods",
-    //                 placeholder: "Cash, check, Venmo, etc.",
-    //                 type: "text",
-    //                 size: 30,
-    //                 value: ''
-    //             }
-                
-                
     //         },
     //         "pets": {
     //             "pets_allowed": {
@@ -249,7 +251,7 @@ const tabs = [
     //                 value: false
     //             },
     //             "pet_deposit": {
-    //                 title: "Pet deposit",
+    //                 title: "Pet deposit ($)",
     //                 placeholder: "$500",
     //                 type: "number",
     //                 size: 100,
@@ -257,7 +259,7 @@ const tabs = [
     //                 value: 0
     //             },
     //             "pet_rent": {
-    //                 title: "Pet rent",
+    //                 title: "Pet rent ($)",
     //                 placeholder: "$50",
     //                 type: "number",
     //                 size: 100,
@@ -266,37 +268,24 @@ const tabs = [
     //             },
     //         },
     //         "late_fees": {
+    //             "late_fee_start": {
+    //                 title: "Late fee start",
+    //                 placeholder: "i.e. 5th of the month",
+    //                 type: "shorttext",
+    //                 size: 100,
+    //                 value: ''
+    //             },
     //             "late_fee_amount": {
-    //                 title: "Late fee amount",
+    //                 title: "Late fee amount ($)",
     //                 placeholder: "$50",
     //                 type: "number",
     //                 size: 100,
     //                 step: 5,
     //                 value: 0
-    //             },
-    //             "late_fee_start": {
-    //                 title: "Late fee start",
-    //                 placeholder: "5th of the month",
-    //                 type: "text",
-    //                 size: 20,
-    //                 value: ''
-    //             },
-    //             "late_fee_recurring": {
-    //                 title: "Late fee recurring?",
-    //                 placeholder: "",
-    //                 type: "checkbox",
-    //                 size: 100,
-    //                 value: false
-    //             },
-    //             "late_fee_recurring_amount": {
-    //                 title: "Recurring amount",
-    //                 placeholder: "$10 per day",
-    //                 type: "text",
-    //                 size: 20,
-    //                 value: ''
-    //             },
+    //             },                
+                
     //             "bad_check_penalty": {
-    //                 title: "Bad check penalty",
+    //                 title: "Bad check penalty ($)",
     //                 placeholder: "$50",
     //                 type: "number",
     //                 size: 100,
@@ -305,58 +294,77 @@ const tabs = [
     //             },
                 
     //         },
+    //         "recurring": {
+    //             "late_fee_recurring": {
+    //                 title: "Late fee recurring?",
+    //                 placeholder: "",
+    //                 type: "checkbox",
+    //                 size: 100,
+    //                 value: false
+    //             },
+    //             "late_fee_recurring_amount": {
+    //                 title: "Recurring per day ($)",
+    //                 placeholder: "$10 per day",
+    //                 type: "number",
+    //                 size: 100,
+    //                 step: 5,
+    //                 value: 0
+    //             },
+    //         },
     //         "utilities": {
     //             "utilities_landlord": {
     //                 title: "What utilities are paid by landlord?",
-    //                 placeholder: "Trash, sewer",
-    //                 type: "text",
-    //                 size: 45,
+    //                 placeholder: "i.e. Trash, sewer",
+    //                 type: "shorttext",
+    //                 size: 100,
     //                 value: ''
     //             },
     //             "utilities_tenant": {
     //                 title: "What utilities are paid by tenant?",
-    //                 placeholder: "Electric, gas, water, phone, internet",
-    //                 type: "text",
-    //                 size: 45,
+    //                 placeholder: "i.e. Electric, gas, water, phone, internet",
+    //                 type: "shorttext",
+    //                 size: 100,
     //                 value: ''
     //             }
     //         },
     //         "maintenance": {
     //             "maintenance_name": {
     //                 title: "Maintenance name",
-    //                 placeholder: "George Smith",
-    //                 type: "text",
-    //                 size: 30,
+    //                 placeholder: "i.e. George Smith",
+    //                 type: "shorttext",
+    //                 size: 100,
     //                 value: ''
     //             },
     //             "maintenance_contact": {
     //                 title: "Maintenance contact",
     //                 placeholder: "Phone #, email of maintenance",
-    //                 type: "text",
-    //                 size: 60,
+    //                 type: "shorttext",
+    //                 size: 100,
     //                 value: ''
-    //             },
+    //             }
+    //         },
+    //         "responsibilities": {
     //             "maintenance_landlord": {
     //                 title: "What maintenance responibilities are expected of the landlord?",
-    //                 placeholder: "Snow removal, gutter cleaning",
-    //                 type: "text",
-    //                 size: 45,
+    //                 placeholder: "i.e. Snow removal, gutter cleaning",
+    //                 type: "shorttext",
+    //                 size: 100,
     //                 value: ''
     //             },
     //             "maintenance_tenant": {
     //                 title: "What maintenance responibilities are expected of the tenant?",
-    //                 placeholder: "Landscaping, cleaning, etc.",
-    //                 type: "text",
-    //                 size: 45,
+    //                 placeholder: "i.e. Landscaping, cleaning, etc.",
+    //                 type: "shorttext",
+    //                 size: 100,
     //                 value: ''
     //             }
     //         },
     //         "furnishings": {
     //             "furnishings": {
     //                 title: "List furnishing provided by landlord",
-    //                 placeholder: "Fridge, stove, microwave",
-    //                 type: "text",
-    //                 size: 45,
+    //                 placeholder: "i.e. Fridge, stove, microwave",
+    //                 type: "shorttext",
+    //                 size: 100,
     //                 value: ''
     //             }
     //         },
@@ -364,41 +372,43 @@ const tabs = [
     //             "storage_privilege": {
     //                 title: "Storage policy and privileges",
     //                 placeholder: "Storage policy for tenant(s)",
-    //                 type: "text",
-    //                 size: 45,
+    //                 type: "shorttext",
+    //                 size: 100,
     //                 value: ''
     //             },
     //             "parking_privilege": {
     //                 title: "Parking policy and privileges",
     //                 placeholder: "Parking policy for tenant(s)",
-    //                 type: "text",
-    //                 size: 45,
+    //                 type: "shorttext",
+    //                 size: 100,
     //                 value: ''
     //             }
     //         },
-    //         "usage": {
-    //             "num_guests": {
-    //                 title: "# of guests allowed",
+    //         "guests": {
+    //             "guest_stay_short": {
+    //                 title: "How long can guests stay at a time?",
+    //                 placeholder: "i.e. 7 days",
+    //                 type: "shorttext",
+    //                 size: 100,
+    //                 value: ''
+    //             },
+    //             "guest_stay_long": {
+    //                 title: "How long can guests stay total per year",
+    //                 placeholder: "i.e. 3 weeks",
+    //                 type: "shorttext",
+    //                 size: 100,
+    //                 value: ''
+    //             },
+    //             "max_guests_allowed": {
+    //                 title: "Max guests allowed?",
     //                 placeholder: "5",
     //                 type: "number",
     //                 size: 100,
     //                 step: 1,
     //                 value: 0
     //             },
-    //             "guest_stay_short": {
-    //                 title: "How long can they stay at a time",
-    //                 placeholder: "7 days",
-    //                 type: "text",
-    //                 size: 30,
-    //                 value: ''
-    //             },
-    //             "guest_stay_long": {
-    //                 title: "How long can they stay total per year",
-    //                 placeholder: "3 weeks",
-    //                 type: "text",
-    //                 size: 30,
-    //                 value: ''
-    //             },
+    //         },
+    //         "usage": {
     //             "sublet_allowed": {
     //                 title: "Tenant sublet allowed?",
     //                 placeholder: "",
@@ -407,7 +417,7 @@ const tabs = [
     //                 value: false
     //             },
     //             "smoking_allowed": {
-    //                 title: "Smoking allowed on-prem?",
+    //                 title: "Smoking allowed on property?",
     //                 placeholder: "",
     //                 type: "checkbox",
     //                 size: 100,
@@ -424,32 +434,32 @@ const tabs = [
     //         "termination": {
     //             "tenant_termination_notice": {
     //                 title: "Notice for termination",
-    //                 placeholder: "45 days",
-    //                 type: "text",
-    //                 size: 30,
+    //                 placeholder: "i.e. 45 days",
+    //                 type: "shorttext",
+    //                 size: 100,
     //                 value: ''
     //             },
     //             "tenant_termination_fee": {
     //                 title: "Fee for termination",
-    //                 placeholder: "4 months rent",
-    //                 type: "text",
-    //                 size: 20,
+    //                 placeholder: "i.e. 4 months rent",
+    //                 type: "shorttext",
+    //                 size: 100,
     //                 value: ''
     //             }
     //         },
     //         "property_damage": {
     //             "unexpected_property_damage": {
     //                 title: "Who pays unexpected property damage?",
-    //                 placeholder: "Landlord",
-    //                 type: "text",
-    //                 size: 40,
+    //                 placeholder: "i.e. Landlord",
+    //                 type: "shorttext",
+    //                 size: 100,
     //                 value: ''
     //             },
     //             "unexpected_property_damage_amount_landlord": {
     //                 title: "Amount landlord will pay",
-    //                 placeholder: "50% up to $1,000",
-    //                 type: "text",
-    //                 size: 70,
+    //                 placeholder: "i.e. 50% up to $1,000",
+    //                 type: "shorttext",
+    //                 size: 100,
     //                 value: ''
     //             }
     //         },
@@ -463,7 +473,7 @@ const tabs = [
     //                 value: 0
     //             },
     //             "key_replacement_amount": {
-    //                 title: "New key fee",
+    //                 title: "New key fee ($)",
     //                 placeholder: "$150",
     //                 type: "number",
     //                 size: 100,
@@ -471,7 +481,7 @@ const tabs = [
     //                 value: 0
     //             },
     //             "lockout_amount": {
-    //                 title: "Lockout fee",
+    //                 title: "Lockout fee ($)",
     //                 placeholder: "$300",
     //                 type: "number",
     //                 size: 100,
@@ -482,7 +492,7 @@ const tabs = [
     //         "provisions": {
     //             "special_provisions": {
     //                 title: "Special Provisions",
-    //                 placeholder: "Please enter any other provisions you would like to include in the lease agreement, i.e. dispute resolution",
+    //                 placeholder: "Enter any other provisions you would like to include in the lease agreement, i.e. dispute resolution",
     //                 type: "textarea",
     //                 subtext: "",
     //                 size: 100,
@@ -490,7 +500,7 @@ const tabs = [
     //             },
     //             "other_provisions": {
     //                 title: "Other Provisions",
-    //                 placeholder: "Please enter any other provisions you would like to include in the lease agreement",
+    //                 placeholder: "Enter any other provisions you would like to include in the lease agreement",
     //                 type: "textarea",
     //                 subtext: "",
     //                 size: 100,
@@ -510,6 +520,7 @@ const tabs = [
         loading: false,
         currentPrompt: "",
         response: "",
+        new: false,
         inputs: {
             "start": {},
             "recipient": {
@@ -609,21 +620,22 @@ const tabs = [
             },
             "questions": {
                 "contractor_insurance": {
-                    title: "Contractor must obtain insurance?",
+                    title: "Contractor obtains insurance?",
                     placeholder: "",
                     type: "checkbox",
                     size: 100,
                     value: false
                 },
                 "contractor_liable": {
-                    title: "Contractor is liable for claims against recipient?",
+                    title: "Contractor liable for claims?",
                     placeholder: "",
                     type: "checkbox",
                     size: 100,
-                    value: false
+                    value: false,
+                    info: "Is the service provider liable for claims against the recipient?"
                 },
                 "contractor_return_property": {
-                    title: "Contractor is required to return property of recipient at termination?",
+                    title: "Contractor must return property?",
                     placeholder: "",
                     type: "checkbox",
                     size: 100,
@@ -669,6 +681,7 @@ const tabs = [
         loading: false,
         currentPrompt: "",
         response: "",
+        new: false,
         inputs: {
             "advice": {
                 "question": {

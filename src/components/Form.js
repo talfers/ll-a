@@ -3,7 +3,7 @@ import { Context as TaskContext } from '../context/TaskContext';
 import { useAuth } from '../hooks/useAuth';
 import { usePayments } from '../hooks/usePayments';
 import ProgressBar from './ProgressBar';
-import { SectionContainerStyled, SectionsContainerStyled, FormContainerStyled, FormNavContainerStyled } from '../styles/Form';
+import { SectionContainerStyled, SectionsContainerStyled, FormContainerStyled, FormNavContainerStyled, BackButtonsContainerStyled } from '../styles/Form';
 import { PrimaryButtonStyled, SecondaryButtonStyled} from '../styles/Button';
 import Input from './Input';
 import { ModalBackgroundStyled } from '../styles/Main';
@@ -79,8 +79,8 @@ function Form({tab, subscription, customer, selectedPlan, setSelectedPlan, plans
             <SectionContainerStyled key={stepKey} $inactive={Object.keys(tab.inputs)[tab.step] !== stepKey} $active={Object.keys(tab.inputs)[tab.step] === stepKey}>
             {
                 
-                    Object.keys(tab.inputs[Object.keys(tab.inputs)[i]]).map((inputName) => (
-                        <Input 
+                    Object.keys(tab.inputs[Object.keys(tab.inputs)[i]]).map((inputName) => (      
+                            <Input 
                             key={inputName} 
                             input={tab.inputs[Object.keys(tab.inputs)[i]][inputName]} 
                             tab={tab.id} 
@@ -139,26 +139,33 @@ function Form({tab, subscription, customer, selectedPlan, setSelectedPlan, plans
                 {
                     tab.step === Object.keys(tab.inputs).length-1?
                     <FormNavContainerStyled>
+                        <BackButtonsContainerStyled>
                         {
                             Object.keys(tab.inputs).length > 1?
                             <>
                                 <SecondaryButtonStyled onClick={decrement}>Back</SecondaryButtonStyled>
-                                <SecondaryButtonStyled onClick={() => resetResponse(tab.id)}>Restart</SecondaryButtonStyled>
+                                <SecondaryButtonStyled $grouped onClick={() => resetResponse(tab.id)}>Restart</SecondaryButtonStyled>
                             </>
                             :null
                         }
+
+                        </BackButtonsContainerStyled>
+                        
                         
                         <PrimaryButtonStyled onClick={handleSubmit} id={tab.shortName}>{tab.submitMessage}</PrimaryButtonStyled>
                     </FormNavContainerStyled>:
                     <FormNavContainerStyled>
+                        <BackButtonsContainerStyled>
                         {
                             tab.step>0?
                             <>
                                 <SecondaryButtonStyled onClick={decrement}>Back</SecondaryButtonStyled>
-                                <SecondaryButtonStyled onClick={() => resetResponse(tab.id)}>Restart</SecondaryButtonStyled>
+                                <SecondaryButtonStyled $grouped onClick={() => resetResponse(tab.id)}>Restart</SecondaryButtonStyled>
                             </>
                             :null
                         }
+                        </BackButtonsContainerStyled>
+                        
                         {   tab.step===0?
                             <PrimaryButtonStyled onClick={increment}>Start</PrimaryButtonStyled>:
                             <PrimaryButtonStyled onClick={increment}>Next</PrimaryButtonStyled>

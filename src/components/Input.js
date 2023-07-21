@@ -8,6 +8,7 @@ import Counter from './Counter';
 import Cluster from './Cluster';
 import TextArea from './TextArea';
 import ShortTextInput from './ShortTextInput';
+import Date from './Date';
 
 
 function Input(props) {
@@ -24,6 +25,8 @@ function Input(props) {
                 props.input.type==='cluster'||
                 props.input.type==='textarea'||
                 props.input.type==='shorttext'||
+                props.input.type==='select'||
+                props.input.type==='date'||
                 props.input.type==='checkbox'?null:
                 <LabelStyled htmlFor={props.input.name} className="label">{props.input.title}</LabelStyled>
             }
@@ -84,7 +87,14 @@ function Input(props) {
                     section={props.section}
                     onUpdate={updateValue}
                 />
-                :<InputStyled 
+                :props.input.type === 'date'?
+                <Date
+                    input={props.input}
+                    name={props.name}
+                    tab={props.tab}
+                    section={props.section}
+                    onUpdate={updateValue}
+                />:<InputStyled 
                     type={props.input.type}
                     id={props.name}
                     name={props.name}

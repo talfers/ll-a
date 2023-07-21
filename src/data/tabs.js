@@ -1,15 +1,11 @@
-import { FaRegEnvelope, FaRegHandshake, FaRegNewspaper, FaRegQuestionCircle } from "react-icons/fa";
-
 const tabs = [
     {
         id: 0,
         shortName: "advertising",
-        shortDescription: "Please provide some information about the property so that I can create a compelling advertisement that highlights the best features and attracts suitable tenants.",
+        shortDescription: "Please provide some information about the property to create a compelling advertisement that highlights the best features.",
         name: "Advertising",
-        icon: <FaRegNewspaper/>,
         title: 'Create Advertising Message',
-        text: "For me to write an advertisement for an apartment or rental house you have for rent, it would be helpful for you to provide some information about the property. With the information below, I can create a compelling advertisement that highlights the best features of your property and attracts suitable tenants.",
-        submitMessage: "Create Advertising",
+        submitMessage: "Create",
         step: 0,
         loading: false,
         currentPrompt: "",
@@ -49,28 +45,34 @@ const tabs = [
                     type: "cluster",
                     size: 100,
                     value: {
-                        'central_ac': false,
-                        'central_heat': false,
-                        'private_parking': false,
-                        'laundry_in-unit': false,
-                        'pool': false,
-                        'patio': false,
-                        'hardwood_floors': false,
-                        'garage': false,
-                        'good_schools': false,
-                        'views': false,
-                        'freshly_renovated': false,
-                        'garden': false,
-                        'energy_efficient': false,
-                        'pets_allowed': false,
-                        'fireplace': false,
-                        'new_appliances': false,
-                        'storage': false,
-                        'home_office': false,
-                        'high_speed_internet': false,
-                        'game_room': false,
-                        'security': false,
-                        'wet_bar': false,
+                        "utilites": {
+                            'central_ac': false,
+                            'central_heat': false,
+                            'laundry_in-unit': false,
+                            'energy_efficient': false,
+                            'high_speed_internet': false,
+                        },
+                        "exterior": {
+                            'private_parking': false,
+                            'pool': false,
+                            'patio': false,
+                            'good_schools': false,
+                            'views': false,
+                            'garden': false,
+                            'security': false,
+                        },
+                        "interior": {
+                            'hardwood_floors': false,
+                            'garage': false,
+                            'freshly_renovated': false,
+                            'new_appliances': false,
+                            'storage': false,
+                            'home_office': false,
+                            'fireplace': false,
+                            'pets_allowed': false,
+                            'game_room': false,
+                            'wet_bar': false,
+                        }
                     }
                 }
             },
@@ -101,12 +103,10 @@ const tabs = [
     {
         id: 1,
         shortName: "messaging",
-        shortDescription: "Please provide some background information on the situation so that I can draft a clear and professional message that effectively communicates the needs and expectations to the recipient.",
+        shortDescription: "Please provide some information on the situation to draft a clear and professional message that effectively communicates your needs to the recipient.",
         name: "Messages",
-        icon:  <FaRegEnvelope/>,
         title: 'Write a Email or Text Message',
-        text: "For me to write a message for a landlord that needs to correspond with a tenant or contractor or otherwise for important business, it would be helpful to provide some background information on the situation and the purpose of the message. With the information below, I can draft a clear and professional message that effectively communicates the landlord's needs and expectations to the recipient.",
-        submitMessage: "Create Message",
+        submitMessage: "Create",
         step: 0,
         loading: false,
         currentPrompt: "",
@@ -114,17 +114,17 @@ const tabs = [
         inputs: {
             "message": {
                 "recipient": {
-                    title: "Recipient",
+                    title: "Who is this message for?",
                     placeholder: "Recipient title or relation to you",
                     type: "shorttext",
                     size: 50,
                     value: ''
                 },
                 "message": {
-                    title: "Message explaination",
+                    title: "What's the message about?",
                     placeholder: "Please include any details about important issues or concerns, specific requests or instructions, and/or any deadlines or time-sensitive information.",
                     type: "textarea",
-                    subtext: "Explain what you would like to say in your message",
+                    subtext: "",
                     size: 100,
                     value: ''
                 }
@@ -136,9 +136,7 @@ const tabs = [
     //     shortName: "leases",
     //     shortDescription: "Please provide a detailed breakdown of the information and provisions to include in your lease agreements so that I can provide a simple lease agreement. Please note it is important to consult with a licensed attorney to ensure agreement is legally sound and protects your interests.",
     //     name: "Leases",
-    //     icon: <GrDocument/>,
     //     title: 'Write a Lease Agreement',
-    //     text: "For me to write a simple lease agreement for you to use with tenants, I will need a detailed breakdown of the information and provisions you would like to include in your lease agreement. Be as descriptive as possible. With this information, I can provide you with a simple lease agreement between a landlord and tenant(s), but it is important to consult with a licensed attorney to ensure that the lease agreement is legally sound and properly protects your interests.",
     //     submitMessage: "Write Lease",
     //     step: 0,
     //     loading: false,
@@ -504,55 +502,56 @@ const tabs = [
     {
         id: 2,
         shortName: "contracts",
-        shortDescription: "Please provide a detailed breakdown of the information to include in your agreement so that I can provide a simple service agreement. Please note it is important to consult with a licensed attorney to ensure agreement is legally sound and protects your interests.",
+        shortDescription: "Please provide a detailed breakdown of the information to include in your agreement to create a simple service agreement. Please note it is important to consult with a licensed attorney to ensure the agreement protects your interests.",
         name: "Contracts",
-        icon: <FaRegHandshake/>,
         title: 'Write a Contract Agreement',
-        text: "For me to write a simple service contract for you to use with a contractor, maintenance company and more, I will need a detailed breakdown of the information you would like to include in your agreement. Be as descriptive as possible. With this information, I can provide you with a simple agreement between a landlord and service provider, but it is important to consult with a licensed attorney to ensure that the agreement is legally sound and properly protects your interests.",
-        submitMessage: "Write Contract",
+        submitMessage: "Create",
         step: 0,
         loading: false,
         currentPrompt: "",
         response: "",
         inputs: {
-            "location": { 
+            "start": {},
+            "recipient": {
                 "state": {
                     title: "State",
                     placeholder: "",
                     type: "select",
-                    size: 10,
+                    size: 100,
                     value: ''
-                }
-            },
-            "participants": {
+                },
                 "recipient_name": {
                     title: "Recipient Name",
                     placeholder: "John Smith",
-                    type: "text",
-                    size: 40,
+                    type: "shorttext",
+                    size: 100,
                     value: ''
                 },
                 "recipient_title": {
                     title: "Recipient Title",
                     placeholder: "Property Owner",
-                    type: "text",
-                    size: 50,
+                    type: "shorttext",
+                    size: 100,
                     value: ''
                 },
+            },
+            "service_provider": {
                 "provider_name": {
                     title: "Provider Name",
                     placeholder: "George Doe",
-                    type: "text",
-                    size: 40,
+                    type: "shorttext",
+                    size: 100,
                     value: ''
                 },
                 "provider_title": {
                     title: "Provider Title",
                     placeholder: "Property Manager",
-                    type: "text",
-                    size: 50,
+                    type: "shorttext",
+                    size: 100,
                     value: ''
                 },
+            },
+            "service": {
                 "service": {
                     title: "Service to be provided",
                     placeholder: "Please explain in detail the service to be provided",
@@ -567,21 +566,21 @@ const tabs = [
                     title: "Start date",
                     placeholder: "Start date",
                     type: "date",
-                    size: 30,
+                    size: 100,
                     value: ''
                 },
                 "end": {
                     title: "End date",
                     placeholder: "End date",
                     type: "date",
-                    size: 30,
+                    size: 100,
                     value: ''
                 },
                 "termination": {
                     title: "Termination",
                     placeholder: "What will terminate this contract",
-                    type: "text",
-                    size: 70,
+                    type: "shorttext",
+                    size: 100,
                     value: ''
                 },
             },
@@ -589,22 +588,22 @@ const tabs = [
                 "payment_method": {
                     title: "Payment method",
                     placeholder: "Cash, check, money order, Venmo",
-                    type: "text",
-                    size: 30,
+                    type: "shorttext",
+                    size: 100,
                     value: ''
                 },
                 "payment_amount": {
                     title: "Payment amount",
                     placeholder: "$1,000",
-                    type: "text",
-                    size: 40,
+                    type: "shorttext",
+                    size: 100,
                     value: ''
                 },
                 "payment_freq": {
                     title: "Payment freq",
                     placeholder: "Monthly, Quarterly",
-                    type: "text",
-                    size: 30,
+                    type: "shorttext",
+                    size: 100,
                     value: ''
                 },
             },
@@ -662,12 +661,10 @@ const tabs = [
     {
         id: 3,
         shortName: "advice",
-        shortDescription: "Please provide details about the legal matter you are asking about so that I can provide you with information related to the matter in question. Please note this information should not be used as a substitute for advice from a licensed attorney.",
+        shortDescription: "Please provide details about the legal matter you are asking about to receive information related to the matter in question. Please note this information should not be used as a substitute for advice from a licensed attorney.",
         name: "Advice",
-        icon: <FaRegQuestionCircle/>,
         title: 'Ask a Legal Assistant',
-        text: "For me to assist you with legal matters in the real estate industry, it would be helpful to provide as much detail as possible about the legal matter you are asking about. With this information, I can provide you with general information and resources related to the legal matter in question, but it is important to note that this information should not be considered as a substitute for legal advice from a licensed attorney.",
-        submitMessage: "Send to Assistant",
+        submitMessage: "Submit",
         step: 0,
         loading: false,
         currentPrompt: "",

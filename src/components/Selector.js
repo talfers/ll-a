@@ -1,14 +1,12 @@
 import React from 'react';
 import { InputContainerStyled, SelectStyled } from '../styles/Form';
+import { PageHeader3Styled } from '../styles/Main';
 
 
 function Selector(props) {
     return (
-        <InputContainerStyled
-        key={props.input.name} 
-        $type={props.input.type}
-        $size={props.input.size}
-        >
+        <>
+            <PageHeader3Styled>{props.input.title}</PageHeader3Styled>
             <SelectStyled 
                 type="text"
                 id={props.name}
@@ -25,9 +23,9 @@ function Selector(props) {
                     ))
                 }
             </SelectStyled>
+        </>
+            
 
-                          
-        </InputContainerStyled>
     );
 }
 

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { devices } from "../data/constants";
 
 
 export const CounterContainerStyled = styled.div`
@@ -8,6 +9,9 @@ export const CounterContainerStyled = styled.div`
     justify-content: space-between;
     width: 100%;
     border-bottom: 1px solid ${({theme}) => theme.colors.borderColor};
+    @media only screen and ${devices.md} {
+        min-height: 60px;
+    }
 `;
 
 export const CheckboxWrapperContainerStyled = styled(CounterContainerStyled)`

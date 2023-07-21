@@ -10,7 +10,7 @@ export const ButtonStyled = styled.div`
     font-size: 16px;
     font-family: ${theme.dark.colors.ff};
     border: 1.5px solid transparent;
-    margin: 8px 8px 8px 0px;
+    margin: ${props => props.$grouped?'16px 16px 16px 0px':'16px'};
     pointer-events: ${props => props.$disabled?'none':''};
     transition: background-color 0.3s ease-out, border-color 0.3s ease-out;
     text-align: center;

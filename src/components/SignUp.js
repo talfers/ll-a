@@ -5,7 +5,7 @@ import Loading from './Loading';
 import Recaptcha from './Recaptcha';
 import { 
     FormSectionStyled, 
-    FormNavContainerStyled, 
+    ButtonContainerStyled, 
     FormContainerStyled, 
     InputContainerStyled, 
     InputStyled, 
@@ -162,14 +162,15 @@ const SignUp = ({ plans, setSelectedPlan, selectedPlan }) => {
                     <Recaptcha onChange={onRecaptchaChange}/>
                     {error!==''?<p>{error}</p>:null}
                                                        
-                    <FormNavContainerStyled>
+                    <ButtonContainerStyled>
                         <PrimaryButtonStyled
+                            $grouped
                             type="submit" 
                             onClick={onSubmit}                        
                         >  
                             Sign up                                
                         </PrimaryButtonStyled>
-                    </FormNavContainerStyled>                               
+                    </ButtonContainerStyled>                               
                 </form>
                 
                 <p>

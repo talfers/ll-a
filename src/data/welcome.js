@@ -1,6 +1,6 @@
 const features = {
     'compelling_advertising': 'Generate advertising descriptions guaranteed to sell with little to no thought.',
-    'binding_contracts': 'Create a customized, binding contract in just 6 easy steps to fit any need or scenario.',
+    'binding_contracts': 'Create a customized, binding contract in just 8 easy steps to fit any need or scenario.',
     'professional_messaging': 'Draft clear, professional messages without worrying about the fine tuning.',
     'helpful_advice': 'Ask about nearly any scenario. Whether a sticky situation or general question.'
 }

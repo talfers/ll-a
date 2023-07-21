@@ -114,7 +114,7 @@ export const PageHeader3Styled = styled.h3`
 `;
 
 export const PageHeaderSubTextStyled = styled.p`
-    margin: 12px 0px;
+    margin: 16px 0px;
     font-size: 16px;
     color: ${({ theme }) => theme.colors.subTextColor};
     text-align: left;
@@ -126,6 +126,7 @@ export const PageHeaderSubTextStyled = styled.p`
 `;
 
 export const PageHeaderSubTextMobileStyled = styled.p`
+    margin: 16px 0px;
     display: none;
     @media only screen and ${devices.md} {
         display: block;

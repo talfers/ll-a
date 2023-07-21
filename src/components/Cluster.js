@@ -1,9 +1,9 @@
 import React from 'react';
 import iconMap from '../data/iconMap';
 import { BoxIconContainerStyled } from '../styles/Home';
-import { ClusterContainerStyled, ClusterItemContainerStyled, ClusterItemTitleStyled, ClusterSectionContainerStyled } from '../styles/Cluster';
+import { ClusterContainerStyled, ClusterItemContainerStyled, ClusterItemTitleStyled, ClusterSectionContainerStyled, ClusterSectionsContainerStyled } from '../styles/Cluster';
 import { IconContext } from 'react-icons';
-import { PageHeader3Styled } from '../styles/Main';
+import { PageHeader3Styled, SpacerStyled } from '../styles/Main';
 
 function Cluster({name, input, tab, section, onUpdate}) {
 
@@ -27,7 +27,7 @@ function Cluster({name, input, tab, section, onUpdate}) {
     const createBoxes = () => {
         return Object.keys(input.value).map((h, i) => (
             <ClusterSectionContainerStyled>
-                <h4>{h}</h4>
+                <h4>{h.charAt(0).toUpperCase()+h.slice(1)}</h4>
                 <ClusterContainerStyled>
                 {
                     Object.keys(input.value[h]).map(key => (
@@ -46,12 +46,13 @@ function Cluster({name, input, tab, section, onUpdate}) {
     }
     
     return (
-        <>
+        <ClusterSectionsContainerStyled>
             <PageHeader3Styled>Select all that apply:</PageHeader3Styled>
+            <SpacerStyled/>
             <>
                 {createBoxes()}
             </>
-        </>
+        </ClusterSectionsContainerStyled>
         
         
     );

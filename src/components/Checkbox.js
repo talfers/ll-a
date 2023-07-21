@@ -1,6 +1,6 @@
 import React from 'react';
-import { InputStyled } from '../styles/Form';
-import { CounterContainerStyled, CounterActionContainerStyled, CounterHeaderStyled, CheckboxContainerStyled } from '../styles/Counter';
+import { CounterContainerStyled, CounterActionContainerStyled, CounterHeaderStyled } from '../styles/Counter';
+import { CheckboxContainerStyled, CheckboxStyled } from '../styles/Checkbox';
 
 
 
@@ -11,7 +11,7 @@ function Checkbox({input, section, name, tab, onChange}) {
             <CounterHeaderStyled>{name.charAt(0).toUpperCase()+name.slice(1).replaceAll('_', ' ')}</CounterHeaderStyled>
             <CounterActionContainerStyled>
                 <CheckboxContainerStyled>
-                    <InputStyled 
+                    <CheckboxStyled 
                         type="checkbox"
                         id={name}
                         name={name}

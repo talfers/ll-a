@@ -112,7 +112,7 @@ export const ProgressContainerStyled = styled.div`
     bottom: 80px;
     left: 0px;
     right: 0px;
-    z-index: 90;
+    z-index: 1;
 `;
 
 export const ProgressBarOuterStyled = styled.div`

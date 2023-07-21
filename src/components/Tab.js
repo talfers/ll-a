@@ -15,7 +15,7 @@ function Tab({tab, customer, subscription, selectedPlan, setSelectedPlan, plans}
                 <div>
                     <PageHeader2Styled id={'tab-header'}>{tab.title}</PageHeader2Styled>
                     {   tab.step===0?
-                        <>
+                        <>  
                             <PageHeaderSubTextStyled>{tab.shortDescription}</PageHeaderSubTextStyled>
                             <PageHeaderSubTextMobileStyled>{tab.shortDescription}</PageHeaderSubTextMobileStyled>
                         </>

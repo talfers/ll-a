@@ -1,14 +1,10 @@
-import { FaRegEnvelope, FaRegHandshake, FaRegNewspaper, FaRegQuestionCircle } from "react-icons/fa";
-
 const tabs = [
     {
         id: 0,
         shortName: "advertising",
-        shortDescription: "Please provide some information about the property so that I can create a compelling advertisement that highlights the best features and attracts suitable tenants.",
+        shortDescription: "Please provide some information about the property to create a compelling advertisement that highlights the best features.",
         name: "Advertising",
-        icon: <FaRegNewspaper/>,
         title: 'Create Advertising Message',
-        text: "For me to write an advertisement for an apartment or rental house you have for rent, it would be helpful for you to provide some information about the property. With the information below, I can create a compelling advertisement that highlights the best features of your property and attracts suitable tenants.",
         submitMessage: "Create",
         step: 0,
         loading: false,
@@ -54,29 +50,27 @@ const tabs = [
                             'central_heat': false,
                             'laundry_in-unit': false,
                             'energy_efficient': false,
+                            'high_speed_internet': false,
                         },
-                        "features": {
+                        "exterior": {
                             'private_parking': false,
                             'pool': false,
                             'patio': false,
-                            'hardwood_floors': false,
-                            'garage': false,
-                        },
-                        "cat1": {
                             'good_schools': false,
                             'views': false,
-                            'freshly_renovated': false,
                             'garden': false,
-                            'pets_allowed': false,
-                            'fireplace': false,
+                            'security': false,
                         },
-                        "cat2": {
+                        "interior": {
+                            'hardwood_floors': false,
+                            'garage': false,
+                            'freshly_renovated': false,
                             'new_appliances': false,
                             'storage': false,
                             'home_office': false,
-                            'high_speed_internet': false,
+                            'fireplace': false,
+                            'pets_allowed': false,
                             'game_room': false,
-                            'security': false,
                             'wet_bar': false,
                         }
                     }
@@ -109,11 +103,9 @@ const tabs = [
     {
         id: 1,
         shortName: "messaging",
-        shortDescription: "Please provide some background information on the situation so that I can draft a clear and professional message that effectively communicates the needs and expectations to the recipient.",
+        shortDescription: "Please provide some information on the situation to draft a clear and professional message that effectively communicates your needs to the recipient.",
         name: "Messages",
-        icon:  <FaRegEnvelope/>,
         title: 'Write a Email or Text Message',
-        text: "For me to write a message for a landlord that needs to correspond with a tenant or contractor or otherwise for important business, it would be helpful to provide some background information on the situation and the purpose of the message. With the information below, I can draft a clear and professional message that effectively communicates the landlord's needs and expectations to the recipient.",
         submitMessage: "Create",
         step: 0,
         loading: false,
@@ -132,7 +124,7 @@ const tabs = [
                     title: "What's the message about?",
                     placeholder: "Please include any details about important issues or concerns, specific requests or instructions, and/or any deadlines or time-sensitive information.",
                     type: "textarea",
-                    subtext: "Explain what you would like to say in your message",
+                    subtext: "",
                     size: 100,
                     value: ''
                 }
@@ -144,9 +136,7 @@ const tabs = [
     //     shortName: "leases",
     //     shortDescription: "Please provide a detailed breakdown of the information and provisions to include in your lease agreements so that I can provide a simple lease agreement. Please note it is important to consult with a licensed attorney to ensure agreement is legally sound and protects your interests.",
     //     name: "Leases",
-    //     icon: <GrDocument/>,
     //     title: 'Write a Lease Agreement',
-    //     text: "For me to write a simple lease agreement for you to use with tenants, I will need a detailed breakdown of the information and provisions you would like to include in your lease agreement. Be as descriptive as possible. With this information, I can provide you with a simple lease agreement between a landlord and tenant(s), but it is important to consult with a licensed attorney to ensure that the lease agreement is legally sound and properly protects your interests.",
     //     submitMessage: "Write Lease",
     //     step: 0,
     //     loading: false,
@@ -512,11 +502,9 @@ const tabs = [
     {
         id: 2,
         shortName: "contracts",
-        shortDescription: "Please provide a detailed breakdown of the information to include in your agreement so that I can provide a simple service agreement. Please note it is important to consult with a licensed attorney to ensure agreement is legally sound and protects your interests.",
+        shortDescription: "Please provide a detailed breakdown of the information to include in your agreement to create a simple service agreement. Please note it is important to consult with a licensed attorney to ensure the agreement protects your interests.",
         name: "Contracts",
-        icon: <FaRegHandshake/>,
         title: 'Write a Contract Agreement',
-        text: "For me to write a simple service contract for you to use with a contractor, maintenance company and more, I will need a detailed breakdown of the information you would like to include in your agreement. Be as descriptive as possible. With this information, I can provide you with a simple agreement between a landlord and service provider, but it is important to consult with a licensed attorney to ensure that the agreement is legally sound and properly protects your interests.",
         submitMessage: "Create",
         step: 0,
         loading: false,
@@ -673,11 +661,9 @@ const tabs = [
     {
         id: 3,
         shortName: "advice",
-        shortDescription: "Please provide details about the legal matter you are asking about so that I can provide you with information related to the matter in question. Please note this information should not be used as a substitute for advice from a licensed attorney.",
+        shortDescription: "Please provide details about the legal matter you are asking about to receive information related to the matter in question. Please note this information should not be used as a substitute for advice from a licensed attorney.",
         name: "Advice",
-        icon: <FaRegQuestionCircle/>,
         title: 'Ask a Legal Assistant',
-        text: "For me to assist you with legal matters in the real estate industry, it would be helpful to provide as much detail as possible about the legal matter you are asking about. With this information, I can provide you with general information and resources related to the legal matter in question, but it is important to note that this information should not be considered as a substitute for legal advice from a licensed attorney.",
         submitMessage: "Submit",
         step: 0,
         loading: false,

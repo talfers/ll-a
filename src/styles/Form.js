@@ -19,10 +19,10 @@ export const FormSectionStyled = styled.section`
 export const InputContainerStyled = styled.div`
     display: flex;
     flex-direction: column;
-    margin: ${props => (props.$type === "text"||props.$type === "date"||props.$type === "shorttext")?"8px 8px 20px 0px;":"8px 8px 8px 0px;"};
+    margin: ${props => ["text", "date", "shorttext"].includes(props.$type)?"8px 8px 20px 0px;":"8px 8px 8px 0px;"};
     justify-content: center;
     width: ${props => props.$size ? `${props.$size}%`:""};
-    max-width: ${props => props.$type === "text"?"600px":""};
+    max-width: ${props =>  props.$type==="select"?"200px":props.$type==="date"?"800px":""};
     align-items: ${props => props.$type === "checkbox" ? "flex-start" : ""};
     @media only screen and ${devices.md} {
         width: 95%;
@@ -90,6 +90,7 @@ export const LabelStyled = styled.label`
 export const FormContainerStyled = styled.div`
     font-family: ${({ theme }) => theme.colors.ff};
     flex: 1;
+    margin-bottom: 100px;
 `;
 
 export const SectionsContainerStyled = styled.div`
@@ -119,6 +120,10 @@ export const FormNavContainerStyled = styled.div`
     align-items: center;
     justify-content: space-between;
     background: ${({ theme }) => theme.colors.bg};
+`;
+
+export const ButtonContainerStyled = styled.div`
+    display: flex;
 `;
 
 export const BackButtonsContainerStyled = styled.div`

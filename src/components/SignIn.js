@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Recaptcha from './Recaptcha';
 import { 
     FormSectionStyled, 
-    FormNavContainerStyled, 
+    ButtonContainerStyled, 
     FormContainerStyled, 
     InputContainerStyled, 
     InputStyled, 
@@ -99,14 +99,15 @@ const SignIn = () => {
                         <Recaptcha data-size={'compact'} onChange={onRecaptchaChange}/>
                         {error!==''?<p>{error}</p>:null}
                         
-                        <FormNavContainerStyled>
-                            <PrimaryButtonStyled                                    
+                        <ButtonContainerStyled>
+                            <PrimaryButtonStyled  
+                                $grouped                                
                                 onClick={onSubmit}                                        
                             >      
                                 Sign in                                                                  
                             </PrimaryButtonStyled>
 
-                        </FormNavContainerStyled>
+                        </ButtonContainerStyled>
                         <OrContainerStyled><HrStyled/><p>OR</p><HrStyled/></OrContainerStyled>
                         <GoogleButtonContainerStyled>
                             <GoogleButtonStyled onClick={onSubmitWithGoogle}>Continue with Google</GoogleButtonStyled>

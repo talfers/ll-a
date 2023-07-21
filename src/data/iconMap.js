@@ -3,6 +3,7 @@ import { IoHomeOutline, IoHelpCircleOutline, IoPersonOutline, IoMailOutline, IoE
 import { BsFileEarmarkWord, BsFiletypePdf, BsCheckCircle } from "react-icons/bs";
 
 
+
 const iconMap = {
     'Basic': <FaChessPawn size={30}/>,
     'Standard': <FaChessKnight size={30} />,

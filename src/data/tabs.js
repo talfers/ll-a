@@ -453,7 +453,8 @@ const tabs = [
     //                 placeholder: "i.e. Landlord",
     //                 type: "shorttext",
     //                 size: 100,
-    //                 value: ''
+    //                 value: '',
+    //                 info: 'This does not mean this person pays for all damages. Specify below how much the landlord will pay.'
     //             },
     //             "unexpected_property_damage_amount_landlord": {
     //                 title: "Amount landlord will pay",
@@ -611,7 +612,7 @@ const tabs = [
                     value: ''
                 },
                 "payment_freq": {
-                    title: "Payment freq",
+                    title: "Payment frequency",
                     placeholder: "i.e. Monthly, Quarterly",
                     type: "shorttext",
                     size: 100,
@@ -624,7 +625,7 @@ const tabs = [
                     placeholder: "",
                     type: "checkbox",
                     size: 100,
-                    value: false
+                    value: false,
                 },
                 "contractor_liable": {
                     title: "Contractor liable for claims?",
@@ -639,7 +640,8 @@ const tabs = [
                     placeholder: "",
                     type: "checkbox",
                     size: 100,
-                    value: false
+                    value: false,
+                    info: "Is the service provider required to return recipient property after termination of agreement?"
                 },
             },
             "provisions": {

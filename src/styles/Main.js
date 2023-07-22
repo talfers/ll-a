@@ -165,3 +165,40 @@ export const SpacerStyled = styled.div`
     width: 100%;
     height: 20px;
 `;
+
+export const NewBannerStyled = styled.div`
+    background: #D2122E;
+    padding: 4px 8px;
+    position: absolute;
+    font-size: 10px;
+    color: white;
+    top: 0px;
+    right: 16px;
+    border-radius: 0px 0px 4px 4px;
+`;
+
+export const InfoBubbleStyled = styled.div`
+    height: 20px;
+    color: ${({ theme }) => theme.colors.subTextColor};
+    position: absolute;
+    right: 0px;
+    top: 4px;
+    display: flex;
+    flex-direction: column;
+    max-width: 200px;
+`;
+
+export const InfoBubbleTextContainerStyled = styled.div`
+    display: ${props => props.$displayed?`block`:'none'};
+    background: ${({ theme }) => theme.colors.opacityColor};
+    padding: 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    z-index: 1;
+`;
+
+export const InfoBubbleTextStyled = styled.div``;
+
+export const InfoIconStyled = styled.div`
+    align-self: flex-end;
+`;

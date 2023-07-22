@@ -9,6 +9,7 @@ import Cluster from './Cluster';
 import TextArea from './TextArea';
 import ShortTextInput from './ShortTextInput';
 import Date from './Date';
+import InfoBubble from './InfoBubble';
 
 
 function Input(props) {
@@ -20,6 +21,7 @@ function Input(props) {
         $type={props.input.type}
         $size={props.input.size}
         >
+            {props.input.info?<InfoBubble info={props.input.info}/>:null}
             {
                 props.input.type==='number'||
                 props.input.type==='cluster'||

@@ -12,6 +12,7 @@ export const BoxesContainerStyled = styled.div`
 `;
 
 export const BoxContainerStyled = styled.div`
+    position: relative;
     padding: 20px;
     border: 1px solid ${({ theme }) => theme.colors.borderColor};
     margin: 12px 24px 12px 0px;

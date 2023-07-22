@@ -16,6 +16,7 @@ function Home({tabs, setActiveTab}) {
     }
 
     const createBoxes = () => {
+        
         return tabs.map((b, i) => (
             <Box key={i} onClick={handleBoxClick} box={b} index={i}/>
         ))

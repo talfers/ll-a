@@ -19,5 +19,6 @@ export const CheckboxWrapperContainerStyled = styled(CounterContainerStyled)`
 
 export const CheckboxStyled = styled(InputStyled)`
     accent-color: ${({theme}) => theme.colors.activeColor};
+    margin-top: 0px;
 `;
 

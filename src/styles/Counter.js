@@ -8,6 +8,7 @@ export const CounterContainerStyled = styled.div`
     min-height: 80px;
     justify-content: space-between;
     width: 100%;
+    padding: 8px 0px;
     border-bottom: 1px solid ${({theme}) => theme.colors.borderColor};
     @media only screen and ${devices.md} {
         min-height: 60px;

@@ -20,7 +20,7 @@ export const InputContainerStyled = styled.div`
     display: flex;
     position: relative;
     flex-direction: column;
-    margin: ${props => ["text", "date", "shorttext"].includes(props.$type)?"8px 8px 20px 0px;":"8px 8px 8px 0px;"};
+    margin: ${props => ["text", "date", "shorttext"].includes(props.$type)?"8px 8px 20px 0px":["checkbox", "number"].includes(props.$type)?"0px":"8px 8px 8px 0px"};
     justify-content: center;
     width: ${props => props.$size ? `${props.$size}%`:""};
     max-width: ${props =>  props.$type==="select"?"200px":props.$type==="date"?"800px":""};

@@ -50,7 +50,7 @@ export const CounterButtonStyled = styled.div`
 
 export const CounterValueStyled = styled.input`
     border: none;
-    width: 40px;
+    width: 48px;
     text-align: center;
     font-size: 18px;
     &:focus {

@@ -62,6 +62,8 @@ export const SelectStyled = styled.select`
     vertical-align:top;
     min-width: 100px;
     width: 100%;
+    accent-color: ${({theme}) => theme.colors.activeColor};
+    color: ${({theme}) => theme.colors.activeColor};
     font-family: ${({ theme }) => theme.colors.ff};
     &:focus {
         outline: none !important;

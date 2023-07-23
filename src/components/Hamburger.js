@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 // import ThemeToggle from './ThemeToggle';
 import { 
     MenuBarContainerStyled,
@@ -16,15 +16,17 @@ import {
  } from '../styles/Nav'
  import iconMap from '../data/iconMap';
  import { useNavigate } from 'react-router-dom'
-
+import { Context as TaskContext } from '../context/TaskContext';
 
 function Hamburger({ user, tabs, activeTabId, onNavClick, menuOpen, setMenuOpen, logOut, handleThemeChange }) {
+    const { resetStep } = useContext(TaskContext)
     const navigate = useNavigate();
     const handleMenuClick = () => {
         setMenuOpen(menuOpen===1?0:1);
     }
       
     const handleLinkClick = (item) => {
+        resetStep(item.id)
         setMenuOpen(0);
         navigate("/assistant");
         onNavClick(item.id)

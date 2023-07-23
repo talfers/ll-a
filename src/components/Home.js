@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { BoxesContainerStyled } from '../styles/Home';
 import { ContainerStyled, PageHeaderStyled, PageSubTitleStyled } from '../styles/Main';
 import Box from './Box';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import { Context as TaskContext } from '../context/TaskContext';
 
 function Home({tabs, setActiveTab}) {
     const navigate = useNavigate();
+    const { resetStep } = useContext(TaskContext)
 
     const handleBoxClick = (item) => {
+        resetStep(item.id)
         setActiveTab(item.id)
         navigate('/assistant');
     }

@@ -67,6 +67,7 @@ export const SelectStyled = styled.select`
     background: ${({ theme }) => theme.colors.bg};
     padding: 6px;
     vertical-align:top;
+    font-weight: 700;
     min-width: 100px;
     width: 100%;
     accent-color: ${({theme}) => theme.colors.activeColor};

@@ -47,7 +47,7 @@ export const InputStyled = styled.input`
 export const InputIconStyled = styled.div`
     position: absolute;
     right: 8px;
-    bottom: 4px;
+    bottom: 3px;
     color: ${({ theme }) => theme.colors.subTextColor};
     cursor: pointer;
 `;

@@ -15,7 +15,7 @@ import QueryLimitMessage from './QueryLimitMessage';
 
 function Form({tab, subscription, customer, selectedPlan, setSelectedPlan, plans}) {
     const navigate = useNavigate();
-    const { user } = useAuth()
+    const { user } = useAuth();
     const { updateQueryLimit, checkout, findPlan } = usePayments();
     const {postTaskData, incrementStep, decrementStep, resetResponse, updateLoading} = useContext(TaskContext);
     const [showPlans, setShowPlans] = useState(0);

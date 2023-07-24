@@ -12,10 +12,12 @@ import {
     GoogleButtonStyled, 
     GoogleButtonContainerStyled,
     OrContainerStyled,
-    HrStyled
+    HrStyled,
+    InputIconStyled
 } from '../styles/Form';
 import { NavLinkWrapper, PageHeaderStyled } from '../styles/Main';
 import { PrimaryButtonStyled } from '../styles/Button';
+import iconMap from '../data/iconMap';
 
 
 const SignIn = () => {
@@ -23,6 +25,7 @@ const SignIn = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [secureTextEntry, setSecureTextEntry] = useState(true);
     const { signIn, signInWithGoogle } = useAuth();
     const [isCaptchaSuccessful, setIsCaptchaSuccess] = useState(false);
 
@@ -42,8 +45,10 @@ const SignIn = () => {
         } else {
             setError('Please confirm you are not a robot before continuing');
         }
-        
-       
+    }
+
+    const updateSecureTextEntry = () => {
+        setSecureTextEntry(!secureTextEntry);
     }
 
     const onSubmitWithGoogle = async () => {
@@ -81,6 +86,7 @@ const SignIn = () => {
                                 placeholder="Email address"
                                 onChange={(e)=>setEmail(e.target.value)}
                             />
+                            <InputIconStyled>{iconMap['User_Solid']}</InputIconStyled>
                         </InputContainerStyled>
 
                         <InputContainerStyled >
@@ -90,11 +96,12 @@ const SignIn = () => {
                             <InputStyled
                                 id="password"
                                 name="password"
-                                type="password"                                    
+                                type={secureTextEntry ? `password`: `text`}                                   
                                 required                                                                                
                                 placeholder="Password"
                                 onChange={(e)=>setPassword(e.target.value)}
                             />
+                            {<InputIconStyled onClick={updateSecureTextEntry}>{secureTextEntry?iconMap['Eye']:iconMap['Eye_Slash']}</InputIconStyled>}
                         </InputContainerStyled>
                         <Recaptcha data-size={'compact'} onChange={onRecaptchaChange}/>
                         {error!==''?<p>{error}</p>:null}

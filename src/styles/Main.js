@@ -67,7 +67,7 @@ export const CloseButton = styled.div`
     position: absolute;
     top: 10px;
     right: 10px;
-    z-index: 92;
+    z-index: 70;
 `;
 
 export const NavLinkWrapper = styled(NavLink)`

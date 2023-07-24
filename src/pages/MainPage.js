@@ -76,7 +76,7 @@ function MainPage({handleThemeChange}) {
                 <Route path="/verifyemail" element={<RedirectRoute><VerifyEmail/></RedirectRoute>}/>
                 <Route path="/" element={<ProtectedRoute> <Home user={user} tabs={state.tabs} setActiveTab={setActiveTab}/></ProtectedRoute>} />
                 <Route path="/assistant" element={<ProtectedRoute><Tabs plans={plans} selectedPlan={selectedPlan} setSelectedPlan={setSelectedPlan} activeTab={activeTab} customer={customer} subscription={subscription}/></ProtectedRoute>} />
-                <Route path="/response" element={<ProtectedRoute><Response tab={activeTab} customer={customer} subscription={subscription}/></ProtectedRoute>} />
+                <Route path="/response" element={<ProtectedRoute><Response plans={plans} selectedPlan={selectedPlan} setSelectedPlan={setSelectedPlan} tab={activeTab} customer={customer} subscription={subscription}/></ProtectedRoute>} />
                 <Route path="/profile" element={<ProtectedRoute><Profile plans={plans} selectedPlan={selectedPlan} setSelectedPlan={setSelectedPlan}/></ProtectedRoute>} />
             </Routes>
             <Footer/>

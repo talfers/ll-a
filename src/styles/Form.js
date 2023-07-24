@@ -38,11 +38,18 @@ export const InputStyled = styled.input`
     padding: 6px;
     vertical-align:top;
     font-family: ${({ theme }) => theme.colors.ff};
-    
     &:focus {
         outline: none !important;
         border: 1.5px solid ${({ theme }) => theme.colors.contrastText};
     }
+`;
+
+export const InputIconStyled = styled.div`
+    position: absolute;
+    right: 8px;
+    bottom: 4px;
+    color: ${({ theme }) => theme.colors.subTextColor};
+    cursor: pointer;
 `;
 
 export  const DateStyled = styled(InputStyled)`
@@ -62,6 +69,8 @@ export const SelectStyled = styled.select`
     vertical-align:top;
     min-width: 100px;
     width: 100%;
+    accent-color: ${({theme}) => theme.colors.activeColor};
+    color: ${({theme}) => theme.colors.activeColor};
     font-family: ${({ theme }) => theme.colors.ff};
     &:focus {
         outline: none !important;

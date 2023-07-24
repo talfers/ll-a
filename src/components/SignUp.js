@@ -12,11 +12,13 @@ import {
     LabelStyled, 
     PlansButton,
     PlanViewContainerStyled,
+    InputIconStyled,
 } from '../styles/Form';
 import { PrimaryButtonStyled } from '../styles/Button';
 import { ModalBackgroundStyled, NavLinkWrapper, PageHeaderStyled } from '../styles/Main';
 import Products from './Products';
 import { useLocalStorage } from '../hooks/useLocalStorage';
+import iconMap from '../data/iconMap';
 
 
 const SignUp = ({ plans, setSelectedPlan, selectedPlan }) => {
@@ -26,7 +28,9 @@ const SignUp = ({ plans, setSelectedPlan, selectedPlan }) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [error, setError] = useState('')
+    const [error, setError] = useState('');
+    const [secureTextEntry, setSecureTextEntry] = useState(true);
+    const [secureTextEntryConfirm, setSecureTextEntryConfirm] = useState(true);
     const [isCaptchaSuccessful, setIsCaptchaSuccess] = useState(false);
     const [showPlans, setShowPlans] = useState(1);
     const [loading, setLoading] = useState(0);
@@ -74,6 +78,14 @@ const SignUp = ({ plans, setSelectedPlan, selectedPlan }) => {
         }
     }
 
+    const updateSecureTextEntry = (val) => {
+        setSecureTextEntry(!secureTextEntry);
+    }
+
+    const updateSecureTextEntryConfirm = (val) => {
+        setSecureTextEntryConfirm(!secureTextEntryConfirm);
+    }
+
 
     const onRecaptchaChange = (value) => {
         setIsCaptchaSuccess(true)
@@ -119,6 +131,7 @@ const SignUp = ({ plans, setSelectedPlan, selectedPlan }) => {
                             required                                    
                             placeholder="Email address"                                
                         />
+                        <InputIconStyled>{iconMap['User_Solid']}</InputIconStyled>
                     </InputContainerStyled>
                     
                     <InputContainerStyled>
@@ -126,26 +139,28 @@ const SignUp = ({ plans, setSelectedPlan, selectedPlan }) => {
                             Password
                         </LabelStyled>
                         <InputStyled
-                            type="password"
+                            type={secureTextEntry ? `password`: `text`}
                             label="Create password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)} 
                             required                                 
                             placeholder="Password"   
                         />
+                        {<InputIconStyled onClick={updateSecureTextEntry}>{secureTextEntry?iconMap['Eye']:iconMap['Eye_Slash']}</InputIconStyled>}
                     </InputContainerStyled>
                     <InputContainerStyled>
                         <LabelStyled htmlFor="confirmPassword">
                             Confirm Password
                         </LabelStyled>
                         <InputStyled
-                            type="password"
+                            type={secureTextEntryConfirm ? `password`: `text`}
                             label="Confirm Password"
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)} 
                             required                                 
                             placeholder="Confirm Password"   
                         />
+                        {<InputIconStyled onClick={updateSecureTextEntryConfirm}>{secureTextEntryConfirm?iconMap['Eye']:iconMap['Eye_Slash']}</InputIconStyled>}
                     </InputContainerStyled>
                     {
                         plans.length>0?

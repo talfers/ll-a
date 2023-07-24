@@ -65,3 +65,13 @@ export const ResponseStyled = styled.div`
 export const ResponseItem = styled.div`
     margin: 10px 0px;
 `;
+
+export const RefreshButtonStyled = styled(ResponseButtonStyled)`
+    align-self: center;
+    margin-left: 4px;
+`;
+
+export const ResponseTitleContainerStyled = styled.div`
+    display: flex;
+    align-items: center;
+`;

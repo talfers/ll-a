@@ -9,7 +9,7 @@ export const ResponseContainerStyled = styled.div`
     display: flex;
     flex-direction: column;
     width: 80%;
-    max-width: 2000px;
+    max-width: 1200px;
     margin: 0 auto;
 `;
 

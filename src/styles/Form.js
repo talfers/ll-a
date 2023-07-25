@@ -49,7 +49,7 @@ export const InputIconStyled = styled.div`
     right: 8px;
     bottom: 3px;
     color: ${({ theme }) => theme.colors.subTextColor};
-    cursor: pointer;
+    cursor: ${props => props.$clickable?`pointer`:``};
 `;
 
 export  const DateStyled = styled(InputStyled)`

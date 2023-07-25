@@ -146,7 +146,7 @@ const SignUp = ({ plans, setSelectedPlan, selectedPlan }) => {
                             required                                 
                             placeholder="Password"   
                         />
-                        {<InputIconStyled onClick={updateSecureTextEntry}>{secureTextEntry?iconMap['Eye']:iconMap['Eye_Slash']}</InputIconStyled>}
+                        {<InputIconStyled $clickable onClick={updateSecureTextEntry}>{secureTextEntry?iconMap['Eye']:iconMap['Eye_Slash']}</InputIconStyled>}
                     </InputContainerStyled>
                     <InputContainerStyled>
                         <LabelStyled htmlFor="confirmPassword">
@@ -160,7 +160,7 @@ const SignUp = ({ plans, setSelectedPlan, selectedPlan }) => {
                             required                                 
                             placeholder="Confirm Password"   
                         />
-                        {<InputIconStyled onClick={updateSecureTextEntryConfirm}>{secureTextEntryConfirm?iconMap['Eye']:iconMap['Eye_Slash']}</InputIconStyled>}
+                        {<InputIconStyled $clickable onClick={updateSecureTextEntryConfirm}>{secureTextEntryConfirm?iconMap['Eye']:iconMap['Eye_Slash']}</InputIconStyled>}
                     </InputContainerStyled>
                     {
                         plans.length>0?

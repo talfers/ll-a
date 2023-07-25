@@ -1,7 +1,7 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
 import { ThemeImage, ThemeToggleBall, ThemeToggleContainer, ThemeIcons } from '../styles/Nav';
+import { IconContext } from "react-icons";
+import iconMap from '../data/iconMap';
 
 
 function ThemeToggle(props) {
@@ -12,8 +12,10 @@ function ThemeToggle(props) {
       }}
     >
       <ThemeIcons>
-        <ThemeImage><FontAwesomeIcon icon={faMoon} size={"sm"} color={'inherit'} /></ThemeImage>
-        <ThemeImage><FontAwesomeIcon icon={faSun} size={"sm"} color={'inherit'} /></ThemeImage>
+        <IconContext.Provider value={{ style: { fontSize: '14px' } }}>
+          <ThemeImage>{iconMap['Moon']}</ThemeImage>
+          <ThemeImage>{iconMap['Sun']}</ThemeImage>
+        </IconContext.Provider>
       </ThemeIcons>
       <ThemeToggleBall />
     </ThemeToggleContainer>

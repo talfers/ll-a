@@ -12,6 +12,7 @@ import iconMap from '../data/iconMap';
 import { ContentHeaderStyled, CloseButton } from '../styles/Main';
 import { PrimaryButtonStyled } from '../styles/Button';
 import { FontAwesomeIconWrapper } from '../styles/Main';
+import { IconContext } from "react-icons";
 
 
 function Products(props) {
@@ -19,11 +20,13 @@ function Products(props) {
     const createPlans = () => {
         return props.plans.map((p, i) => (
             <ProductContainerStyled key={i} selected={props.selectedPlan===p.prices.priceId} onClick={() => {props.setSelectedPlan(p.prices.priceId)}}>
-                <IconContainerStyled>
-                    <FontAwesomeIconWrapper>
-                       {iconMap[p.name]}
-                    </FontAwesomeIconWrapper>
-                </IconContainerStyled>
+                <IconContext.Provider value={{ style: { fontSize: '30px' } }}>
+                    <IconContainerStyled>
+                        <FontAwesomeIconWrapper>
+                        {iconMap[p.name]}
+                        </FontAwesomeIconWrapper>
+                    </IconContainerStyled>
+                </IconContext.Provider>
                 <ProductHeader>{p.name}</ProductHeader>
                 <ProductText $hideMobile $spaceBelow>{p.description}</ProductText>
                 <ProductText><strong>Price:</strong> ${p.prices.priceData.unit_amount/100} / month</ProductText>

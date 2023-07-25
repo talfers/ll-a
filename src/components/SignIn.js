@@ -101,7 +101,7 @@ const SignIn = () => {
                                 placeholder="Password"
                                 onChange={(e)=>setPassword(e.target.value)}
                             />
-                            {<InputIconStyled onClick={updateSecureTextEntry}>{secureTextEntry?iconMap['Eye']:iconMap['Eye_Slash']}</InputIconStyled>}
+                            {<InputIconStyled $clickable onClick={updateSecureTextEntry}>{secureTextEntry?iconMap['Eye']:iconMap['Eye_Slash']}</InputIconStyled>}
                         </InputContainerStyled>
                         <Recaptcha data-size={'compact'} onChange={onRecaptchaChange}/>
                         {error!==''?<p>{error}</p>:null}

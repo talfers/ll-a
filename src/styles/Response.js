@@ -19,7 +19,7 @@ export const ResponseHeaderStyled = styled.div`
     margin-bottom: 12px;
     @media only screen and ${devices.md} {
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
         justify-content: center;
     }
 `;
@@ -35,7 +35,7 @@ export const ResponseActionButtonsContainerStyled = styled.div`
 
 export const ResponseButtonStyled = styled.div`
     background-color: ${({ theme }) => theme.colors.bg};
-    padding: 6px;
+    margin: 6px 12px 6px 0px;
     border-radius: 4px;
     font-size: 20px;
     cursor: pointer;    
@@ -68,7 +68,7 @@ export const ResponseItem = styled.div`
 
 export const RefreshButtonStyled = styled(ResponseButtonStyled)`
     align-self: center;
-    margin-left: 4px;
+    margin-left: 10px;
 `;
 
 export const ResponseTitleContainerStyled = styled.div`

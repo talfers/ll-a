@@ -58,7 +58,7 @@ export const ProductContainerStyled = styled.div`
     cursor: pointer;
     margin: 0 12px;
     border-radius: 12px;
-    border: ${props => props.selected?`2px solid ${theme.dark.colors.contrastText}`:'2px solid transparent'};
+    border: ${props => props.selected?`2px solid ${theme.dark.colors.headline}`:'2px solid transparent'};
     @media only screen and ${devices.md} {
         height: inherit;
         padding: 12px;

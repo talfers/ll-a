@@ -232,15 +232,15 @@ export const RecaptchaContainerStyled = styled.div`
     div iframe {
         
         @media only screen and ${devices.md} {
-            transform:scale(0.7);
-            -webkit-transform:scale(0.7);
+            transform:scale(0.8);
+            -webkit-transform:scale(0.8);
             transform-origin:0 0;
             -webkit-transform-origin:0 0;
         }
         @media only screen and ${devices.sm} {
 
-            transform:scale(0.5);
-            -webkit-transform:scale(0.5);
+            transform:scale(0.7);
+            -webkit-transform:scale(0.7);
             transform-origin:0 0;
             -webkit-transform-origin:0 0;
         }
